@@ -1,5 +1,5 @@
 # 油管音乐
 DOMAIN,music.youtube.com
 DOMAIN-SUFFIX,music.youtube.com
-beacons.gcp.gvt2.com
-googlevideo.com
+DOMAIN-SUFFIX,beacons.gcp.gvt2.com
+DOMAIN-SUFFIX,googlevideo.com
