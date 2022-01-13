@@ -1,6 +1,6 @@
-# 游戏规则
+#HOLAND游戏规则
 
-#GTA V
+#GTA5,GTA5,0,0,1,0,1,0,By-normanbb,no-resolve
 IP-CIDR,2.16.0.0/16,no-resolve
 IP-CIDR,2.16.10.0/24,no-resolve
 IP-CIDR,2.17.0.0/16,no-resolve
