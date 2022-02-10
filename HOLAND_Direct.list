@@ -1,10 +1,10 @@
 # 直连列表
 
 # MyList
-DOMAIN-SUFFIX,holand.cyou
-DOMAIN-SUFFIX,gia.holand.cyou
-DOMAIN-SUFFIX,hk.holand.cyou
-DOMAIN-SUFFIX,us.holand.cyou
+# DOMAIN-SUFFIX,holand.cyou
+# DOMAIN-SUFFIX,gia.holand.cyou
+# DOMAIN-SUFFIX,hk.holand.cyou
+# DOMAIN-SUFFIX,us.holand.cyou
 DOMAIN-SUFFIX,holand.work
 DOMAIN-SUFFIX,ros.holand.work
 DOMAIN-SUFFIX,bilibili.com
