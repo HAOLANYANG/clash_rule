@@ -18,3 +18,6 @@ DOMAIN-SUFFIX,网络
 
 # 中国国内常见域名关键词直连
 DOMAIN-KEYWORD,bilibili
+
+# NARK认证中心
+DOMAIN-SUFFIX,nnnolanark.xyz
