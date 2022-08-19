@@ -7,7 +7,6 @@
 # DOMAIN-SUFFIX,us.holand.cyou
 DOMAIN-SUFFIX,holand.work
 DOMAIN-SUFFIX,ros.holand.work
-DOMAIN-SUFFIX,bilibili.com
 DOMAIN-SUFFIX,ip.3322.net
 
 # CN域名直连
@@ -15,9 +14,6 @@ DOMAIN-SUFFIX,cn
 DOMAIN-SUFFIX,中国
 DOMAIN-SUFFIX,公司
 DOMAIN-SUFFIX,网络
-
-# 中国国内常见域名关键词直连
-DOMAIN-KEYWORD,bilibili
 
 # NARK认证中心
 DOMAIN-SUFFIX,nnnolanark.xyz
