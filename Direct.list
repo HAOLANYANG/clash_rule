@@ -51,3 +51,8 @@ DOMAIN-SUFFIX,router.ctc
 DOMAIN-SUFFIX,routerlogin.com
 DOMAIN-SUFFIX,tendawifi.com
 DOMAIN-SUFFIX,zte.home
+
+
+# VPS商家
+DOMAIN-SUFFIX,rcp.net
+DOMAIN-SUFFIX,greencloudvps.com
