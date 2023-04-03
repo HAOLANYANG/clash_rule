@@ -1,2 +1,3 @@
 - DOMAIN-SUFFIX,openai.com,GPT
 - DOMAIN-SUFFIX,auth0.com,GPT
+- DOMAIN-SUFFIX,openai.com,Proxy
