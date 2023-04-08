@@ -26,3 +26,14 @@ DOMAIN-SUFFIX,cdn-qc.content.steamchina.com
 #阿里云
 DOMAIN-SUFFIX,cdn-ali.content.steamchina.com (蒸汽中国独占)
 DOMAIN-SUFFIX,xz.pphimalayanrt.com
+
+
+
+
+DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-SUFFIX,steamstatic.com
+DOMAIN-SUFFIX,steamserver.net
+DOMAIN-SUFFIX,test.steampowered.com
+DOMAIN-SUFFIX,api.steampowered.com
+DOMAIN-SUFFIX,rmbgame.net
+PROCESS-NAME,EpicWebHelper.exe,DIRECT
