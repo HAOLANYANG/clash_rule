@@ -18,13 +18,13 @@ DOMAIN-SUFFIX,dl.steam.clngaa.com
 
 #网宿
 DOMAIN-SUFFIX,cdn.mileweb.cs.steampowered.com.8686c.com
-DOMAIN-SUFFIX,cdn-ws.content.steamchina.com (蒸汽中国独占)
+DOMAIN-SUFFIX,cdn-ws.content.steamchina.com
 
 #腾讯云 (蒸汽中国独占)
 DOMAIN-SUFFIX,cdn-qc.content.steamchina.com
 
 #阿里云
-DOMAIN-SUFFIX,cdn-ali.content.steamchina.com (蒸汽中国独占)
+DOMAIN-SUFFIX,cdn-ali.content.steamchina.com
 DOMAIN-SUFFIX,xz.pphimalayanrt.com
 
 
