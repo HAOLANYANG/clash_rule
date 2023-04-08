@@ -15,6 +15,10 @@ DOMAIN-SUFFIX,中国
 DOMAIN-SUFFIX,公司
 DOMAIN-SUFFIX,网络
 
+
+
+
+
 # NARK认证中心
 #DOMAIN-SUFFIX,nnnolanark.xyz
 
@@ -58,6 +62,7 @@ DOMAIN-SUFFIX,rcp.net
 DOMAIN-SUFFIX,greencloudvps.com
 DOMAIN-SUFFIX,spartanhost.net
 DOMAIN-SUFFIX,vps.hosting
+DOMAIN-SUFFIX,inkisp.cc
 
 
 #ns-whitelist.txt大陆直连域名  https://github.com/felixonmars/dnsmasq-china-list/blob/master/ns-whitelist.txt
