@@ -1,8 +1,177 @@
 # 直连列表
+#国内应用进程-安卓
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.tencent.android.qqdownloader
+  - PROCESS-NAME,com.qihoo.appstore
+  - PROCESS-NAME,com.baidu.appsearch
+  - PROCESS-NAME,com.xiaomi.market
+  - PROCESS-NAME,com.meizu.mstore
+  - PROCESS-NAME,com.huawei.appmarket
+  - PROCESS-NAME,com.wandoujia.phoenix2
+  - PROCESS-NAME,com.dragon.android.pandaspace
+  - PROCESS-NAME,com.pp.assistant
+  - PROCESS-NAME,com.oppo.market
+  - PROCESS-NAME,com.sogou.androidtool
+  - PROCESS-NAME,com.bbk.appstore
+  - PROCESS-NAME,com.sec.android.app.samsungapps
+  - PROCESS-NAME,com.lenovo.leos.appstore
+  - PROCESS-NAME,zte.com.market
+  - PROCESS-NAME,com.hiapk.marketpho
+  - PROCESS-NAME,com.yingyonghui.market
+  - PROCESS-NAME,com.mappn.gfan
+  - PROCESS-NAME,com.coolapk.market
+  - PROCESS-NAME,com.xiaomi.market
+  - PROCESS-NAME,com.huawei.appmarket
+
+  - PROCESS-NAME,com.tencent.mobileqq
+  - PROCESS-NAME,com.qzone
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.p1.mobile.putong
+  - PROCESS-NAME,com.taobao.taobao
+  - PROCESS-NAME,com.immomo.momo
+  - PROCESS-NAME,com.jingdong.app.mall
+  - PROCESS-NAME,com.xunmeng.pinduoduo
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.suning.mobile.ebuy
+  - PROCESS-NAME,cn.missfresh.application
+  - PROCESS-NAME,com.taobao.idlefish
+  - PROCESS-NAME,com.qq.reader
+  - PROCESS-NAME,com.tencent.weread
+  - PROCESS-NAME,com.ss.android.article.news
+  - PROCESS-NAME,com.chaozh.iReaderFree
+  - PROCESS-NAME,com.sina.weibo
+  - PROCESS-NAME,com.netease.newsreader.activity
+  - PROCESS-NAME,com.sohu.newsclient
+  - PROCESS-NAME,com.ss.android.ugc.aweme
+  - PROCESS-NAME,com.ss.android.ugc.live
+  - PROCESS-NAME,com.smile.gifmaker
+  - PROCESS-NAME,com.yixia.videoeditor
+  - PROCESS-NAME,com.youku.phone
+  - PROCESS-NAME,com.qiyi.video
+  - PROCESS-NAME,com.tencent.qqlive
+  - PROCESS-NAME,air.tv.douyu.android
+  - PROCESS-NAME,com.panda.videoliveplatform
+  - PROCESS-NAME,ctrip.android.view
+  - PROCESS-NAME,com.Qunar
+  - PROCESS-NAME,com.taobao.trip
+  - PROCESS-NAME,com.dp.android.elong
+  - PROCESS-NAME,com.tuniu.app.ui
+  - PROCESS-NAME,com.mt.mtxx.mtxx
+  - PROCESS-NAME,com.meitu.meiyancamera
+  - PROCESS-NAME,com.meitu.meipaimv
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.baidu.wallet
+  - PROCESS-NAME,com.sankuai.meituan.takeoutnew
+  - PROCESS-NAME,com.wangyin.payment
+  - PROCESS-NAME,me.ele
+  - PROCESS-NAME,com.dianping.v1
+  - PROCESS-NAME,com.iflytek.inputmethod
+  - PROCESS-NAME,com.baidu.input
+  - PROCESS-NAME,com.sohu.inputmethod.sogou
+
+  - PROCESS-NAME,com.autonavi.minimap
+  - PROCESS-NAME,com.baidu.BaiduMap
+  - PROCESS-NAME,com.sdu.didi.psnger
+  - PROCESS-NAME,battymole.trainticket
+  - PROCESS-NAME,com.flightmanager.view
+  - PROCESS-NAME,com.jianshu.haruki
+  - PROCESS-NAME,com.zhihu.android
+  - PROCESS-NAME,com.luojilab.player
+  - PROCESS-NAME,com.tencent.qqmusic
+  - PROCESS-NAME,com.kugou.android
+  - PROCESS-NAME,com.tencent.karaoke
+  - PROCESS-NAME,cn.kuwo.player
+  - PROCESS-NAME,fm.xiami.main
+  - PROCESS-NAME,com.changba
+  - PROCESS-NAME,com.netease.cloudmusic
+  - PROCESS-NAME,com.ximalaya.ting.android
+
+  - PROCESS-NAME,cn.xuexi.android
+  - PROCESS-NAME,com.xingin.xhs
+  - PROCESS-NAME,com.taobao.taobao
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.cainiao.wireless
+  - PROCESS-NAME,com.alibaba.android.rimet
+  - PROCESS-NAME,com.tencent.mobileqq
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.tencent.tmgp.sgame
+  - PROCESS-NAME,com.tencent.karaoke
+  - PROCESS-NAME,com.hpbr.bosszhipin
+  - PROCESS-NAME,com.qiyi.video
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.sankuai.meituan.takeoutnew
+  - PROCESS-NAME,com.MobileTicket
+  - PROCESS-NAME,com.anjuke.android.app
+  - PROCESS-NAME,com.tencent.edu
+  - PROCESS-NAME,com.xunmeng.pinduoduo
+  - PROCESS-NAME,com.suning.mobile.ebuy
+  - PROCESS-NAME,com.jingdong.app.mall
+  - PROCESS-NAME,ctrip.android.view
+  - PROCESS-NAME,com.achievo.vipshop
+  - PROCESS-NAME,com.netease.newsreader.activity
+  - PROCESS-NAME,com.ss.android.article.lite
+  - PROCESS-NAME,com.ss.android.article.news
+  - PROCESS-NAME,com.UCMobile
+  - PROCESS-NAME,com.ss.android.ugc.aweme
+  - PROCESS-NAME,com.sina.weibo
+  - PROCESS-NAME,com.greenpoint.android.mc10086.activity
+  - PROCESS-NAME,com.sinovatech.unicom.ui
+  - PROCESS-NAME,com.baidu.tieba
+  - PROCESS-NAME,com.baidu.input_huawei
+  - PROCESS-NAME,com.qihoo.appstore
+  - PROCESS-NAME,com.joinin.ustc1
+  - PROCESS-NAME,com.cidtech.beijingshifan
+  - PROCESS-NAME,com.chinacreator.hnu
+  - PROCESS-NAME,com.ipowertec.incu
+  - PROCESS-NAME,com.eteasun.nanhang
+  - PROCESS-NAME,com.wisorg.szdx
+  - PROCESS-NAME,com.wisorg.cqdx
+  - PROCESS-NAME,cn.edu.pku.PKUAndroid
+  - PROCESS-NAME,com.ideaqhdx.news
+  - PROCESS-NAME,com.wisorg.whdx
+  - PROCESS-NAME,com.cutt.zhiyue.android.app542735
+  - PROCESS-NAME,com.wisedu.xjtu
+  - PROCESS-NAME,com.appbyme.app19108
+  - PROCESS-NAME,cn.edu.dlut.ws
+  - PROCESS-NAME,org.apache.cordova.exampleFudan
+  - PROCESS-NAME,com.cidtech.hefeigongye
+  - PROCESS-NAME,cn.edu.nju.iportal
+  - PROCESS-NAME,com.lantu.MobileCampus.sysu
+
+#自己添加的安卓包名
+  - PROCESS-NAME,com.cainiao.wireless
+  - PROCESS-NAME,com.baidu.netdisk
+  - PROCESS-NAME,com.smzdm.client.android
+  - PROCESS-NAME,com.cmi.jegotrip
+  - PROCESS-NAME,com.mushi.codebug
+  - PROCESS-NAME,com.thestore.main
+  - PROCESS-NAME,com.coolapk.market
+  - PROCESS-NAME,com.unionpay
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.autoavi.minimap
+  - PROCESS-NAME,com.maimemo.android.momo
+  - PROCESS-NAME,com.ecitic.bank.mobile
+
+#windwos
+  - PROCESS-NAME,WeChat.exe
+  - PROCESS-NAME,WeChatAppEx.exe
+  - PROCESS-NAME,WeChatOCR.exe
+  - PROCESS-NAME,WeChatPlayer.exe
+  - PROCESS-NAME,WeChatUtility.exe
+
+  - PROCESS-NAME,cs2.exe
 
 
-#test
-DOMAIN-SUFFIX,www.bing.com
+  - PROCESS-NAME,baidunetdisk.exe
+  - PROCESS-NAME,baidunetdiskhost.exe
+  - PROCESS-NAME,baidunetdiskrender.exe
+
+
+  - PROCESS-NAME,wsctrlsvc.exe
+
+
+
 
 # MyList
 DOMAIN-SUFFIX,holand.cyou
@@ -13,11 +182,7 @@ DOMAIN-SUFFIX,holand.work
 DOMAIN-SUFFIX,ros.holand.work
 DOMAIN-SUFFIX,ip.3322.net
 
-# CN域名直连
-DOMAIN-SUFFIX,cn
-DOMAIN-SUFFIX,中国
-DOMAIN-SUFFIX,公司
-DOMAIN-SUFFIX,网络
+
 
 # NARK认证中心
 DOMAIN-SUFFIX,nnnolanark.xyz
@@ -64,67 +229,10 @@ DOMAIN-SUFFIX,spartanhost.net
 DOMAIN-SUFFIX,vps.hosting
 
 
-#微软中国直连域名
-DOMAIN-SUFFIX,cn.bing.com
-DOMAIN-SUFFIX,bing.com.cn
-DOMAIN-SUFFIX,biying.cn
-DOMAIN-SUFFIX,biying.com.cn
-DOMAIN-SUFFIX,chinacloudapi.cn
-DOMAIN-SUFFIX,chinacloudapp.cn
-DOMAIN-SUFFIX,chinacloudsites.cn
-DOMAIN-SUFFIX,heremaps.cn
-DOMAIN-SUFFIX,joinms.com.cn
-DOMAIN-SUFFIX,live.cn
-DOMAIN-SUFFIX,microsoft-online.cn
-DOMAIN-SUFFIX,microsoft-online.com.cn
-DOMAIN-SUFFIX,microsoft-smb.cn
-DOMAIN-SUFFIX,microsoftnews.cn
-DOMAIN-SUFFIX,microsoftol.com.cn
-DOMAIN-SUFFIX,microsoftreactor.cn
-DOMAIN-SUFFIX,microsoftreactor.com.cn
-DOMAIN-SUFFIX,microsoftstore.com.cn
-DOMAIN-SUFFIX,mmais.com.cn
-DOMAIN-SUFFIX,msauth.cn
-DOMAIN-SUFFIX,msftauth.cn
-DOMAIN-SUFFIX,msftcenterone.cn
-DOMAIN-SUFFIX,msminico.cn
-DOMAIN-SUFFIX,msminico.com.cn
-DOMAIN-SUFFIX,msn.cn
-DOMAIN-SUFFIX,msn.com.cn
-DOMAIN-SUFFIX,msopentech.cn
-DOMAIN-SUFFIX,mspil.cn
-DOMAIN-SUFFIX,msra.cn
-DOMAIN-SUFFIX,msxiaona.cn
-DOMAIN-SUFFIX,o365files.cn
-DOMAIN-SUFFIX,officedev.cn
-DOMAIN-SUFFIX,officeplus.cn
-DOMAIN-SUFFIX,outlook.cn
-DOMAIN-SUFFIX,ovi.com.cn
-DOMAIN-SUFFIX,playfabapi.cn
-DOMAIN-SUFFIX,reactorms.com.cn
-DOMAIN-SUFFIX,sharepoint.cn
-DOMAIN-SUFFIX,syncshop.cn
-DOMAIN-SUFFIX,windowsazure.cn
-DOMAIN-SUFFIX,windowslive.cn
-DOMAIN-SUFFIX,winmp.cn
-DOMAIN-SUFFIX,xboxlive.cn
-DOMAIN-SUFFIX,progdownload.zune.net
-DOMAIN-SUFFIX,livefilestore.com
-DOMAIN-SUFFIX,docs.live.net
-DOMAIN-SUFFIX,onedrive.live.com/134.170.120.26
-DOMAIN-SUFFIX,skyapi.live.net
-DOMAIN-SUFFIX,l.live.net
-DOMAIN-SUFFIX,skyapi.onedrive.live.com
-DOMAIN-SUFFIX,api.onedrive.com
-DOMAIN-SUFFIX,docs.live.net
-DOMAIN-SUFFIX,users.storage.live.com
-DOMAIN-SUFFIX,next-services.apps.microsoft.com
-DOMAIN-SUFFIX,storage.live.com
-DOMAIN-SUFFIX,wscont1.apps.microsoft.com
 
 
 
-#ns-whitelist.txt大陆直连域名  https://github.com/felixonmars/dnsmasq-china-list/blob/master/ns-whitelist.txt
+#dns-whitelist.txt大陆直连域名  https://github.com/felixonmars/dnsmasq-china-list/blob/master/ns-whitelist.txt
 DOMAIN-SUFFIX,.iidns.com
 DOMAIN-SUFFIX,.dnspod.com
 DOMAIN-SUFFIX,.dnspod.net
@@ -245,303 +353,4 @@ DOMAIN-SUFFIX,.ppstream.com
 
 
 
-#苹果中国加速域名 from https://github.com/felixonmars/dnsmasq-china-list/blob/master/apple.china.conf
-DOMAIN-SUFFIX,a1.mzstatic.com
-DOMAIN-SUFFIX,a2.mzstatic.com
-DOMAIN-SUFFIX,a3.mzstatic.com
-DOMAIN-SUFFIX,a4.mzstatic.com
-DOMAIN-SUFFIX,a5.mzstatic.com
-DOMAIN-SUFFIX,adcdownload.apple.com.akadns.net
-DOMAIN-SUFFIX,adcdownload.apple.com
-DOMAIN-SUFFIX,app-site-association.cdn-apple.com
-DOMAIN-SUFFIX,appldnld.apple.com
-DOMAIN-SUFFIX,appldnld.g.aaplimg.com
-DOMAIN-SUFFIX,appleid.cdn-apple.com
-DOMAIN-SUFFIX,apps.apple.com
-DOMAIN-SUFFIX,apps.mzstatic.com
-DOMAIN-SUFFIX,cdn-cn1.apple-mapkit.com
-DOMAIN-SUFFIX,cdn-cn2.apple-mapkit.com
-DOMAIN-SUFFIX,cdn-cn3.apple-mapkit.com
-DOMAIN-SUFFIX,cdn-cn4.apple-mapkit.com
-DOMAIN-SUFFIX,cdn.apple-mapkit.com
-DOMAIN-SUFFIX,cdn1.apple-mapkit.com
-DOMAIN-SUFFIX,cdn2.apple-mapkit.com
-DOMAIN-SUFFIX,cdn3.apple-mapkit.com
-DOMAIN-SUFFIX,cdn4.apple-mapkit.com
-DOMAIN-SUFFIX,cds-cdn.v.aaplimg.com
-DOMAIN-SUFFIX,cds.apple.com.akadns.net
-DOMAIN-SUFFIX,cds.apple.com
-DOMAIN-SUFFIX,cdsassets.apple.com
-DOMAIN-SUFFIX,cl1-cdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,cl1.apple.com
-DOMAIN-SUFFIX,cl2-cn.apple.com
-DOMAIN-SUFFIX,cl2.apple.com
-DOMAIN-SUFFIX,cl3-cdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,cl3.apple.com
-DOMAIN-SUFFIX,cl4-cdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,cl4-cn.apple.com
-DOMAIN-SUFFIX,cl4.apple.com
-DOMAIN-SUFFIX,cl5-cdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,cl5.apple.com
-DOMAIN-SUFFIX,clientflow.apple.com.akadns.net
-DOMAIN-SUFFIX,clientflow.apple.com
-DOMAIN-SUFFIX,configuration.apple.com.akadns.net
-DOMAIN-SUFFIX,configuration.apple.com
-DOMAIN-SUFFIX,cstat.apple.com
-DOMAIN-SUFFIX,cstat.cdn-apple.com
-DOMAIN-SUFFIX,dd-cdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,download.developer.apple.com
-DOMAIN-SUFFIX,gs-loc-cn.apple.com
-DOMAIN-SUFFIX,gs-loc.apple.com
-DOMAIN-SUFFIX,gsp10-ssl-cn.ls.apple.com
-DOMAIN-SUFFIX,gsp13-cn.ls.apple.com
-DOMAIN-SUFFIX,gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net
-DOMAIN-SUFFIX,gsp4-cn.ls.apple.com.edgekey.net
-DOMAIN-SUFFIX,gsp4-cn.ls.apple.com
-DOMAIN-SUFFIX,gsp5-cn.ls.apple.com
-DOMAIN-SUFFIX,gsp85-cn-ssl.ls.apple.com
-DOMAIN-SUFFIX,gspe19-cn-ssl.ls.apple.com
-DOMAIN-SUFFIX,gspe19-cn.ls-apple.com.akadns.net
-DOMAIN-SUFFIX,gspe19-cn.ls.apple.com
-DOMAIN-SUFFIX,gspe21-ssl.ls.apple.com
-DOMAIN-SUFFIX,gspe21.ls.apple.com
-DOMAIN-SUFFIX,gspe35-ssl.ls.apple.com
-DOMAIN-SUFFIX,guzzoni-apple-com.v.aaplimg.com
-DOMAIN-SUFFIX,guzzoni.apple.com
-DOMAIN-SUFFIX,iadsdk.apple.com
-DOMAIN-SUFFIX,icloud-cdn.icloud.com.akadns.net
-DOMAIN-SUFFIX,icloud.cdn-apple.com
-DOMAIN-SUFFIX,images.apple.com.akadns.net
-DOMAIN-SUFFIX,images.apple.com.edgekey.net.globalredir.akadns.net
-DOMAIN-SUFFIX,images.apple.com
-DOMAIN-SUFFIX,init-p01md-lb.push-apple.com.akadns.net
-DOMAIN-SUFFIX,init-p01md.apple.com
-DOMAIN-SUFFIX,init-p01st-lb.push-apple.com.akadns.net
-DOMAIN-SUFFIX,init-p01st.push.apple.com
-DOMAIN-SUFFIX,init-s01st-lb.push-apple.com.akadns.net
-DOMAIN-SUFFIX,init-s01st.push.apple.com
-DOMAIN-SUFFIX,iosapps.itunes.g.aaplimg.com
-DOMAIN-SUFFIX,ipcdn.apple.com
-DOMAIN-SUFFIX,iphone-ld.apple.com
-DOMAIN-SUFFIX,is1-ssl.mzstatic.com
-DOMAIN-SUFFIX,is1.mzstatic.com
-DOMAIN-SUFFIX,is2-ssl.mzstatic.com
-DOMAIN-SUFFIX,is2.mzstatic.com
-DOMAIN-SUFFIX,is3-ssl.mzstatic.com
-DOMAIN-SUFFIX,is3.mzstatic.com
-DOMAIN-SUFFIX,is4-ssl.mzstatic.com
-DOMAIN-SUFFIX,is4.mzstatic.com
-DOMAIN-SUFFIX,is5-ssl.mzstatic.com
-DOMAIN-SUFFIX,is5.mzstatic.com
-DOMAIN-SUFFIX,itunes-apple.com.akadns.net
-DOMAIN-SUFFIX,itunes.apple.com
-DOMAIN-SUFFIX,itunesconnect.apple.com
-DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net
-DOMAIN-SUFFIX,mesu-china.apple.com.akadns.net
-DOMAIN-SUFFIX,mesu.apple.com
-DOMAIN-SUFFIX,music.apple.com
-DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net
-DOMAIN-SUFFIX,ocsp.apple.com
-DOMAIN-SUFFIX,ocsp2.apple.com
-DOMAIN-SUFFIX,oscdn.apple.com
-DOMAIN-SUFFIX,oscdn.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,pancake.apple.com
-DOMAIN-SUFFIX,pancake.cdn-apple.com.akadns.net
-DOMAIN-SUFFIX,prod-support.apple-support.akadns.net
-DOMAIN-SUFFIX,publicassets.cdn-apple.com
-DOMAIN-SUFFIX,reserve-prime.apple.com
-DOMAIN-SUFFIX,s.mzstatic.com
-DOMAIN-SUFFIX,smp-device-content.apple.com
-DOMAIN-SUFFIX,stocks-sparkline-lb.apple.com.akadns.net
-DOMAIN-SUFFIX,stocks-sparkline.apple.com
-DOMAIN-SUFFIX,store.apple.com.edgekey.net.globalredir.akadns.net
-DOMAIN-SUFFIX,store.apple.com.edgekey.net
-DOMAIN-SUFFIX,store.apple.com
-DOMAIN-SUFFIX,store.storeimages.apple.com.akadns.net
-DOMAIN-SUFFIX,store.storeimages.cdn-apple.com
-DOMAIN-SUFFIX,support-china.apple-support.akadns.net
-DOMAIN-SUFFIX,support.apple.com
-DOMAIN-SUFFIX,swallow.apple.com
-DOMAIN-SUFFIX,swcatalog-cdn.apple.com.akadns.net
-DOMAIN-SUFFIX,swcatalog.apple.com
-DOMAIN-SUFFIX,swcdn.apple.com
-DOMAIN-SUFFIX,swcdn.g.aaplimg.com
-DOMAIN-SUFFIX,swdist.apple.com.akadns.net
-DOMAIN-SUFFIX,swdist.apple.com
-DOMAIN-SUFFIX,swscan-cdn.apple.com.akadns.net
-DOMAIN-SUFFIX,swscan.apple.com
-DOMAIN-SUFFIX,updates-http.cdn-apple.com.akadns.net
-DOMAIN-SUFFIX,updates-http.cdn-apple.com
-DOMAIN-SUFFIX,updates.cdn-apple.com
-DOMAIN-SUFFIX,valid.apple.com
-DOMAIN-SUFFIX,valid.origin-apple.com.akadns.net
-DOMAIN-SUFFIX,weather-data.apple.com
-DOMAIN-SUFFIX,www.apple.com.edgekey.net.globalredir.akadns.net
-DOMAIN-SUFFIX,www.apple.com.edgekey.net
-DOMAIN-SUFFIX,www.apple.com
-DOMAIN-SUFFIX,xp.apple.com
 
-
-
-#谷歌中国加速域名 from https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf
-#DOMAIN-SUFFIX,265.com
-#DOMAIN-SUFFIX,2mdn-cn.net
-#DOMAIN-SUFFIX,2mdn.net
-#DOMAIN-SUFFIX,accounts.googlers.com
-#DOMAIN-SUFFIX,accounts.xn--9trs65b.com
-#DOMAIN-SUFFIX,accounts.xn--ggle-55da.com
-#DOMAIN-SUFFIX,admob-cn.com
-#DOMAIN-SUFFIX,adservice.google.com
-#DOMAIN-SUFFIX,ai.ytimg.com
-#DOMAIN-SUFFIX,app-measurement-cn.com
-#DOMAIN-SUFFIX,app-measurement.com
-#DOMAIN-SUFFIX,apps5.oingo.com
-#DOMAIN-SUFFIX,avail.googleflights.net
-#DOMAIN-SUFFIX,beacons.gcp.gvt2.com
-#DOMAIN-SUFFIX,beacons.gvt2.com
-#DOMAIN-SUFFIX,beacons2.gvt2.com
-#DOMAIN-SUFFIX,beacons3.gvt2.com
-#DOMAIN-SUFFIX,borgmon.adz.google.com
-#DOMAIN-SUFFIX,c.admob.com
-#DOMAIN-SUFFIX,c.android.clients.google.com
-#DOMAIN-SUFFIX,cache-management-prod.google.com
-#DOMAIN-SUFFIX,cache.pack.google.com
-#DOMAIN-SUFFIX,checkin.gstatic.com
-#DOMAIN-SUFFIX,clickserve.cc-dt.com
-#DOMAIN-SUFFIX,clickserve.dartsearch.net
-#DOMAIN-SUFFIX,clickserver.googleads.com
-#DOMAIN-SUFFIX,clientservices.googleapis.com
-#DOMAIN-SUFFIX,cn.widevine.com
-#DOMAIN-SUFFIX,cnappinstall.googleadapis.com
-#DOMAIN-SUFFIX,connectivitycheck.gstatic.com
-#DOMAIN-SUFFIX,content.googleadapis.com
-#DOMAIN-SUFFIX,corp.google.com
-#DOMAIN-SUFFIX,corp.googleapis.com
-#DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com
-#DOMAIN-SUFFIX,crl.pki.goog
-#DOMAIN-SUFFIX,csi.gstatic.com
-#DOMAIN-SUFFIX,dartsearch-cn.net
-#DOMAIN-SUFFIX,dg-meta.video.google.com
-#DOMAIN-SUFFIX,distribution.qatp1.net
-#DOMAIN-SUFFIX,distribution.qcpp1.net
-#DOMAIN-SUFFIX,distribution.qpdp1.net
-#DOMAIN-SUFFIX,dl.google.com
-#DOMAIN-SUFFIX,dl.l.google.com
-#DOMAIN-SUFFIX,doubleclick-cn.net
-#DOMAIN-SUFFIX,doubleclick.net
-#DOMAIN-SUFFIX,download.mlcc.google.com
-#DOMAIN-SUFFIX,download.qatp1.net
-#DOMAIN-SUFFIX,download.qcpp1.net
-#DOMAIN-SUFFIX,download.qpdp1.net
-#DOMAIN-SUFFIX,download.tensorflow.google.com
-#DOMAIN-SUFFIX,emmapplecodevice.googleapis.com
-#DOMAIN-SUFFIX,firebase-settings.crashlytics.com
-#DOMAIN-SUFFIX,fontfiles.googleadapis.com
-#DOMAIN-SUFFIX,fontfiles.googleapis.com
-#DOMAIN-SUFFIX,fonts.googleadapis.com
-#DOMAIN-SUFFIX,fonts.googleapis.com
-#DOMAIN-SUFFIX,fonts.gstatic.com
-#DOMAIN-SUFFIX,g0.gstatic.com
-#DOMAIN-SUFFIX,g1.gstatic.com
-#DOMAIN-SUFFIX,g2.gstatic.com
-#DOMAIN-SUFFIX,g3.gstatic.com
-#DOMAIN-SUFFIX,gcpnode.com
-#DOMAIN-SUFFIX,gonglchuangl.net
-#DOMAIN-SUFFIX,gongyichuangyi.net
-#DOMAIN-SUFFIX,google-analytics-cn.com
-#DOMAIN-SUFFIX,google-analytics.com
-#DOMAIN-SUFFIX,googleadservices-cn.com
-#DOMAIN-SUFFIX,googleadservices.com
-#DOMAIN-SUFFIX,googleanalytics.com
-#DOMAIN-SUFFIX,googleapis-cn.com
-#DOMAIN-SUFFIX,googleapps-cn.com
-#DOMAIN-SUFFIX,googleflights-cn.net
-#DOMAIN-SUFFIX,googleoptimize-cn.com
-#DOMAIN-SUFFIX,googleoptimize.com
-#DOMAIN-SUFFIX,googleplex.com
-#DOMAIN-SUFFIX,googlesyndication-cn.com
-#DOMAIN-SUFFIX,googlesyndication.com
-#DOMAIN-SUFFIX,googletagmanager-cn.com
-#DOMAIN-SUFFIX,googletagmanager.com
-#DOMAIN-SUFFIX,googletagservices-cn.com
-#DOMAIN-SUFFIX,googletagservices.com
-#DOMAIN-SUFFIX,googletraveladservices-cn.com
-#DOMAIN-SUFFIX,googletraveladservices.com
-#DOMAIN-SUFFIX,googlevads-cn.com
-#DOMAIN-SUFFIX,goto.google.com
-#DOMAIN-SUFFIX,gstatic-cn.com
-#DOMAIN-SUFFIX,gstaticadssl.l.google.com
-#DOMAIN-SUFFIX,gtm.oasisfeng.com
-#DOMAIN-SUFFIX,gvt1-cn.com
-#DOMAIN-SUFFIX,gvt2-cn.com
-#DOMAIN-SUFFIX,imasdk.googleapis.com
-#DOMAIN-SUFFIX,monitoring.qatp1.net
-#DOMAIN-SUFFIX,monitoring.qcpp1.net
-#DOMAIN-SUFFIX,monitoring.qpdp1.net
-#DOMAIN-SUFFIX,ocsp.pki.goog
-#DOMAIN-SUFFIX,pagead-googlehosted.l.google.com
-#DOMAIN-SUFFIX,performanceparameters.googleapis.com
-#DOMAIN-SUFFIX,pki-goog.l.google.com
-#DOMAIN-SUFFIX,play.1ucrs.com
-#DOMAIN-SUFFIX,prod-controlbe.floonet.goog
-#DOMAIN-SUFFIX,prod-databe.floonet.goog
-#DOMAIN-SUFFIX,prod.databe.floonet.goog
-#DOMAIN-SUFFIX,qagpublic.qatp1.net
-#DOMAIN-SUFFIX,qagpublic.qcpp1.net
-#DOMAIN-SUFFIX,qagpublic.qpdp1.net
-#DOMAIN-SUFFIX,qgadmin.qatp1.net
-#DOMAIN-SUFFIX,qgadmin.qcpp1.net
-#DOMAIN-SUFFIX,qgadmin.qpdp1.net
-#DOMAIN-SUFFIX,qpx.googleflights.net
-#DOMAIN-SUFFIX,qualysapi.qatp1.net
-#DOMAIN-SUFFIX,qualysapi.qcpp1.net
-#DOMAIN-SUFFIX,qualysapi.qpdp1.net
-#DOMAIN-SUFFIX,qualysguard.qatp1.net
-#DOMAIN-SUFFIX,qualysguard.qcpp1.net
-#DOMAIN-SUFFIX,qualysguard.qpdp1.net
-#DOMAIN-SUFFIX,recaptcha.net
-#DOMAIN-SUFFIX,redirector.bdn.dev
-#DOMAIN-SUFFIX,redirector.c.chat.google.com
-#DOMAIN-SUFFIX,redirector.c.docs.google.com
-#DOMAIN-SUFFIX,redirector.c.drive.google.com
-#DOMAIN-SUFFIX,redirector.c.mail.google.com
-#DOMAIN-SUFFIX,redirector.c.pack.google.com
-#DOMAIN-SUFFIX,redirector.c.play.google.com
-#DOMAIN-SUFFIX,redirector.c.youtubeeducation.com
-#DOMAIN-SUFFIX,redirector.gcpcdn.gvt1.com
-#DOMAIN-SUFFIX,redirector.gvt1.com
-#DOMAIN-SUFFIX,redirector.offline-maps.gvt1.com
-#DOMAIN-SUFFIX,redirector.snap.gvt1.com
-#DOMAIN-SUFFIX,redirector.xn--ngstr-lra8j.com
-#DOMAIN-SUFFIX,regioninfo-pa.googleapis.com
-#DOMAIN-SUFFIX,safebrowsing.googleapis.com
-#DOMAIN-SUFFIX,scanservice1.qatp1.net
-#DOMAIN-SUFFIX,scanservice1.qcpp1.net
-#DOMAIN-SUFFIX,scanservice1.qpdp1.net
-#DOMAIN-SUFFIX,service.urchin.com
-#DOMAIN-SUFFIX,settings.xn--9trs65b.com
-#DOMAIN-SUFFIX,ssl-google-analytics.l.google.com
-#DOMAIN-SUFFIX,ssl.gstatic.com
-#DOMAIN-SUFFIX,staging-controlbe.floonet.goog
-#DOMAIN-SUFFIX,staging-databe.floonet.goog
-#DOMAIN-SUFFIX,staging-regioninfo-pa.googleapis.com
-#DOMAIN-SUFFIX,staging.databe.floonet.goog
-#DOMAIN-SUFFIX,support.1ucrs.com
-#DOMAIN-SUFFIX,tac.googleapis.com
-#DOMAIN-SUFFIX,test.bugs-qa.chromium.org
-#DOMAIN-SUFFIX,test.gbugs-qa.chromium.org
-#DOMAIN-SUFFIX,tools.google.com
-#DOMAIN-SUFFIX,tools.l.google.com
-#DOMAIN-SUFFIX,up.corp.goog
-#DOMAIN-SUFFIX,up.gcp.googlers.com
-#DOMAIN-SUFFIX,update.crashlytics.com
-#DOMAIN-SUFFIX,update.googleapis.com
-#DOMAIN-SUFFIX,wear.googleapis.com
-#DOMAIN-SUFFIX,www-google-analytics.l.google.com
-#DOMAIN-SUFFIX,www-googletagmanager.l.google.com
-#DOMAIN-SUFFIX,www.destinationurl.com
-#DOMAIN-SUFFIX,www.googleadapis.com
-#DOMAIN-SUFFIX,www.gstatic.com
-#DOMAIN-SUFFIX,www.pxcc.com
-#DOMAIN-SUFFIX,xn--9kr7l.com
-#DOMAIN-SUFFIX,xn--flw351e.com
