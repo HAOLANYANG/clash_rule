@@ -1,5 +1,7 @@
 # 直连列表
 #国内应用进程-安卓
+PROCESS-NAME,com.xiaomi.mibrain.speech
+PROCESS-NAME,小米云服务.exe
 PROCESS-NAME,com.taobao.taobao
 PROCESS-NAME,com.tencent.mm
 PROCESS-NAME,com.tencent.android.qqdownloader
