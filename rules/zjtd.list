@@ -1,11 +1,4 @@
-# NAME: ByteDance
-# AUTHOR: blackmatrix7
-# REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2023-12-14 16:55:59
-# DOMAIN-SUFFIX: 312
-# IP-CIDR: 1
-# PROCESS-NAME: 1
-# TOTAL: 314
+# NAME: 字节跳动
 DOMAIN-SUFFIX,2333333333333.com
 DOMAIN-SUFFIX,365yg.com
 DOMAIN-SUFFIX,activitybyte.com
