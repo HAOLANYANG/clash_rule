@@ -361,6 +361,7 @@ DOMAIN-SUFFIX,.ppstream.com
 
 
 #字节跳动
+DOMAIN-SUFFIX,ecom-lightapp.com
 DOMAIN-SUFFIX,ecombdapi.com
 DOMAIN-SUFFIX,ecombdimg.com
 DOMAIN-SUFFIX,ecombdstatic.com
@@ -369,3 +370,26 @@ DOMAIN-SUFFIX,zijieapi.com
 DOMAIN-SUFFIX,zijiecdn.cn
 DOMAIN-SUFFIX,zijiecdn.com
 DOMAIN-SUFFIX,zijiecdn.net
+DOMAIN-SUFFIX,zijieimg.cn
+DOMAIN-SUFFIX,zijieimg.com
+DOMAIN-SUFFIX,zijieimg.net
+DOMAIN-SUFFIX,zijieurl.cn
+DOMAIN-SUFFIX,zijieurl.com
+DOMAIN-SUFFIX,zijieurl.net
+DOMAIN-SUFFIX,zijiewap.cn
+DOMAIN-SUFFIX,zijiewap.com
+DOMAIN-SUFFIX,zijiewap.net
+DOMAIN-SUFFIX,zilrms.com
+DOMAIN-SUFFIX,ziyrta.com
+DOMAIN-SUFFIX,zjbyte.cn
+DOMAIN-SUFFIX,zjbyte.com
+DOMAIN-SUFFIX,zjbyte.net
+DOMAIN-SUFFIX,zjcdn.com
+DOMAIN-SUFFIX,zjgslb.com
+DOMAIN-SUFFIX,zjurl.cn
+DOMAIN-SUFFIX,amemv.com
+DOMAIN-SUFFIX,douyincdn.com
+DOMAIN-SUFFIX,douyinpic.com
+DOMAIN-SUFFIX,douyinstatic.com
+DOMAIN-SUFFIX,douyinvod.com
+DOMAIN-SUFFIX,idouyinvod.com
