@@ -1,3 +1,11 @@
+# MyList
+DOMAIN-SUFFIX,gulu.uk
+DOMAIN-SUFFIX,vgod.uk
+DOMAIN-SUFFIX,booom.uk
+DOMAIN-SUFFIX,ip.3322.net
+
+
+
 # 直连列表
 #国内应用进程-安卓
 PROCESS-NAME,com.xiaomi.mibrain.speech
@@ -179,14 +187,7 @@ PROCESS-NAME,wsctrlsvc.exe
 
 
 
-# MyList
-DOMAIN-SUFFIX,holand.cyou
-# DOMAIN-SUFFIX,gia.holand.cyou
-# DOMAIN-SUFFIX,hk.holand.cyou
-# DOMAIN-SUFFIX,us.holand.cyou
-DOMAIN-SUFFIX,holand.work
-DOMAIN-SUFFIX,ros.holand.work
-DOMAIN-SUFFIX,ip.3322.net
+
 
 
 
