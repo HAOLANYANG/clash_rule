@@ -4,6 +4,9 @@ DOMAIN-SUFFIX,vgod.uk
 DOMAIN-SUFFIX,booom.uk
 DOMAIN-SUFFIX,ip.3322.net
 
+#微软连通性测试
+DOMAIN,www.msftconnecttest.com
+
 
 
 # 直连列表
