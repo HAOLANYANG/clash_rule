@@ -54,6 +54,7 @@ DOMAIN,www.msftconnecttest.com
 DOMAIN,g.cn
 DOMAIN,google.cn
 DOMAIN,dl.google.com
+DOMAIN,www.gstatic.com
 
 
 # 直连列表
