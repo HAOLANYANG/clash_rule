@@ -54,6 +54,7 @@ DOMAIN,www.apple.com
 #谷歌
 DOMAIN,www.gstatic.com
 DOMAIN,connectivitycheck.gstatic.com
+DOMAIN,connectivitycheck.gstatic.cn
 DOMAIN,g.cn
 DOMAIN,google.cn
 DOMAIN,dl.google.com
