@@ -4,9 +4,56 @@ DOMAIN-SUFFIX,vgod.uk
 DOMAIN-SUFFIX,booom.uk
 DOMAIN-SUFFIX,ip.3322.net
 
-#微软连通性测试
-DOMAIN,www.msftconnecttest.com
 
+
+
+#时区
+DOMAIN,time.windows.com
+
+
+DOMAIN,time.apple.com
+DOMAIN,time.asia.apple.com
+
+DOMAIN,ntp.aliyun.com
+DOMAIN,ntp1.aliyun.com
+DOMAIN,ntp2.aliyun.com
+DOMAIN,ntp3.aliyun.com
+DOMAIN,ntp4.aliyun.com
+DOMAIN,ntp5.aliyun.com
+DOMAIN,ntp6.aliyun.com
+DOMAIN,ntp7.aliyun.com
+
+DOMAIN,time1.cloud.tencent.com 
+DOMAIN,time2.cloud.tencent.com 
+DOMAIN,time3.cloud.tencent.com
+DOMAIN,time4.cloud.tencent.com
+DOMAIN,time5.cloud.tencent.com
+
+DOMAIN,time.nist.gov
+DOMAIN,pool.ntp.org
+DOMAIN,cn.pool.ntp.org
+DOMAIN,cn.ntp.org.cn
+
+DOMAIN,ntp.tuna.tsinghua.edu.cn 
+DOMAIN,ntp.ntsc.ac.cn
+DOMAIN,ntp.neu.edu.cn
+DOMAIN,ntp.sjtu.edu.cn
+
+
+#连通性测试
+DOMAIN,captive.apple.com
+DOMAIN,www.apple.com
+DOMAIN,connectivitycheck.gstatic.com
+DOMAIN,g.alicdn.com
+DOMAIN,file.myqcloud.com
+DOMAIN,www.qualcomm.cn
+DOMAIN,wifi.vivo.com.cn
+DOMAIN,connectivitycheck.platform.hicloud.com
+DOMAIN,connect.rom.miui.com
+DOMAIN,www.msftconnecttest.com
+DOMAIN,g.cn
+DOMAIN,google.cn
+DOMAIN,dl.google.com
 
 
 # 直连列表
