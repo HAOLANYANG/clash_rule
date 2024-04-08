@@ -55,7 +55,7 @@ DOMAIN,g.cn
 DOMAIN,google.cn
 DOMAIN,dl.google.com
 DOMAIN,www.gstatic.com
-
+DOMAIN,edge.microsoft.com
 
 # 直连列表
 #国内应用进程-安卓
