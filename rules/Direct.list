@@ -57,7 +57,8 @@ DOMAIN,connectivitycheck.gstatic.com
 DOMAIN,connectivitycheck.gstatic.cn
 DOMAIN,g.cn
 DOMAIN,google.cn
-DOMAIN,dl.google.com
+#使用后下载有异常
+#DOMAIN,dl.google.com
 #微软
 DOMAIN,www.msftconnecttest.com
 DOMAIN,edge.microsoft.com
