@@ -26,6 +26,7 @@ DOMAIN,ntp5.aliyun.com
 DOMAIN,ntp6.aliyun.com
 DOMAIN,ntp7.aliyun.com
 #腾讯
+DOMAIN-SUFFIX,qq.com
 DOMAIN-SUFFIX,cloud.tencent.com
 DOMAIN,time.cloud.tencent.com 
 DOMAIN,time1.cloud.tencent.com 
