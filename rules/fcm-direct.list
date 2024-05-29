@@ -1,4 +1,6 @@
 ;微信
+DOMAIN,mtalk.google.com
+DOMAIN,mtalk4.google.com
 DOMAIN,mtalk-staging.google.com
 DOMAIN,mtalk-dev.google.com
 DOMAIN,alt1-mtalk.google.com
