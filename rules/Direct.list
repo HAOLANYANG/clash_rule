@@ -110,6 +110,8 @@ DOMAIN,g.alicdn.com
 
 # 直连列表
 #国内应用进程-安卓
+#华为
+PROCESS-NAME,com.huawei.appmarket
 PROCESS-NAME,com.xiaomi.mibrain.speech
 PROCESS-NAME,小米云服务.exe
 PROCESS-NAME,com.taobao.taobao
