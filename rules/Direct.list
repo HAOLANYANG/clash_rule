@@ -43,6 +43,12 @@ DOMAIN-SUFFIX,zte.home
 DOMAIN-SUFFIX,tplogin.cn
 DOMAIN-SUFFIX,wifi.cmcc
 
+#微信头像
+DOMAIN,wx.qlogo.cn
+DOMAIN,thirdwx.qlogo.cn
+DOMAIN-SUFFIX,qlogo.cn
+
+
 #时区
 #微软
 DOMAIN,time.windows.com
