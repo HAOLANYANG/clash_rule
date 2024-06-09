@@ -1,4 +1,3 @@
-DOMAIN-SUFFIX,music.126.net
 DOMAIN-SUFFIX,music.163.com
 DOMAIN-SUFFIX,man.netease.com
 DOMAIN-SUFFIX,163yun.com
@@ -10,3 +9,9 @@ DOMAIN-SUFFIX,music.163.com
 DOMAIN-SUFFIX,music.163.com
 DOMAIN-SUFFIX,163jiasu.com
 DOMAIN-SUFFIX,yun-app.net
+
+DOMAIN-SUFFIX,music.163.com
+DOMAIN-SUFFIX,interface.music.163.com
+DOMAIN-SUFFIX,interface3.music.163.com
+DOMAIN-SUFFIX,interface.music.163.com.163jiasu.com
+DOMAIN-SUFFIX,interface3.music.163.com.163jiasu.com
