@@ -1,17 +1,17 @@
 # Unblock Netease Music
-DOMAIN,api.iplay.163.com
-DOMAIN,apm3.music.163.com
-DOMAIN,apm.music.163.com
-DOMAIN,interface3.music.163.com
-DOMAIN,interface.music.163.com
-DOMAIN,music.163.com
+DOMAIN-SUFFIX,api.iplay.163.com
+DOMAIN-SUFFIX,apm3.music.163.com
+DOMAIN-SUFFIX,apm.music.163.com
+DOMAIN-SUFFIX,interface3.music.163.com
+DOMAIN-SUFFIX,interface.music.163.com
+DOMAIN-SUFFIX,music.163.com
 
-DOMAIN,httpdns.n.netease.com
-DOMAIN,ac.dun.163yun.com
-DOMAIN,crash.163.com
-DOMAIN,mam.netease.com
-DOMAIN,clientlog.music.163.com
-DOMAIN,clientlog3.music.163.com
+DOMAIN-SUFFIX,httpdns.n.netease.com
+DOMAIN-SUFFIX,ac.dun.163yun.com
+DOMAIN-SUFFIX,crash.163.com
+DOMAIN-SUFFIX,mam.netease.com
+DOMAIN-SUFFIX,clientlog.music.163.com
+DOMAIN-SUFFIX,clientlog3.music.163.com
 
 
 # CIDR规则
