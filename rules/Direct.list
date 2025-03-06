@@ -95,14 +95,6 @@ DOMAIN,ntp.sjtu.edu.cn
 #苹果
 DOMAIN,captive.apple.com
 DOMAIN,www.apple.com
-#谷歌
-DOMAIN,www.gstatic.com
-DOMAIN,connectivitycheck.gstatic.com
-DOMAIN,connectivitycheck.gstatic.cn
-DOMAIN,g.cn
-DOMAIN,google.cn
-#使用后下载有异常
-#DOMAIN,dl.google.com
 #微软
 DOMAIN,www.msftconnecttest.com
 DOMAIN,edge.microsoft.com
