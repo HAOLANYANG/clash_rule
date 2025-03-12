@@ -312,9 +312,6 @@ rule-providers:
     <<: *RuleDefault
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/classical/private.list"
 
-  CN_域名:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/cn.list"
 
 
 
@@ -363,7 +360,7 @@ rule-providers:
 
 rules:
   - RULE-SET,global,🚀 节点选择
-  - RULE-SET,global,🚀 节点选择
+  - RULE-SET,Proxy,🚀 节点选择
   - RULE-SET,YouTube,📹 油管视频
   - RULE-SET,Netflix,🎥 流媒体解锁
   - RULE-SET,OpenAI,🤖 OpenAI
