@@ -1,0 +1,6 @@
+DOMAIN-SUFFIX,openai.com,GPT
+DOMAIN-SUFFIX,auth0.com,GPT
+DOMAIN-SUFFIX,openai.com,Proxy
+DOMAIN-SUFFIX,chat.openai.com
+DOMAIN-SUFFIX,openai.com
+DOMAIN-KEYWORD,openai
