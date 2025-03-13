@@ -112,125 +112,155 @@ tun:
 
 # DNS模块
 dns:
-  enable: true
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  ipv6: false
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/15
-  fake-ip-filter:
-    #- "*"
-    - "+.lan"
-    - "+.local"
-    - "*.localdomain"
-    - "miwifi.com"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - "stun.*"
-    - "+.stun.com"
-    - "+.qq.com"
-    - "+.tencent.com"
-    - "+.doh.pub"
-    - "sm2.doh.pub"
-    - "qlogo.cn"
-    - "*.qlogo.cn"
-    - "connect.rom.miui.com"
-    - "WORKGROUP"
-    - "localhost.ptlogin2.qq.com"
-    - "+.market.xiaomi.com"
-    - "+.cmbchina.com"
-    - "+.cmbimg.com"
-    - "*.mcdn.bilivideo.cn"
-    - "+.apple.com"
-    - "lens.l.google.com"
-    - "stun.l.google.com"
-    - "na.b.g-tun.com"
-    - "time.*.com"
-    - "time.*.gov"
-    - "time.*.edu.cn"
-    - "time.*.apple.com"
-    - "time1.*.com"
-    - "time2.*.com"
-    - "time3.*.com"
-    - "time4.*.com"
-    - "time5.*.com"
-    - "time6.*.com"
-    - "time7.*.com"
-    - "ntp.*.com"
-    - "ntp1.*.com"
-    - "ntp2.*.com"
-    - "ntp3.*.com"
-    - "ntp4.*.com"
-    - "ntp5.*.com"
-    - "ntp6.*.com"
-    - "ntp7.*.com"
-    - "*.time.edu.cn"
-    - "*.ntp.org.cn"
-    - "+.pool.ntp.org"
-    - "time1.cloud.tencent.com"
-    - "+.pub.3gppnetwork.org"
-  direct-nameserver:
-    - 119.29.29.29
-    - 1.12.12.12
-    - 223.5.5.5
-    - 223.6.6.6
-  proxy-server-nameserver:
-    - 119.29.29.29
-    - 1.12.12.12
-    - 223.5.5.5
-    - 223.6.6.6
-  nameserver-policy:
-    "RULE-SET:cn-cidr,DIRECT"
-    "geosite:cn,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+    cache-algorithm: arc
+    enable: true
+    prefer-h3: true
+    use-hosts: true
+    use-system-hosts: true
+    listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
+    enhanced-mode: fake-ip
+    fake-ip-range: 28.0.0.1/8
+    fake-ip-filter:
+      - '+.lan'
+      - '+.local' 
+      - '*.localdomain'
+      - miwifi.com
+      - "rule-set:direct,cn-dns,mipush,apple,cn-steam,coolapk,privatetracker,download,cn-max,cn-max-domain"
+      - '+.lan'
+      - '+.local' 
+      - '*.localdomain'
+      - miwifi.com
+      - '*.example'
+      - '*.invalid'
+      - '*.localhost'
+      - '*.test'
+      - '*.local'
+      - "*.home.arpa"
+      - "stun.*"
+      - "+.stun.com"
+      - "+.qq.com"
+      - "+.tencent.com"
+      - "+.doh.pub"
+      - "sm2.doh.pub"
+      - "qlogo.cn"
+      - "*.qlogo.cn"
+      - "connect.rom.miui.com"
+      - "WORKGROUP"
+      - "localhost.ptlogin2.qq.com"
+      - "+.market.xiaomi.com"
+      - "+.cmbchina.com"
+      - "+.cmbimg.com"
+      - "*.mcdn.bilivideo.cn"
+      - "+.apple.com"
+      - "lens.l.google.com"
+      - "stun.l.google.com"- "na.b.g-tun.com"
+      - 'time.*.com'
+      - 'time.*.gov'
+      - 'time.*.edu.cn'
+      - 'time.*.apple.com'
+      - 'time1.*.com'
+      - 'time2.*.com'
+      - 'time3.*.com'
+      - 'time4.*.com'
+      - 'time5.*.com'
+      - 'time6.*.com'
+      - 'time7.*.com'
+      - 'ntp.*.com'
+      - 'ntp1.*.com'
+      - 'ntp2.*.com'
+      - 'ntp3.*.com'
+      - 'ntp4.*.com'
+      - 'ntp5.*.com'
+      - 'ntp6.*.com'
+      - 'ntp7.*.com'
+      - '*.time.edu.cn'
+      - '*.ntp.org.cn'
+      - '+.pool.ntp.org'
+      - 'time1.cloud.tencent.com'
+      - '+.pub.3gppnetwork.org'
+    fake-ip-filter-mode: blacklist
+    respect-rules: false #为true则dns查询走规则
+    default-nameserver: # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
+      - 114.114.114.114
+      - tls://1.12.12.12:853
+      - tls://223.5.5.5:853
+      - system # append DNS server from system configuration. If not found, it would print an error log and skip.
+    nameserver:
+      - https://8.8.4.4/dns-query#🌊 DNS
+      - https://8.8.8.8/dns-query#🌊 DNS
+      - https://1.1.1.1/dns-query#🌊 DNS
+      - https://1.0.0.1/dns-query#🌊 DNS
+    nameserver-policy:
+        "rule-set:direct,cn-dns,mipush,apple,cn-steam,coolapk,privatetracker,download,cn-max,cn-max-domain":
+          - https://223.5.5.5/dns-query
+          - https://sm2.doh.pub/dns-query
+          - https://1.12.12.12/dns-query
+        "rule-set:youtube,youtubemusic":
+          - https://8.8.8.8/dns-query#📹 油管视频
+          - https://8.8.4.4/dns-query#📹 油管视频
+        "rule-set:netflix":
+          - https://8.8.8.8/dns-query#🎥 流媒体解锁
+          - https://8.8.4.4/dns-query#🎥 流媒体解锁
+          - https://1.1.1.1/dns-query#🎥 流媒体解锁
+          - https://1.0.0.1/dns-query#🎥 流媒体解锁
+        "rule-set:openai,gemini,bardai":
+          - https://8.8.8.8/dns-query#💬 OpenAi
+          - https://8.8.4.4/dns-query#💬 OpenAi
+          - https://1.1.1.1/dns-query#💬 OpenAi
+          - https://1.0.0.1/dns-query#💬 OpenAi
+        "rule-set:blockchain,okx,binance":
+          - https://8.8.8.8/dns-query#🟨 区块链
+          - https://8.8.4.4/dns-query#🟨 区块链
+          - https://1.1.1.1/dns-query#🟨 区块链
+          - https://1.0.0.1/dns-query#🟨 区块链
+        "rule-set:global_proxy,google,microsoft,telegram,speedtest,github,whatsapp,line,pay,visa":
+          - https://8.8.8.8/dns-query#🚀 节点选择
+          - https://8.8.4.4/dns-query#🚀 节点选择
+          - https://1.1.1.1/dns-query#🚀 节点选择
+          - https://1.0.0.1/dns-query#🚀 节点选择
+        "www.baidu.com,+.google.cn":
+          - https://223.5.5.5/dns-query
+          - https://1.12.12.12/dns-query
+    proxy-server-nameserver:
+      - https://8.8.4.4/dns-query#🌊 DNS
       - https://223.5.5.5/dns-query
-  nameserver:
-    - 'https://8.8.4.4/dns-query'
-    - 'https://8.8.8.8/dns-query'
-    - 'https://1.1.1.1/dns-query'
-    - 'https://208.67.222.222/dns-query'
+      - https://223.6.6.6/dns-query
+      - https://1.12.12.12/dns-query
 # —————————
 
 proxies:
-  - {name: 🌎 全球直连, type: direct, udp: true}
+  - {name: 🎯 全球直连, type: direct, udp: true}
 
 proxy_groups: &proxy_groups
     type: select
     proxies:
-      - 🎯 总模式
+      - 🚀 节点选择
       - ♻️ 延迟最低
-      - ♻️ 故障转移
-      - ♻️ 负载均衡
+      - 🔯 故障转移
       - 🇭🇰 香港节点
       - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
       - 🌍 其它地区
-      - 🌎 全球直连
+      - 🌠 IPLC专线
+      - 🎯 全球直连
     <<: *A
 # —————————
 proxy-groups:
-  - name: 🎯 总模式
+  - name: "🚀 节点选择"
     type: select
+    udp: true
     proxies:
       - ♻️ 延迟最低
-      - ♻️ 故障转移
-      - ♻️ 负载均衡
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇺🇲 美国节点
+      - 🔯 故障转移
+      - 🇭🇰 香港
+      - 🇹🇼 台湾
+      - 🇸🇬 新加坡
+      - 🇯🇵 日本
+      - 🇺🇲 美国
       - 🌍 其它地区
-      - 🌎 全球直连
+      - 🌠 IPLC专线
 # —————————
 
   - name: ♻️ 延迟最低
@@ -241,14 +271,6 @@ proxy-groups:
     type: fallback
     <<: *A
 
-  - name: 🔮 负载均衡
-    type: load-balance
-    strategy: round-robin
-    <<: *A
-
-
-  - name: 🚀 节点选择
-    <<: *proxy_groups
 
   - name: 📹 油管视频
     <<: *proxy_groups
@@ -256,11 +278,15 @@ proxy-groups:
   - name: 🎥 流媒体解锁
     <<: *proxy_groups
 
-  - name: 🤖 OpenAI
+  - name: 💬 OpenAi
     <<: *proxy_groups
 
   - name: 🟨 区块链
     <<: *proxy_groups
+
+  - name: 🌠 IPLC专线
+    filter: "^(?!.*(IPLC|iplc|IEPL|iepl|专)).*$"
+    <<: *All
 
   - name: 🇭🇰 香港节点
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
@@ -293,81 +319,219 @@ rule-anchor:
 # —————————
 
 rule-providers:
-  global:
+  global_proxy
     <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/HAOLANYANG/clash_rule/main/rules/global.list"
-
-  Direct:
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global.list"
+  direct
     <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/HAOLANYANG/clash_rule/main/rules/Direct.list"
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaDNS/ChinaDNS.list"
-    url: "https://raw.githubusercontent.com/HAOLANYANG/clash_rule/main/rules/mipush.list"
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Coolapk/Coolapk.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list"
-
-
-  private_Lan:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/classical/private.list"
-
-
-
-
-  YouTube:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list"
-
-
-  OpenAI:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list"
-
-  Netflix:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list"
-
-  Proxy:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Line/Line.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list"
-    url: "https://raw.githubusercontent.com/HAOLANYANG/clash_rule/refs/heads/main/rules/pay.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/VISA/VISA.list"
-
-
-  BlockChain:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/HAOLANYANG/clash_rule/refs/heads/main/rules/blockchain.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.list"
-    
-  CN:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax.list"
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list"
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list"
-    
-  CN_IP:
-    <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPsBGP/ChinaIPsBGP.list"
-    
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/Direct.list"
+  cn-dns
+    behavior: classical
+    interval: 259200
+    path: ./ChinaDNS.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaDNS/ChinaDNS.yaml"
+  mipush
+    behavior: classical
+    interval: 259200
+    path: ./mipush.list
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/mipush.list"
+  cn-bgp-ip
+    behavior: ipcidr
+    interval: 259200
+    path: ./ChinaIPsBGP_Classical.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaIPsBGP/ChinaIPsBGP_IP.yaml"
+  cn-steam
+    behavior: classical
+    interval: 259200
+    path: ./SteamCN.list
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list"
+  coolapk
+    behavior: classical
+    interval: 259200
+    path: ./Coolapk.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Coolapk/Coolapk.yaml"
+  apple
+    behavior: classical
+    interval: 259200
+    path: ./Apple_Classical.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml"
+  openai
+    behavior: classical
+    interval: 259200
+    path: ./OpenAI.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+  gemini
+    behavior: classical
+    interval: 259200
+    path: ./Gemini.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+  bardai
+    behavior: classical
+    interval: 259200
+    path: ./BardAI.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml"
+  youtube
+    behavior: classical
+    interval: 259200
+    path: ./YouTube.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+  youtubemusic
+    behavior: classical
+    interval: 259200
+    path: ./YouTubeMusic.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
+  netflix
+    behavior: classical
+    interval: 259200
+    path: ./Netflix_Classical.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix_Classical.yaml"
+  line
+    behavior: classical
+    interval: 259200
+    path: ./Line.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Line/Line.yaml"
+  whatsapp
+    behavior: classical
+    interval: 259200
+    path: ./Whatsapp.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Whatsapp/Whatsapp.yaml"
+  github
+    behavior: classical
+    interval: 259200
+    path: ./GitHub.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+  speedtest
+    behavior: classical
+    interval: 259200
+    path: ./Speedtest.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Speedtest/Speedtest.yaml"
+  telegram
+    behavior: classical
+    interval: 259200
+    path: ./Telegram.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+  microsoft
+    behavior: classical
+    interval: 259200
+    path: ./Microsoft.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+  google
+    behavior: classical
+    interval: 259200
+    path: ./Google.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+  okx
+    behavior: classical
+    interval: 259200
+    path: ./OKX.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OKX/OKX.yaml"
+  binance
+    behavior: classical
+    interval: 259200
+    path: ./Binance.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Binance/Binance.yaml"
+  blockchain
+    behavior: classical
+    interval: 259200
+    path: ./blockchain.list
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/blockchain.list"
+  pay
+    behavior: classical
+    interval: 259200
+    path: ./pay.list
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/pay.list"
+  visa
+    behavior: classical
+    interval: 259200
+    path: ./VISA.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/VISA/VISA.yaml"
+  privatetracker
+    behavior: classical
+    interval: 259200
+    path: ./PrivateTracker.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrivateTracker/PrivateTracker.yaml"
+  download
+    behavior: classical
+    interval: 259200
+    path: ./Download.list
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
+  cn-max
+    behavior: classical
+    interval: 259200
+    path: ./ChinaMax.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax.yaml"
+  cn-max-domain
+    behavior: domain
+    interval: 259200
+    path: ./ChinaMax_Domain.txt
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain.txt"
+  cn-ip
+    behavior: ipcidr
+    interval: 259200
+    path: ./ChinaMax_IP.yaml
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_IP.yaml"   
 # —————————
 
 rules:
-  - RULE-SET,global,🚀 节点选择
-  - RULE-SET,Proxy,🚀 节点选择
-  - RULE-SET,YouTube,📹 油管视频
-  - RULE-SET,Netflix,🎥 流媒体解锁
-  - RULE-SET,OpenAI,🤖 OpenAI
-  - RULE-SET,BlockChain,🟨 区块链
-  - RULE-SET,Direct,🌎 全球直连
-  - RULE-SET,CN,🌎 全球直连
-  - RULE-SET,CN_IP,🌎 全球直连
-  - RULE-SET,private_Lan,🌎 全球直连,no-resolve
+  - RULE-SET,global_proxy,🚀 节点选择
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,cn-dns,🎯 全球直连
+  - RULE-SET,mipush,🎯 全球直连
+  - RULE-SET,cn-bgp-ip,🎯 全球直连,no-resolve
+  - RULE-SET,cn-steam,🎯 全球直连
+  - RULE-SET,coolapk,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
+  - RULE-SET,openai,💬 OpenAi
+  - RULE-SET,gemini,💬 OpenAi
+  - RULE-SET,bardai,💬 OpenAi
+  - RULE-SET,youtube,📹 油管视频
+  - RULE-SET,youtubemusic,📹 油管视频
+  - RULE-SET,netflix,🎥 流媒体解锁
+  - RULE-SET,line,🚀 节点选择
+  - RULE-SET,whatsapp,🚀 节点选择
+  - RULE-SET,github,🚀 节点选择
+  - RULE-SET,speedtest,🚀 节点选择
+  - RULE-SET,telegram,🚀 节点选择
+  - RULE-SET,microsoft,🚀 节点选择
+  - RULE-SET,google,🚀 节点选择
+  - RULE-SET,okx,🟨 区块链
+  - RULE-SET,binance,🟨 区块链
+  - RULE-SET,blockchain,🟨 区块链
+  - RULE-SET,pay,🚀 节点选择
+  - RULE-SET,visa,🚀 节点选择
+  - RULE-SET,privatetracker,🎯 全球直连
+  - RULE-SET,download,🎯 全球直连
+  - RULE-SET,cn-max,🎯 全球直连
+  - RULE-SET,cn-max-domain,🎯 全球直连
+  - RULE-SET,cn-ip,🎯 全球直连,no-resolve
   - MATCH,🚀 节点选择
 # —————————
