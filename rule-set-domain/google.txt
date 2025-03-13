@@ -1,5 +1,5 @@
 payload:
-  - '+.e13252.dscg.akamaiedge.net'
+  - 'voice.telephony.goog'
   - '+.voice.telephony.goog'
   - '+.0emm.com'
   - '+.1e100.net'
