@@ -78,6 +78,10 @@ DOMAIN,thirdwx.qlogo.cn
 DOMAIN-SUFFIX,qlogo.cn
 
 
+
+
+
+
 #时区
 #微软
 DOMAIN,time.windows.com
@@ -133,6 +137,26 @@ DOMAIN,wifi.vivo.com.cn
 DOMAIN,connectivitycheck.platform.hicloud.com
 DOMAIN,connect.rom.miui.com
 DOMAIN,g.alicdn.com
+
+
+#钉钉ding
+DOMAIN-SUFFIX,ddurl.to
+DOMAIN-SUFFIX,dg-work.cn
+DOMAIN-SUFFIX,dingding.xin
+DOMAIN-SUFFIX,dingtalk.cn
+DOMAIN-SUFFIX,dingtalk.com
+DOMAIN-SUFFIX,dingtalk.com.cn
+DOMAIN-SUFFIX,dingtalk.net
+DOMAIN-SUFFIX,dingtalkapps.com
+DOMAIN-SUFFIX,laiwang.com
+DOMAIN-SUFFIX,lwurl.to
+DOMAIN-SUFFIX,realapp.xin
+
+
+
+
+
+
 
 
 # 直连列表
