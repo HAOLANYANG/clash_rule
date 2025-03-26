@@ -1,10 +1,82 @@
+# 分组 锚点
+pr:
+  &pr {
+    type: select,
+    proxies:
+      [
+        🚀 节点选择,
+        🇭🇰 香港,
+        🇹🇼 台湾,
+        🇸🇬 新加坡,
+        🇯🇵 日本,
+        🇰🇷 韩国,
+        🇺🇲 美国,
+        ♻️ 自动选择,
+        🔯 故障转移
+      ],
+  }
+# 延迟检测 URL
+p: &p
+  type: http
+  # 自动更新订阅时间，单位为秒
+  interval: 7200
+  health-check:
+    enable: true
+    url: https://cp.cloudflare.com
+    # 节点连通性检测时间，单位为秒
+    interval: 300
+    # 节点超时延迟，单位为毫秒
+    timeout: 1000
+    # 节点自动切换差值，单位为毫秒
+    tolerance: 100
+
+# --------------------------------------------------
+
+use: &use
+  # 如果不希望自动切换请将下面两行注释对调
+  # type: select
+  type: url-test
+  use:
+    - 订阅一
+    - 订阅二
+    # - 本地配置
+
+# 订阅链接
+# 对于订阅来说，path 为选填项，但建议启用
+# 本地配置可以只填 path
+proxy-providers:
+  订阅一:
+    <<: *p
+    # path: ./proxy_provider/订阅一.yaml
+    url: "https://example.com/airport?type=clashmeta&protocol=shadowsocks&rule=default"
+    # 如需要为该订阅组节点添加前缀，取消下面两行注释
+    # override:
+      # additional-prefix: "[订阅一]"
+
+  订阅二:
+    <<: *p
+    # path: ./proxy_provider/订阅二.yaml
+    url: "https://example.com/api/v1/client/subscribe?token=ilovechina"
+    # 如需要为该订阅组节点添加前缀，取消下面两行注释
+    # override:
+      # additional-prefix: "[订阅二]"
+
+# --------------------------------------------------
+
 mixed-port: 10801
 external-controller: '127.0.0.1:9091'
-allow-lan: true
+allow-lan: false
 bind-address: "*"
-find-process-mode: off
-ipv6: true
+find-process-mode: strict
+ipv6: false
 mode: rule
+# 统一延迟
+# 更换延迟计算方式,去除握手等额外延迟
+unified-delay: true
+# TCP 并发
+# 同时对所有ip进行连接，返回延迟最低的地址
+tcp-concurrent: true
+geodata-mode: true
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
@@ -20,6 +92,22 @@ hosts:
     dot.pub: 120.53.53.53
     doh.opendns.com: 208.67.222.222
 
+# 缓解移动设备耗电问题
+# https://github.com/vernesong/OpenClash/issues/2614
+keep-alive-interval: 1800
+
+# 全局客户端指纹
+global-client-fingerprint: random # 随机指纹
+
+# 自动同步时间以防止时间不准导致无法正常联网
+ntp:
+  enable: true
+  # 是否同步至系统时间，需要 root/管理员权限
+  write-to-system: false
+  server: time.apple.com
+  port: 123
+  interval: 30
+
 profile: 
   # 存储 select 选择记录
   store-selected: false
@@ -31,24 +119,25 @@ tun:
     dns-hijack: ['any:53', 'tcp://any:53']
     udp-timeout: 300
     auto-route: true
-    auto-redirect: true
     strict-route: true
     auto-redirect: false
     auto-detect-interface: true
     route-exclude-address: [192.168.0.0/16, 'fc00::/7']
     exclude-package: [com.tencent.tmgp.sgame, com.tencent.tmgp.pubgmhd, com.tencent.jkchess]
+
+
 dns:
   enable: true
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
-  ipv6: true
+  ipv6: false
   listen: 1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "+.lan"
-    - "rule-set:lan,direct,cndns,mipush,cnmax,fcm,steamcn,coolapk,apple,ntp,download,privatetracker"
+    - "rule-set:lan,fcm,ntp,privatetracker"
     - "+.local"
     - "*.localdomain"
     - "miwifi.com"
@@ -109,31 +198,25 @@ dns:
     - 'https://dns.google/dns-query#🚀 节点选择&h3=true'
     - 'https://mozilla.cloudflare-dns.com/dns-query#🚀 节点选择&h3=true'
   default-nameserver:
-    - 192.168.1.121
-    - 192.168.1.124
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
   # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   proxy-server-nameserver:
-      #纯国内
-      - 192.168.1.121
-      - 192.168.1.124
-      #国内国外分流
-      - 192.168.1.122
-      - 192.168.1.123
-      #加密公共dns
+      - 'https://8.8.8.8/dns-query#🚀 节点选择'
       - 'https://1.12.12.12/dns-query'
       - 'https://223.5.5.5/dns-query'
   # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   direct-nameserver:
-      - 192.168.1.121
-      - 192.168.1.124
+      - 'https://223.5.5.5/dns-query#h3=true'
+      - 'https://223.6.6.6/dns-query#h3=true'
+      - 'https://sm2.doh.pub/dns-query'
+      - 'https://1.12.12.12/dns-query'
   direct-nameserver-follow-policy: true # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
   nameserver-policy:
-    "rule-set:lan,direct,cndns,mipush,cnmax,fcm,steamcn,coolapk,apple,ntp,download,privatetracker":
-      - 192.168.1.121
-      - 192.168.1.124
+    "rule-set:direct,fcm":
+      - 'https://223.5.5.5/dns-query'
+      - 'https://1.12.12.12/dns-query'
     "rule-set:youtube,youtubemusic":
       - 'https://8.8.8.8/dns-query#📹 油管视频'
       - 'https://8.8.4.4/dns-query#📹 油管视频'
@@ -408,27 +491,112 @@ rule-providers:
 
 
 
-ruleset=🚀 节点选择,[]FINAL
+proxy-groups:
+  - {
+      name: 🚀 节点选择,
+      type: select,
+      proxies:
+        [♻️ 自动选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇰🇷 韩国,🇺🇲 美国,🌎 其它地区,🔯 故障转移],
+    }
+  - { name: 📹 油管视频, <<: *pr }
+  - { name: 🎥 流媒体解锁, <<: *pr }
+  - { name: 💬 OpenAi, <<: *pr }
+  - {
+      name: 📺 哔哩哔哩, 
+      type: select,
+      proxies:
+        [  
+        🎯 全球直连,
+        🇭🇰 香港,
+        🇹🇼 台湾,
+        🇸🇬 新加坡,
+        🇯🇵 日本,
+        🇰🇷 韩国,
+        🇺🇲 美国,
+        🚀 节点选择,
+        ♻️ 自动选择,
+        🔯 故障转移
+        ],
+    }
+  - {
+      name: 💵 区块链,
+      type: select,
+      proxies:
+        [  
+          🇹🇼 台湾,
+          🇯🇵 日本,
+          🇸🇬 新加坡,
+          🇰🇷 韩国,
+          🇺🇲 美国,
+          🚀 节点选择,
+          ♻️ 自动选择
+        ],
+    }
 
+  # 分隔,下面是地区分组
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|hk|hongkong|hong kong", tolerance: 50, type: url-test, interval: 300 }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|tw|taiwan", tolerance: 50, type: url-test, interval: 300 }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 50, type: url-test, interval: 300 }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日本|jp|japan", tolerance: 70, type: url-test, interval: 300 }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|us|unitedstates|united states", tolerance: 100, type: url-test, interval: 300 }
+  - {
+      name: 🌎 其它地区,
+      <<: *use,
+      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*",
+    }
+  - { name: ♻️ 自动选择, <<: *use, tolerance: 50, type: url-test, interval: 300 }
+  - { name: 🔯 故障转移, <<: *use, tolerance: 300, type: url-test, interval: 30 }
+  - { name: 🔯 故障转移, <<:DIRECT }
+  
+rules:
+  - RULE-SET,lan,🎯 全球直连
+  - RULE-SET,global,🚀 节点选择
+  - RULE-SET,fcm,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,steamcn,🎯 全球直连
+  - RULE-SET,coolapk,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
+  
+  - RULE-SET,openai,💬 OpenAi
+  - RULE-SET,gemeni,💬 OpenAi
+  
+  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(GEOSITE,RULE-SET,youtube),REJECT
+  - RULE-SET,youtube,📹 油管视频
+  - RULE-SET,youtubemusic,📹 油管视频
+  
+  - RULE-SET,netflix,🎥 流媒体解锁
+  - RULE-SET,disney,🎥 流媒体解锁
+  - RULE-SET,hbo,🎥 流媒体解锁
+  - RULE-SET,primevideo,🎥 流媒体解锁
+  - RULE-SET,tiktok,🎥 流媒体解锁
 
+  - RULE-SET,bahamut,🇹🇼 台湾
+  - RULE-SET,kktv,🇹🇼 台湾
+  - RULE-SET,linetv,🇹🇼 台湾
+  
+  - RULE-SET,bilibiliintl,📺 哔哩哔哩
+  - RULE-SET,bilibili,📺 哔哩哔哩
+  
+  - RULE-SET,telegram,🚀 节点选择
+  - RULE-SET,line,🚀 节点选择
+  - RULE-SET,whatsapp,🚀 节点选择
+  - RULE-SET,github,🚀 节点选择
+  - RULE-SET,speedtest,🚀 节点选择
+  - RULE-SET,pay,🚀 节点选择
+  - RULE-SET,visa,🚀 节点选择
+  - RULE-SET,google,🚀 节点选择
+  - RULE-SET,microsoft,🚀 节点选择
 
-custom_proxy_group=🚀 节点选择`select`[]🔯 故障转移`[]♻️ 自动选择`[]🔮 负载均衡`[]🇭🇰 香港`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国`.*
-custom_proxy_group=📹 油管视频`select`[]🚀 节点选择`[]🇭🇰 香港`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国
-custom_proxy_group=🎥 流媒体解锁`select`[]🚀 节点选择`[]🇭🇰 香港`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国
-custom_proxy_group=📺 哔哩哔哩`select`[]🎯 全球直连`[]🚀 节点选择`[]🇭🇰 香港`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国
-custom_proxy_group=💬 OpenAi`select`[]🚀 节点选择`[]🇭🇰 香港`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国
-custom_proxy_group=🟨 区块链`select`[]🇹🇼 台湾`🇹🇼 新加坡`[]🇯🇵 日本`[]🇰🇷 韩国`[]🇺🇲 美国`[]🚀 节点选择`[]🇭🇰 香港
-custom_proxy_group=♻️ 自动选择`url-test`.*`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🔯 故障转移`url-test`.*`http://cp.cloudflare.com/generate_204`1,,300
-custom_proxy_group=🔮 负载均衡`load-balance`.*`http://www.gstatic.com/generate_204`180
-custom_proxy_group=🇭🇰 香港`url-test`(港|HK|hk|Hong Kong|HongKong|hongkong)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🇯🇵 日本`url-test`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🇺🇲 美国`url-test`(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|us|United States)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🇹🇼 台湾`url-test`(台|新北|彰化|TW||twTaiwan)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🇸🇬 新加坡`url-test`(新加坡|坡|狮城|SG|sg|Singapore)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🇰🇷 韩国`url-test`(KR|Korea|KOR|kr|soul|首尔|韩|韓)`http://cp.cloudflare.com/generate_204`300,,50
-custom_proxy_group=🎯 全球直连`select`[]DIRECT
-
-
-enable_rule_generator=true
-overwrite_original_rules=true
+  - RULE-SET,blockchain,💵 区块链
+  - RULE-SET,okx,💵 区块链
+  - RULE-SET,binance,💵 区块链
+  - RULE-SET,ntp,🎯 全球直连
+  - RULE-SET,privatetracker,🎯 全球直连
+  - RULE-SET,cnmax,🎯 全球直连
+  # 绕过局域网地址
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  
+  - MATCH,🚀 节点选择
