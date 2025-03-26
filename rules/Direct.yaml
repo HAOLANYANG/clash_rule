@@ -1,0 +1,553 @@
+payload:
+
+# MyList
+  - DOMAIN-SUFFIX,gulu.uk
+  - DOMAIN-SUFFIX,vgod.uk
+  - DOMAIN-SUFFIX,booom.uk
+  - DOMAIN-SUFFIX,iuuu.uk
+  - DOMAIN-SUFFIX,ip.3322.net
+
+
+# 本地/局域网地址
+  - DOMAIN-SUFFIX,ip6-localhost
+  - DOMAIN-SUFFIX,ip6-loopback
+  - DOMAIN-SUFFIX,lan
+  - DOMAIN-SUFFIX,local
+  - DOMAIN-SUFFIX,localhost
+  - IP-CIDR,0.0.0.0/8,no-resolve
+  - IP-CIDR,10.0.0.0/8,no-resolve
+  - IP-CIDR,100.64.0.0/10,no-resolve
+  - IP-CIDR,127.0.0.0/8,no-resolve
+  - IP-CIDR,172.16.0.0/12,no-resolve
+  - IP-CIDR,192.168.0.0/16,no-resolve
+  - IP-CIDR,198.18.0.0/16,no-resolve
+  - IP-CIDR,224.0.0.0/4,no-resolve
+  - IP-CIDR6,::1/128,no-resolve
+  - IP-CIDR6,fc00::/7,no-resolve
+  - IP-CIDR6,fe80::/10,no-resolve
+  - IP-CIDR6,fd00::/8,no-resolve
+
+# Router managed 路由器管理域名
+  - DOMAIN,instant.arubanetworks.com
+  - DOMAIN,setmeup.arubanetworks.com
+  - DOMAIN,router.asus.com
+  - DOMAIN,www.asusrouter.com
+  - DOMAIN-SUFFIX,hiwifi.com
+  - DOMAIN-SUFFIX,leike.cc
+  - DOMAIN-SUFFIX,miwifi.com
+  - DOMAIN-SUFFIX,my.router
+  - DOMAIN-SUFFIX,p.to
+  - DOMAIN-SUFFIX,peiluyou.com
+  - DOMAIN-SUFFIX,phicomm.me
+  - DOMAIN-SUFFIX,router.ctc
+  - DOMAIN-SUFFIX,routerlogin.com
+  - DOMAIN-SUFFIX,tendawifi.com
+  - DOMAIN-SUFFIX,zte.home
+  - DOMAIN-SUFFIX,tplogin.cn
+  - DOMAIN-SUFFIX,wifi.cmcc
+
+
+#国内DNS
+  - IP-CIDR,223.5.5.5/32
+  - IP-CIDR,223.6.6.6/32
+  - DOMAIN,dns.alidns.com
+  - IP-CIDR,119.29.29.29/32
+  - IP-CIDR,119.28.28.28/32
+  - IP-CIDR,1.12.12.12/32
+  - IP-CIDR,120.53.53.53/32
+  - IP-CIDR,180.76.76.76/32
+  - DOMAIN,dot.pub
+  - IP-CIDR,180.184.1.1/32
+  - IP-CIDR,180.184.2.2/32
+  - IP-CIDR,101.226.4.6/32
+  - IP-CIDR,218.30.118.6/32
+  - IP-CIDR,123.125.81.6/32
+  - IP-CIDR,140.207.198.6/32
+  - DOMAIN,dot.360.cn
+  - IP-CIDR,114.114.114.114/32
+  - IP-CIDR,114.114.115.115/32
+  - IP-CIDR,114.114.114.119/32
+  - IP-CIDR,114.114.115.119/32
+  - IP-CIDR,114.114.114.110/32
+  - IP-CIDR,114.114.115.110/32
+  - IP-CIDR,1.2.4.8/32
+  - IP-CIDR,210.2.4.8/32
+
+
+#微信头像
+  - DOMAIN,wx.qlogo.cn
+  - DOMAIN,thirdwx.qlogo.cn
+  - DOMAIN-SUFFIX,qlogo.cn
+
+
+
+
+
+
+#时区
+#微软
+  - DOMAIN,time.windows.com
+#苹果
+  - DOMAIN,time.apple.com
+  - DOMAIN,time.asia.apple.com
+  - DOMAIN,time.euro.apple.com
+#国内
+#阿里
+  - DOMAIN-SUFFIX,aliyun.com
+  - DOMAIN,ntp.aliyun.com
+  - DOMAIN,ntp1.aliyun.com
+  - DOMAIN,ntp2.aliyun.com
+  - DOMAIN,ntp3.aliyun.com
+  - DOMAIN,ntp4.aliyun.com
+  - DOMAIN,ntp5.aliyun.com
+  - DOMAIN,ntp6.aliyun.com
+  - DOMAIN,ntp7.aliyun.com
+#腾讯
+  - DOMAIN-SUFFIX,qq.com
+  - DOMAIN-SUFFIX,cloud.tencent.com
+  - DOMAIN,time.cloud.tencent.com 
+  - DOMAIN,time1.cloud.tencent.com 
+  - DOMAIN,time2.cloud.tencent.com 
+  - DOMAIN,time3.cloud.tencent.com
+  - DOMAIN,time4.cloud.tencent.com
+  - DOMAIN,time5.cloud.tencent.com
+#Linux
+  - DOMAIN-SUFFIX,pool.ntp.org
+  - DOMAIN-SUFFIX,cn.pool.ntp.org
+  - DOMAIN-SUFFIX,asia.pool.ntp.org
+  - DOMAIN-SUFFIX,cn.pool.ntp.org
+  - DOMAIN-SUFFIX,cn.ntp.org.cn
+#教育网
+  - DOMAIN,time.nist.gov
+  - DOMAIN,ntp.tuna.tsinghua.edu.cn 
+  - DOMAIN,ntp.ntsc.ac.cn
+  - DOMAIN,ntp.neu.edu.cn
+  - DOMAIN,ntp.sjtu.edu.cn
+
+
+#连通性测试
+#苹果
+  - DOMAIN,captive.apple.com
+  - DOMAIN,www.apple.com
+#微软
+  - DOMAIN,www.msftconnecttest.com
+  - DOMAIN,edge.microsoft.com
+#国内
+  - DOMAIN,file.myqcloud.com
+  - DOMAIN,www.qualcomm.cn
+  - DOMAIN,wifi.vivo.com.cn
+  - DOMAIN,connectivitycheck.platform.hicloud.com
+  - DOMAIN,connect.rom.miui.com
+  - DOMAIN,g.alicdn.com
+
+
+#钉钉ding
+  - DOMAIN-SUFFIX,ddurl.to
+  - DOMAIN-SUFFIX,dg-work.cn
+  - DOMAIN-SUFFIX,dingding.xin
+  - DOMAIN-SUFFIX,dingtalk.cn
+  - DOMAIN-SUFFIX,dingtalk.com
+  - DOMAIN-SUFFIX,dingtalk.com.cn
+  - DOMAIN-SUFFIX,dingtalk.net
+  - DOMAIN-SUFFIX,dingtalkapps.com
+  - DOMAIN-SUFFIX,laiwang.com
+  - DOMAIN-SUFFIX,lwurl.to
+  - DOMAIN-SUFFIX,realapp.xin
+
+
+
+
+
+
+
+
+# 直连列表
+#国内应用进程-安卓
+#华为
+  - PROCESS-NAME,com.huawei.appmarket
+  - PROCESS-NAME,com.xiaomi.mibrain.speech
+  - PROCESS-NAME,小米云服务.exe
+  - PROCESS-NAME,com.taobao.taobao
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.tencent.android.qqdownloader
+  - PROCESS-NAME,qihoo.appstore
+  - PROCESS-NAME,com.baidu.appsearch
+  - PROCESS-NAME,com.xiaomi.market
+  - PROCESS-NAME,com.meizu.mstore
+  - PROCESS-NAME,com.huawei.appmarket
+  - PROCESS-NAME,com.wandoujia.phoenix2
+  - PROCESS-NAME,com.dragon.android.pandaspace
+  - PROCESS-NAME,com.pp.assistant
+  - PROCESS-NAME,com.oppo.market
+  - PROCESS-NAME,com.sogou.androidtool
+  - PROCESS-NAME,com.bbk.appstore
+  - PROCESS-NAME,com.sec.android.app.samsungapps
+  - PROCESS-NAME,com.lenovo.leos.appstore
+  - PROCESS-NAME,zte.com.market
+  - PROCESS-NAME,com.hiapk.marketpho
+  - PROCESS-NAME,com.yingyonghui.market
+  - PROCESS-NAME,com.mappn.gfan
+  - PROCESS-NAME,com.coolapk.market
+  - PROCESS-NAME,com.xiaomi.market
+  - PROCESS-NAME,com.huawei.appmarket
+
+  - PROCESS-NAME,com.tencent.mobileqq
+  - PROCESS-NAME,com.qzone
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.p1.mobile.putong
+  - PROCESS-NAME,com.taobao.taobao
+  - PROCESS-NAME,com.immomo.momo
+  - PROCESS-NAME,com.jingdong.app.mall
+  - PROCESS-NAME,com.xunmeng.pinduoduo
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.suning.mobile.ebuy
+  - PROCESS-NAME,cn.missfresh.application
+  - PROCESS-NAME,com.taobao.idlefish
+  - PROCESS-NAME,com.qq.reader
+  - PROCESS-NAME,com.tencent.weread
+  - PROCESS-NAME,com.ss.android.article.news
+  - PROCESS-NAME,com.chaozh.iReaderFree
+  - PROCESS-NAME,com.sina.weibo
+  - PROCESS-NAME,com.netease.newsreader.activity
+  - PROCESS-NAME,com.sohu.newsclient
+  - PROCESS-NAME,com.ss.android.ugc.aweme
+  - PROCESS-NAME,com.ss.android.ugc.live
+  - PROCESS-NAME,com.smile.gifmaker
+  - PROCESS-NAME,com.yixia.videoeditor
+  - PROCESS-NAME,com.youku.phone
+  - PROCESS-NAME,com.qiyi.video
+  - PROCESS-NAME,com.tencent.qqlive
+  - PROCESS-NAME,air.tv.douyu.android
+  - PROCESS-NAME,com.panda.videoliveplatform
+  - PROCESS-NAME,ctrip.android.view
+  - PROCESS-NAME,com.Qunar
+  - PROCESS-NAME,com.taobao.trip
+  - PROCESS-NAME,com.dp.android.elong
+  - PROCESS-NAME,com.tuniu.app.ui
+  - PROCESS-NAME,com.mt.mtxx.mtxx
+  - PROCESS-NAME,com.meitu.meiyancamera
+  - PROCESS-NAME,com.meitu.meipaimv
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.baidu.wallet
+  - PROCESS-NAME,com.sankuai.meituan.takeoutnew
+  - PROCESS-NAME,com.wangyin.payment
+  - PROCESS-NAME,me.ele
+  - PROCESS-NAME,com.dianping.v1
+  - PROCESS-NAME,com.iflytek.inputmethod
+  - PROCESS-NAME,com.baidu.input
+  - PROCESS-NAME,com.sohu.inputmethod.sogou
+
+  - PROCESS-NAME,com.autonavi.minimap
+  - PROCESS-NAME,com.baidu.BaiduMap
+  - PROCESS-NAME,com.sdu.didi.psnger
+  - PROCESS-NAME,battymole.trainticket
+  - PROCESS-NAME,com.flightmanager.view
+  - PROCESS-NAME,com.jianshu.haruki
+  - PROCESS-NAME,com.zhihu.android
+  - PROCESS-NAME,com.luojilab.player
+  - PROCESS-NAME,com.tencent.qqmusic
+  - PROCESS-NAME,com.kugou.android
+  - PROCESS-NAME,com.tencent.karaoke
+  - PROCESS-NAME,cn.kuwo.player
+  - PROCESS-NAME,fm.xiami.main
+  - PROCESS-NAME,com.changba
+  - PROCESS-NAME,com.netease.cloudmusic
+  - PROCESS-NAME,com.ximalaya.ting.android
+
+  - PROCESS-NAME,cn.xuexi.android
+  - PROCESS-NAME,com.xingin.xhs
+  - PROCESS-NAME,com.taobao.taobao
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.cainiao.wireless
+  - PROCESS-NAME,com.alibaba.android.rimet
+  - PROCESS-NAME,com.tencent.mobileqq
+  - PROCESS-NAME,com.tencent.mm
+  - PROCESS-NAME,com.tencent.tmgp.sgame
+  - PROCESS-NAME,com.tencent.karaoke
+  - PROCESS-NAME,com.hpbr.bosszhipin
+  - PROCESS-NAME,com.qiyi.video
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.sankuai.meituan.takeoutnew
+  - PROCESS-NAME,com.MobileTicket
+  - PROCESS-NAME,com.anjuke.android.app
+  - PROCESS-NAME,com.tencent.edu
+  - PROCESS-NAME,com.xunmeng.pinduoduo
+  - PROCESS-NAME,com.suning.mobile.ebuy
+  - PROCESS-NAME,com.jingdong.app.mall
+  - PROCESS-NAME,ctrip.android.view
+  - PROCESS-NAME,com.achievo.vipshop
+  - PROCESS-NAME,com.netease.newsreader.activity
+  - PROCESS-NAME,com.ss.android.article.lite
+  - PROCESS-NAME,com.ss.android.article.news
+  - PROCESS-NAME,com.UCMobile
+  - PROCESS-NAME,com.ss.android.ugc.aweme
+  - PROCESS-NAME,com.sina.weibo
+  - PROCESS-NAME,com.greenpoint.android.mc10086.activity
+  - PROCESS-NAME,com.sinovatech.unicom.ui
+  - PROCESS-NAME,com.baidu.tieba
+  - PROCESS-NAME,com.baidu.input_huawei
+  - PROCESS-NAME,com.qihoo.appstore
+  - PROCESS-NAME,com.joinin.ustc1
+  - PROCESS-NAME,com.cidtech.beijingshifan
+  - PROCESS-NAME,com.chinacreator.hnu
+  - PROCESS-NAME,com.ipowertec.incu
+  - PROCESS-NAME,com.eteasun.nanhang
+  - PROCESS-NAME,com.wisorg.szdx
+  - PROCESS-NAME,com.wisorg.cqdx
+  - PROCESS-NAME,cn.edu.pku.PKUAndroid
+  - PROCESS-NAME,com.ideaqhdx.news
+  - PROCESS-NAME,com.wisorg.whdx
+  - PROCESS-NAME,com.cutt.zhiyue.android.app542735
+  - PROCESS-NAME,com.wisedu.xjtu
+  - PROCESS-NAME,com.appbyme.app19108
+  - PROCESS-NAME,cn.edu.dlut.ws
+  - PROCESS-NAME,org.apache.cordova.exampleFudan
+  - PROCESS-NAME,com.cidtech.hefeigongye
+  - PROCESS-NAME,cn.edu.nju.iportal
+  - PROCESS-NAME,com.lantu.MobileCampus.sysu
+
+#自己添加的安卓包名
+  - PROCESS-NAME,com.cainiao.wireless
+  - PROCESS-NAME,com.baidu.netdisk
+  - PROCESS-NAME,com.smzdm.client.android
+  - PROCESS-NAME,com.cmi.jegotrip
+  - PROCESS-NAME,com.mushi.codebug
+  - PROCESS-NAME,com.thestore.main
+  - PROCESS-NAME,com.coolapk.market
+  - PROCESS-NAME,com.unionpay
+  - PROCESS-NAME,com.eg.android.AlipayGphone
+  - PROCESS-NAME,com.sankuai.meituan
+  - PROCESS-NAME,com.autoavi.minimap
+  - PROCESS-NAME,com.maimemo.android.momo
+  - PROCESS-NAME,com.ecitic.bank.mobile
+  - PROCESS-NAME,com.ss.android.ugc.aweme
+  - PROCESS-NAME,com.ss.android.ugc.aweme.lite
+
+
+
+#windwos
+  - PROCESS-NAME,WeChat.exe
+  - PROCESS-NAME,WeChatAppEx.exe
+  - PROCESS-NAME,WeChatOCR.exe
+  - PROCESS-NAME,WeChatPlayer.exe
+  - PROCESS-NAME,WeChatUtility.exe
+
+  - PROCESS-NAME,cs2.exe
+
+
+  - PROCESS-NAME,baidunetdisk.exe
+  - PROCESS-NAME,baidunetdiskhost.exe
+  - PROCESS-NAME,baidunetdiskrender.exe
+
+
+  - PROCESS-NAME,wsctrlsvc.exe
+
+
+
+
+
+
+
+# NARK认证中心
+  - DOMAIN-SUFFIX,nnnolanark.xyz
+
+# 本地/局域网地址
+  - DOMAIN-SUFFIX,ip6-localhost
+  - DOMAIN-SUFFIX,ip6-loopback
+  - DOMAIN-SUFFIX,lan
+  - DOMAIN-SUFFIX,local
+  - DOMAIN-SUFFIX,localhost
+  - IP-CIDR,10.0.0.0/8,no-resolve
+  - IP-CIDR,100.64.0.0/10,no-resolve
+  - IP-CIDR,127.0.0.0/8,no-resolve
+  - IP-CIDR,172.16.0.0/12,no-resolve
+  - IP-CIDR,192.168.0.0/16,no-resolve
+  - IP-CIDR,198.18.0.0/16,no-resolve
+  - IP-CIDR,224.0.0.0/4,no-resolve
+  - IP-CIDR6,::1/128,no-resolve
+  - IP-CIDR6,fc00::/7,no-resolve
+  - IP-CIDR6,fe80::/10,no-resolve
+  - IP-CIDR6,fd00::/8,no-resolve
+
+# Router managed 路由器管理域名
+  - DOMAIN,instant.arubanetworks.com
+  - DOMAIN,setmeup.arubanetworks.com
+  - DOMAIN,router.asus.com
+  - DOMAIN-SUFFIX,hiwifi.com
+  - DOMAIN-SUFFIX,leike.cc
+  - DOMAIN-SUFFIX,miwifi.com
+  - DOMAIN-SUFFIX,my.router
+  - DOMAIN-SUFFIX,p.to
+  - DOMAIN-SUFFIX,peiluyou.com
+  - DOMAIN-SUFFIX,phicomm.me
+  - DOMAIN-SUFFIX,router.ctc
+  - DOMAIN-SUFFIX,routerlogin.com
+  - DOMAIN-SUFFIX,tendawifi.com
+  - DOMAIN-SUFFIX,zte.home
+
+
+# VPS
+  - DOMAIN-SUFFIX,rcp.net
+  - DOMAIN-SUFFIX,greencloudvps.com
+  - DOMAIN-SUFFIX,spartanhost.net
+  - DOMAIN-SUFFIX,vps.hosting
+
+
+
+
+
+#dns-whitelist.txt大陆直连域名  https://github.com/felixonmars/dnsmasq-china-list/blob/master/ns-whitelist.txt
+  - DOMAIN-SUFFIX,.iidns.com
+  - DOMAIN-SUFFIX,.dnspod.com
+  - DOMAIN-SUFFIX,.dnspod.net
+  - DOMAIN-SUFFIX,.hichina.com
+  - DOMAIN-SUFFIX,.xincache.com
+  - DOMAIN-SUFFIX,.dnsv2.com
+  - DOMAIN-SUFFIX,.dnsv3.com
+  - DOMAIN-SUFFIX,.dnsv4.com
+  - DOMAIN-SUFFIX,.dnsv5.com
+  - DOMAIN-SUFFIX,.myhostadmin.net
+  - DOMAIN-SUFFIX,.cnolnic.com
+  - DOMAIN-SUFFIX,.cnolnic.net
+  - DOMAIN-SUFFIX,.dns.com.cn
+  - DOMAIN-SUFFIX,.cnmsn.net
+  - DOMAIN-SUFFIX,.bizcn.com
+  - DOMAIN-SUFFIX,.alidns.com
+  - DOMAIN-SUFFIX,.aliyun.com
+  - DOMAIN-SUFFIX,.bddns.cn
+  - DOMAIN-SUFFIX,.360wzb.com
+  - DOMAIN-SUFFIX,.dnsdun.com
+  - DOMAIN-SUFFIX,.dnsdun.net
+  - DOMAIN-SUFFIX,.chinanetsun-dns.com
+  - DOMAIN-SUFFIX,.xundns.com
+  - DOMAIN-SUFFIX,.jiasule.net
+  - DOMAIN-SUFFIX,.ns.yunjiasu.com
+  - DOMAIN-SUFFIX,.cdncenter.com
+  - DOMAIN-SUFFIX,.anquanbao.com
+  - DOMAIN-SUFFIX,.sina.com.cn
+  - DOMAIN-SUFFIX,.72dns.com
+  - DOMAIN-SUFFIX,.idc1.cn
+  - DOMAIN-SUFFIX,.ezdnscenter.com
+  - DOMAIN-SUFFIX,.01isp.com
+  - DOMAIN-SUFFIX,.01isp.net
+  - DOMAIN-SUFFIX,.enet.com.cn
+  - DOMAIN-SUFFIX,.800hr.net.cn
+  - DOMAIN-SUFFIX,.dns.net.cn
+  - DOMAIN-SUFFIX,.okidc.com
+  - DOMAIN-SUFFIX,.cdnhost.cn
+  - DOMAIN-SUFFIX,.eznowdns.net
+  - DOMAIN-SUFFIX,.ndns.cn
+  - DOMAIN-SUFFIX,.dnsng.net
+  - DOMAIN-SUFFIX,.wanmeilink.com
+  - DOMAIN-SUFFIX,.22.cn
+  - DOMAIN-SUFFIX,.zjdomain.com
+  - DOMAIN-SUFFIX,.zol.com
+  - DOMAIN-SUFFIX,.ce.net.cn
+  - DOMAIN-SUFFIX,.4everdns.com
+  - DOMAIN-SUFFIX,.east.net.cn
+  - DOMAIN-SUFFIX,.zdnscloud.net.cn
+  - DOMAIN-SUFFIX,.51.net
+  - DOMAIN-SUFFIX,.cloudcdns.com
+  - DOMAIN-SUFFIX,.pubyun.com
+  - DOMAIN-SUFFIX,.qq.com
+  - DOMAIN-SUFFIX,.cdeledu.com
+  - DOMAIN-SUFFIX,.myhexin.com
+  - DOMAIN-SUFFIX,.bidns.net
+  - DOMAIN-SUFFIX,.inc365.com
+  - DOMAIN-SUFFIX,.zdnscloud.com
+  - DOMAIN-SUFFIX,.zdnscloud.info
+  - DOMAIN-SUFFIX,.chinanetsun.com
+  - DOMAIN-SUFFIX,.gzidc.com
+  - DOMAIN-SUFFIX,.ns365.net
+  - DOMAIN-SUFFIX,.51dns.com
+  - DOMAIN-SUFFIX,.nease.net
+  - DOMAIN-SUFFIX,.xrnet.cn
+  - DOMAIN-SUFFIX,.cnkuai.cn
+  - DOMAIN-SUFFIX,.cnkuai.com
+  - DOMAIN-SUFFIX,.taobao.com
+  - DOMAIN-SUFFIX,.aoyou365.com
+  - DOMAIN-SUFFIX,.dnspai.com
+  - DOMAIN-SUFFIX,.360safe.com
+  - DOMAIN-SUFFIX,.qycn.net
+  - DOMAIN-SUFFIX,.qycn.cn
+  - DOMAIN-SUFFIX,.sinonets.cn
+  - DOMAIN-SUFFIX,.sfn.cn
+  - DOMAIN-SUFFIX,.yovole.com
+  - DOMAIN-SUFFIX,.duowanns.com
+  - DOMAIN-SUFFIX,.ucweb.co
+  - DOMAIN-SUFFIX,.jcloud.co
+  - DOMAIN-SUFFIX,.eedns.co
+  - DOMAIN-SUFFIX,.maff.co
+  - DOMAIN-SUFFIX,.szhot.com
+  - DOMAIN-SUFFIX,.bigwww.com
+  - DOMAIN-SUFFIX,ns1.oray.net
+  - DOMAIN-SUFFIX,ns2.oray.net
+  - DOMAIN-SUFFIX,.cdnudns.co
+  - DOMAIN-SUFFIX,.zhujiwu.com
+  - DOMAIN-SUFFIX,.jjworld.net.cn
+  - DOMAIN-SUFFIX,.dns-diy.com
+  - DOMAIN-SUFFIX,.iidns.com
+  - DOMAIN-SUFFIX,.dns.com
+  - DOMAIN-SUFFIX,.youku.com
+  - DOMAIN-SUFFIX,.zj01.com
+  - DOMAIN-SUFFIX,.cdns.cn
+  - DOMAIN-SUFFIX,.bdydns.cn
+  - DOMAIN-SUFFIX,.baidu.com
+  - DOMAIN-SUFFIX,.139135.com
+  - DOMAIN-SUFFIX,.hwclouds.net
+  - DOMAIN-SUFFIX,.hwclouds.com
+  - DOMAIN-SUFFIX,.hwclouds.cn
+  - DOMAIN-SUFFIX,.alibabadns.com
+  - DOMAIN-SUFFIX,.iqiyi.com
+  - DOMAIN-SUFFIX,.jdcloud.com
+  - DOMAIN-SUFFIX,.jdcache.com
+  - DOMAIN-SUFFIX,.jd.com
+  - DOMAIN-SUFFIX,.sohu.com
+  - DOMAIN-SUFFIX,.dns234.net
+  - DOMAIN-SUFFIX,.awsdns-cn
+  - DOMAIN-SUFFIX,.hwclouds-dns.com
+  - DOMAIN-SUFFIX,.hwclouds-dns.net
+  - DOMAIN-SUFFIX,.baidubce.com
+  - DOMAIN-SUFFIX,.juming.com
+  - DOMAIN-SUFFIX,.jdjrdns.com
+  - DOMAIN-SUFFIX,.huaweicloud-dns.cn
+  - DOMAIN-SUFFIX,.360anyu.com
+  - DOMAIN-SUFFIX,.zndns.com
+  - DOMAIN-SUFFIX,.ppstream.com
+
+
+
+
+#字节跳动
+  - DOMAIN-SUFFIX,ecom-lightapp.com
+  - DOMAIN-SUFFIX,ecombdapi.com
+  - DOMAIN-SUFFIX,ecombdimg.com
+  - DOMAIN-SUFFIX,ecombdstatic.com
+  - DOMAIN-SUFFIX,ecombdvod.com
+  - DOMAIN-SUFFIX,zijieapi.com
+  - DOMAIN-SUFFIX,zijiecdn.cn
+  - DOMAIN-SUFFIX,zijiecdn.com
+  - DOMAIN-SUFFIX,zijiecdn.net
+  - DOMAIN-SUFFIX,zijieimg.cn
+  - DOMAIN-SUFFIX,zijieimg.com
+  - DOMAIN-SUFFIX,zijieimg.net
+  - DOMAIN-SUFFIX,zijieurl.cn
+  - DOMAIN-SUFFIX,zijieurl.com
+  - DOMAIN-SUFFIX,zijieurl.net
+  - DOMAIN-SUFFIX,zijiewap.cn
+  - DOMAIN-SUFFIX,zijiewap.com
+  - DOMAIN-SUFFIX,zijiewap.net
+  - DOMAIN-SUFFIX,zilrms.com
+  - DOMAIN-SUFFIX,ziyrta.com
+  - DOMAIN-SUFFIX,zjbyte.cn
+  - DOMAIN-SUFFIX,zjbyte.com
+  - DOMAIN-SUFFIX,zjbyte.net
+  - DOMAIN-SUFFIX,zjcdn.com
+  - DOMAIN-SUFFIX,zjgslb.com
+  - DOMAIN-SUFFIX,zjurl.cn
+  - DOMAIN-SUFFIX,amemv.com
+  - DOMAIN-SUFFIX,douyincdn.com
+  - DOMAIN-SUFFIX,douyinpic.com
+  - DOMAIN-SUFFIX,douyinstatic.com
+  - DOMAIN-SUFFIX,douyinvod.com
+  - DOMAIN-SUFFIX,idouyinvod.com
