@@ -162,7 +162,7 @@ rule-providers:
   direct:
     type: http
     behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/Direct.list"
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/Direct.yaml"
     path: ./ruleset/Direct.list
     interval: 86400  
 
@@ -171,14 +171,7 @@ rule-providers:
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaDNS/ChinaDNS.yaml"
     path: ./ruleset/ChinaDNS.yaml
-    interval: 86400  
-
-  mipush:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/mipush.list"
-    path: ./ruleset/mipush.list
-    interval: 86400  
+    interval: 86400
 
   cnmax:
     type: http
@@ -215,25 +208,11 @@ rule-providers:
     path: ./ruleset/Apple_Classical.yaml
     interval: 86400
 
-  download:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
-    path: ./ruleset/Download.list
-    interval: 86400
-
   ntp:
     type: http
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/NTPService/NTPService.yaml"
     path: ./ruleset/NTPService.yaml
-    interval: 86400
-
-  download:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
-    path: ./ruleset/Download.list
     interval: 86400
 
   privatetracker:
@@ -292,12 +271,83 @@ rule-providers:
     path: ./ruleset/Disney.yaml
     interval: 86400
 
+  hbo:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HBO/HBO.yaml"
+    path: ./ruleset/HBO.yaml
+    interval: 86400
+
+  primevideo:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrimeVideo/PrimeVideo.yaml"
+    path: ./ruleset/PrimeVideo.yaml
+    interval: 86400
+    
+  bahamut:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml"
+    path: ./ruleset/Bahamut.yaml
+    interval: 86400
+
+  kktv:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/KKTV/KKTV.yaml"
+    path: ./ruleset/KKTV.yaml
+    interval: 86400
+
+  linetv:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/LineTV/LineTV.yaml"
+    path: ./ruleset/LineTV.yaml
+    interval: 86400
+
+  openai:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/OpenAI.yaml
+    interval: 86400
+
+  gemeni:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+    path: ./ruleset/Gemini.yaml
+    interval: 86400
+
+  telegram:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+    path: ./ruleset/Telegram.yaml
+    interval: 86400
+
+  line:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Line/Line.yaml"
+    path: ./ruleset/Line.yaml
+    interval: 86400
+
+  whatsapp:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    path: ./ruleset/Whatsapp.yaml
+    interval: 86400
+
+
 
 
 ;局域网
-ruleset=🎯 全球直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.list
+ruleset=🎯 全球直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.ya
 ;需要代理（官网）
-ruleset=🚀 节点选择,https://raw.githubusercontent.com/HAOLANYANG/clash_rule/main/rules/global.list
+ruleset=🚀 节点选择,https://raw.githubusercontent.com/HAOLANYANG/clash_rule/main/rules/global.yaml
 ;FCM消息
 ;ruleset=🎯 全球直连,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM.list
 ;自定义直连
