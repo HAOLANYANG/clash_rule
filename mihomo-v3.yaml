@@ -19,7 +19,7 @@ pr:
 p: &p
   type: http
   # 自动更新订阅时间，单位为秒
-  interval: 7200
+  interval: 86400
   health-check:
     enable: true
     url: https://cp.cloudflare.com
@@ -546,8 +546,15 @@ proxy-groups:
     }
   - { name: ♻️ 自动选择, <<: *use, tolerance: 50, type: url-test, interval: 300 }
   - { name: 🔯 故障转移, <<: *use, tolerance: 300, type: url-test, interval: 30 }
-  - { name: 🔯 故障转移, <<:DIRECT }
-  
+  - {
+      name: 🎯 全球直连,
+      type: select,
+      proxies:
+        [  
+          DIRECT
+        ],
+    }
+
 rules:
   - RULE-SET,lan,🎯 全球直连
   - RULE-SET,global,🚀 节点选择
