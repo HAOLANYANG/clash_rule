@@ -1,4 +1,4 @@
-# 分组 锚点
+#分组锚点
 pr:
   &pr {
     type: select,
@@ -12,14 +12,14 @@ pr:
         🇰🇷 韩国,
         🇺🇲 美国,
         ♻️ 自动选择,
-        🔯 故障转移
+        🔯 故障转移,
       ],
   }
-# 延迟检测 URL
+# 延迟检测 URL 锚点
 p: &p
   type: http
   # 自动更新订阅时间，单位为秒
-  interval: 86400
+  interval: 3600
   health-check:
     enable: true
     url: https://cp.cloudflare.com
@@ -33,12 +33,11 @@ p: &p
 # --------------------------------------------------
 
 use: &use
-  # 如果不希望自动切换请将下面两行注释对调
   # type: select
   type: url-test
   use:
     - 订阅一
-    - 订阅二
+    # - 订阅二
     # - 本地配置
 
 # 订阅链接
@@ -47,20 +46,27 @@ use: &use
 proxy-providers:
   订阅一:
     <<: *p
-    # path: ./proxy_provider/订阅一.yaml
+    path: ./proxy_provider/订阅一.yaml
     url: "https://example.com/airport?type=clashmeta&protocol=shadowsocks&rule=default"
-    # 如需要为该订阅组节点添加前缀，取消下面两行注释
-    # override:
-      # additional-prefix: "[订阅一]"
+    # 为该订阅组节点添加前缀
+      override:
+        additional-prefix: "[订阅一]"
 
-  订阅二:
-    <<: *p
+  #订阅二:
+    #<<: *p
     # path: ./proxy_provider/订阅二.yaml
-    url: "https://example.com/api/v1/client/subscribe?token=ilovechina"
+    #url: "https://example.com/api/v1/client/subscribe?token=ilovechina"
     # 如需要为该订阅组节点添加前缀，取消下面两行注释
     # override:
       # additional-prefix: "[订阅二]"
 
+  # 本地配置:
+    # <<: *p
+    # path: ./proxy_provider/本地配置.yaml
+    # 如需要为该订阅组节点添加前缀，取消下面两行注释
+    # override:
+      # additional-prefix: "[本地配置]"
+      
 # --------------------------------------------------
 
 mixed-port: 10801
