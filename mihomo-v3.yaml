@@ -22,7 +22,7 @@ p: &p
   interval: 86400
   health-check:
     enable: true
-    url: https://cp.cloudflare.com
+    url: http://cp.cloudflare.com/generate_204
     # 节点连通性检测时间，单位为秒
     interval: 300
     # 节点超时延迟，单位为毫秒
@@ -45,7 +45,7 @@ use: &use
 # 本地配置可以只填 path
 proxy-providers:
   订阅一:
-    <<: *p
+    <<: *p #引用订阅自动更新订阅以及默认测速链接
     path: ./proxy_provider/订阅一.yaml
     url: "https://example.com/airport?type=clashmeta&protocol=shadowsocks&rule=default"
     # 为该订阅组节点添加前缀
@@ -552,7 +552,7 @@ proxy-groups:
     }
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 50, type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)香港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 50, type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, lazy: true }
   - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
   - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
   - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 70, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
@@ -562,7 +562,7 @@ proxy-groups:
       name: 🌎 其它地区,
       type: select,
       <<: *use,
-      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|KR|Korea|KOR|kr|🇰🇷|soul|首尔|韩|韓|美|us|unitedstates)).*",
+      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|KR|Korea|KOR|kr|🇰🇷|soul|首尔|韩|韓|美|us|unitedstates|流量|套餐|到期)).*",
     }
   - { name: ♻️ 自动选择, <<: *use, tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
   - { name: 🔯 故障转移, <<: *use, tolerance: 100, type: fallback, url: "http://cp.cloudflare.com/generate_204", interval: 120, lazy: true }
