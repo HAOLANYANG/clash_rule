@@ -49,7 +49,7 @@ proxy-providers:
     path: ./proxy_provider/订阅一.yaml
     url: "https://example.com/airport?type=clashmeta&protocol=shadowsocks&rule=default"
     # 为该订阅组节点添加前缀
-     override:
+    override:
       additional-prefix: "[订阅一]"
 
   #订阅二:
