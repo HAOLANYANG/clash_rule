@@ -562,7 +562,7 @@ proxy-groups:
       name: 🌎 其它地区,
       type: select,
       <<: *use,
-      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*",
+      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|KR|Korea|KOR|kr|🇰🇷|soul|首尔|韩|韓|美|us|unitedstates)).*",
     }
   - { name: ♻️ 自动选择, <<: *use, tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
   - { name: 🔯 故障转移, <<: *use, tolerance: 100, type: fallback, url: "http://cp.cloudflare.com/generate_204", interval: 120, lazy: true }
