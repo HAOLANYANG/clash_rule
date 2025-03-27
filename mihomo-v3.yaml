@@ -552,12 +552,12 @@ proxy-groups:
     }
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)香港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 50, type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 70, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇰🇷 韩国, <<: *use, filter: "(?i)KR|Korea|KOR|kr|soul|首尔|韩|韓", tolerance: 70, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 100, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)^(?!(韩|KR|kr|日|JP|jp|美|US|us|台|TW|tw|新|SG|sg)).*(港|HK|hk|Hong Kong|HongKong|hongkong)", tolerance: 50, type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)^(?!(港|HK|hk|韩|KR|kr|日|JP|jp|美|US|us|新|SG|sg)).*(台|新北|彰化|TW|tw|Taiwan)", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)^(?!(港|HK|hk|韩|KR|kr|日|JP|jp|美|US|us|台|TW|tw)).*(新|SG|sg|singapore)", tolerance: 50, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)^(?!(港|HK|hk|韩|KR|kr|美|US|us|台|TW|tw|新|SG|sg)).*(日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan)", tolerance: 70, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇰🇷 韩国, <<: *use, filter: "(?i)^(?!(港|HK|hk|日|JP|jp|美|US|us|台|TW|tw|新|SG|sg)).*(KR|Korea|KOR|kr|soul|首尔|韩|韓)", tolerance: 70, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)^(?!(韩|KR|kr|日|JP|jp|台|TW|tw|新|SG|sg)).*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states)", tolerance: 100, type: url-test, url: "http://cp.cloudflare.com/generate_204", interval: 300, lazy: true }
   - {
       name: 🌎 其它地区,
       type: select,
