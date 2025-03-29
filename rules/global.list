@@ -13,13 +13,22 @@ DOMAIN-SUFFIX,n.nnnolanark.xyz
 # 地区检测
 DOMAIN-SUFFIX, gspe1-ssl.ls.apple.com
 # 沃达丰
-DOMAIN-SUFFIX, epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
-DOMAIN-SUFFIX, ss.epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
-DOMAIN-SUFFIX, ss.epdg.epc.geo.mnc015.mcc234.pub.3gppnetwork.org
-DOMAIN-SUFFIX, entsrv-uk.vodafone.com
-DOMAIN-SUFFIX, vuk-gto.prod.ondemandconnectivity.com
+DOMAIN-SUFFIX,epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,ss.epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc015.mcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,entsrv-uk.vodafone.com
+DOMAIN-SUFFIX,vuk-gto.prod.ondemandconnectivity.com
 IP-CIDR,88.82.0.0/19
 # CMLinkUK EE
 IP-CIDR,46.68.0.0/17
 # Giffgaff
 IP-CIDR,87.194.0.0/16
+
+#www.nyadm.org
+DOMAIN,lain.bgm.tv
+DOMAIN,union.maccms.la
+DOMAIN,play.nyadm.org
+DOMAIN-SUFFIX,nyadm.org
+DOMAIN-SUFFIX,nyavod.top
+DOMAIN-SUFFIX,cnmdm.top
+DOMAIN-SUFFIX,bgm.tv
