@@ -28,6 +28,7 @@ payload:
 #www.nyadm.org
   - DOMAIN,lain.bgm.tv
   - DOMAIN,play.nyadm.org
+  - DOMAIN,wakigfl.cnmdm.top
   - DOMAIN-SUFFIX,nyadm.org
   - DOMAIN-SUFFIX,nyadm.net
   - DOMAIN-SUFFIX,nyavod.top
