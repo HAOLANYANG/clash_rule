@@ -26,10 +26,10 @@ payload:
   - IP-CIDR,87.194.0.0/16
 
 #www.nyadm.org
-DOMAIN,lain.bgm.tv
-DOMAIN,union.maccms.la
-DOMAIN,play.nyadm.org
-DOMAIN-SUFFIX,nyadm.org
-DOMAIN-SUFFIX,nyavod.top
-DOMAIN-SUFFIX,cnmdm.top
-DOMAIN-SUFFIX,bgm.tv
+  - DOMAIN,lain.bgm.tv
+  - DOMAIN,union.maccms.la
+  - DOMAIN,play.nyadm.org
+  - DOMAIN-SUFFIX,nyadm.org
+  - DOMAIN-SUFFIX,nyavod.top
+  - DOMAIN-SUFFIX,cnmdm.top
+  - DOMAIN-SUFFIX,bgm.tv
