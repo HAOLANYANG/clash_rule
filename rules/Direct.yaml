@@ -6,8 +6,9 @@ payload:
   - DOMAIN-SUFFIX,booom.uk
   - DOMAIN-SUFFIX,iuuu.uk
   - DOMAIN-SUFFIX,ip.3322.net
-
-
+  - DOMAIN,dsm.booom.uk
+  - DOMAIN,wpad.booom.uk
+  
 # 本地/局域网地址
   - DOMAIN-SUFFIX,ip6-localhost
   - DOMAIN-SUFFIX,ip6-loopback
