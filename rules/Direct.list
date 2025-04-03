@@ -159,7 +159,9 @@ DOMAIN-SUFFIX,realapp.xin
 #淘宝app
 DOMAIN,cdn.ynuf.aliapp.org
 DOMAIN-SUFFIX,aliapp.org
-#
+#国内广告
+DOMAIN-SUFFIX,appsflyersdk.com
+DOMAIN-SUFFIX,gepush.com
 
 
 
