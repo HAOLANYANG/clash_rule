@@ -8,7 +8,41 @@ payload:
   - DOMAIN-SUFFIX,ip.3322.net
   - DOMAIN,dsm.booom.uk
   - DOMAIN,wpad.booom.uk
+
+#国内stun
+  - DOMAIN-REGEX,^(.*\.)?stun.*cn.*$
+  - DOMAIN,stun.miwifi.com
+  - DOMAIN,stun.qq.com
+
+
+
+#漏网之鱼
+#淘宝app
+  - DOMAIN,cdn.ynuf.aliapp.org
+  - DOMAIN-SUFFIX,aliapp.org
+  - DOMAIN,gecko.snssdk.com
+  - DOMAIN-SUFFIX,snssdk.com
+#美团
+  - DOMAIN-SUFFIX,meituan.net
+  - DOMAIN-KEYWORD,meituan.net
+  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+  - DOMAIN,p14.dreport.meituan.net.booom.uk
+  - DOMAIN,p4.d.meituan.net.booom.uk
+#不知道
+  - DOMAIN,sis.jpush.io
+  - DOMAIN-SUFFIX,jpush.io
+  - DOMAIN,public.gdtimg.com
+  - DOMAIN-SUFFIX,gdtimg.com
+  - DOMAIN,obus-in.dc.heytapmobile.com
+  - DOMAIN-SUFFIX,heytapmobile.com
+  - DOMAIN-SUFFIX,easytomessage.com
   
+#国内广告
+  - DOMAIN-SUFFIX,gepush.com
+
+
+
 # 本地/局域网地址
   - DOMAIN-SUFFIX,ip6-localhost
   - DOMAIN-SUFFIX,ip6-loopback
@@ -158,30 +192,6 @@ payload:
 
 
 
-#漏网之鱼
-#淘宝app
-  - DOMAIN,cdn.ynuf.aliapp.org
-  - DOMAIN-SUFFIX,aliapp.org
-  - DOMAIN,gecko.snssdk.com
-  - DOMAIN-SUFFIX,snssdk.com
-#美团
-  - DOMAIN-SUFFIX,meituan.net
-  - DOMAIN-KEYWORD,meituan.net
-  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
-  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
-  - DOMAIN,p14.dreport.meituan.net.booom.uk
-  - DOMAIN,p4.d.meituan.net.booom.uk
-#不知道
-  - DOMAIN,sis.jpush.io
-  - DOMAIN-SUFFIX,jpush.io
-  - DOMAIN,public.gdtimg.com
-  - DOMAIN-SUFFIX,gdtimg.com
-  - DOMAIN,obus-in.dc.heytapmobile.com
-  - DOMAIN-SUFFIX,heytapmobile.com
-  - DOMAIN-SUFFIX,easytomessage.com
-  
-#国内广告
-  - DOMAIN-SUFFIX,gepush.com
 
 
 
