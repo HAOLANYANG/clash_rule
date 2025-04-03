@@ -162,8 +162,9 @@ payload:
 #淘宝app
   - DOMAIN,cdn.ynuf.aliapp.org
   - DOMAIN-SUFFIX,aliapp.org
-#
-
+#国内广告
+  - DOMAIN-SUFFIX,appsflyersdk.com
+  - DOMAIN-SUFFIX,gepush.com
 
 # 直连列表
 #国内应用进程-安卓
