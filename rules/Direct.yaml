@@ -163,7 +163,6 @@ payload:
   - DOMAIN,cdn.ynuf.aliapp.org
   - DOMAIN-SUFFIX,aliapp.org
 #国内广告
-  - DOMAIN-SUFFIX,appsflyersdk.com
   - DOMAIN-SUFFIX,gepush.com
 
 # 直连列表
