@@ -164,6 +164,22 @@ payload:
   - DOMAIN-SUFFIX,aliapp.org
   - DOMAIN,gecko.snssdk.com
   - DOMAIN-SUFFIX,snssdk.com
+#美团
+  - DOMAIN-SUFFIX,meituan.net
+  - DOMAIN-KEYWORD,meituan.net
+  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+  - DOMAIN,p14.dreport.meituan.net.booom.uk
+  - DOMAIN,p4.d.meituan.net.booom.uk
+#不知道
+  - DOMAIN,sis.jpush.io
+  - DOMAIN-SUFFIX,jpush.io
+  - DOMAIN,public.gdtimg.com
+  - DOMAIN-SUFFIX,gdtimg.com
+  - DOMAIN,obus-in.dc.heytapmobile.com
+  - DOMAIN-SUFFIX,heytapmobile.com
+
+  
 #国内广告
   - DOMAIN-SUFFIX,gepush.com
 
