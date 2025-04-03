@@ -555,7 +555,7 @@ proxy-groups:
     }
 
 rules:
-   - RULE-SET,global,🚀 节点选择
+  - RULE-SET,global,🚀 节点选择
 
   
   - RULE-SET,openai,💬 OpenAi
