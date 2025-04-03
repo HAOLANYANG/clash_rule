@@ -555,18 +555,12 @@ proxy-groups:
     }
 
 rules:
-  # - RULE-SET,lan,🎯 全球直连
    - RULE-SET,global,🚀 节点选择
-  # - RULE-SET,fcm,🎯 全球直连
-  # - RULE-SET,direct,🎯 全球直连
-  # - RULE-SET,steamcn,🎯 全球直连
-  # - RULE-SET,coolapk,🎯 全球直连
-  # - RULE-SET,apple,🎯 全球直连
+
   
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
   
-  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
@@ -581,8 +575,7 @@ rules:
   - RULE-SET,kktv,🇹🇼 台湾
   - RULE-SET,linetv,🇹🇼 台湾
   
-  # - RULE-SET,bilibiliintl,🎯 全球直连
-  # - RULE-SET,bilibili,🎯 全球直连
+
   
   - RULE-SET,telegram,🚀 节点选择
   - RULE-SET,line,🚀 节点选择
@@ -597,10 +590,7 @@ rules:
   - RULE-SET,blockchain,💵 区块链
   - RULE-SET,okx,💵 区块链
   - RULE-SET,binance,💵 区块链
-  # - RULE-SET,ntp,🎯 全球直连
-  # - RULE-SET,privatetracker,🎯 全球直连
-  # - RULE-SET,cnmax,🎯 全球直连
-  # 绕过局域网地址
+
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
