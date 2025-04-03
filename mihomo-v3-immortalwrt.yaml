@@ -556,6 +556,7 @@ proxy-groups:
 
 rules:
   - RULE-SET,lan,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连
   - RULE-SET,global,🚀 节点选择
 
   
