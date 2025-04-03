@@ -178,7 +178,7 @@ payload:
   - DOMAIN-SUFFIX,gdtimg.com
   - DOMAIN,obus-in.dc.heytapmobile.com
   - DOMAIN-SUFFIX,heytapmobile.com
-
+  - DOMAIN-SUFFIX,easytomessage.com
   
 #国内广告
   - DOMAIN-SUFFIX,gepush.com
