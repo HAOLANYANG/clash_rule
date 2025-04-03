@@ -21,6 +21,7 @@ payload:
   - DOMAIN,cdn.ynuf.aliapp.org
   - DOMAIN-SUFFIX,aliapp.org
   - DOMAIN,gecko.snssdk.com
+  - DOMAIN,aweme.snssdk.com
   - DOMAIN-SUFFIX,snssdk.com
 #美团
   - DOMAIN-SUFFIX,meituan.net
