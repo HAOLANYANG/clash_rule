@@ -14,10 +14,12 @@ payload:
   - DOMAIN,stun.miwifi.com
   - DOMAIN,stun.qq.com
 
-
+#syncthing
+  - DOMAIN-SUFFIX,relays.syncthing.net
+  - DOMAIN-SUFFIX,syncthing.net
 
 #漏网之鱼
-#淘宝app
+#阿里系
   - DOMAIN,cdn.ynuf.aliapp.org
   - DOMAIN-SUFFIX,aliapp.org
   - DOMAIN,gecko.snssdk.com
@@ -25,7 +27,11 @@ payload:
   - DOMAIN-SUFFIX,snssdk.com
   - DOMAIN,toblog.ctobsnssdk.com
   - DOMAIN-SUFFIX,ctobsnssdk.com
-  
+  - DOMAIN,pgdt.ugdtimg.com
+  - DOMAIN-SUFFIX,ugdtimg.com
+
+
+
 #美团
   - DOMAIN-SUFFIX,meituan.net
   - DOMAIN-KEYWORD,meituan.net
@@ -44,7 +50,7 @@ payload:
   
 #国内广告
   - DOMAIN-SUFFIX,gepush.com
-
+  - DOMAIN-SUFFIX,getui.com
 
 
 # 本地/局域网地址
