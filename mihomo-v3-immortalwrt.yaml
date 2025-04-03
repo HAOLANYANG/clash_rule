@@ -141,7 +141,7 @@ dns:
   ipv6: false
   listen: 1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 28.0.0.0/8
   fake-ip-filter:
     - "+.lan"
     - "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
