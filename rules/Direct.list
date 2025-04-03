@@ -155,7 +155,11 @@ DOMAIN-SUFFIX,realapp.xin
 
 
 
-
+#漏网之鱼
+#淘宝app
+DOMAIN,cdn.ynuf.aliapp.org
+DOMAIN-SUFFIX,aliapp.org
+#
 
 
 
