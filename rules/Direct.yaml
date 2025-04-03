@@ -23,6 +23,9 @@ payload:
   - DOMAIN,gecko.snssdk.com
   - DOMAIN,aweme.snssdk.com
   - DOMAIN-SUFFIX,snssdk.com
+  - DOMAIN,toblog.ctobsnssdk.com
+  - DOMAIN-SUFFIX,ctobsnssdk.com
+  
 #美团
   - DOMAIN-SUFFIX,meituan.net
   - DOMAIN-KEYWORD,meituan.net
