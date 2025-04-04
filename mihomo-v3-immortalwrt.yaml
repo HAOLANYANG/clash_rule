@@ -20,7 +20,7 @@ pr:
 p: &p
   type: http
   # 自动更新订阅时间，单位为秒
-  interval: 10800
+  interval: 7200
   health-check:
     enable: true
     url: https://www.youtube.com/generate_204
