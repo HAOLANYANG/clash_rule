@@ -139,7 +139,6 @@ dns:
   use-hosts: true
   use-system-hosts: true
   ipv6: true
-  #prefer-ipv4: true  # 优先使用 IPv4
   listen: 1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.0/8
@@ -178,9 +177,9 @@ dns:
   fake-ip-filter-mode: blacklist
   respect-rules: false #为false时未指定节点的dns查询都是直连
   nameserver:
-    - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4'
-    - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4'
-    - 'https://dns.google/dns-query#🚀 节点选择&h3=true&ipv4'
+    - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4-prefer'
+    - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4-prefer'
+    - 'https://dns.google/dns-query#🚀 节点选择&h3=true&ipv4-prefer'
     - 'https://mozilla.cloudflare-dns.com/dns-query#🚀 节点选择&h3=true&ipv4'
   default-nameserver:
     - 223.5.5.5
@@ -203,14 +202,14 @@ dns:
       - 192.168.1.121
       - 192.168.1.124
     "rule-set:youtube,youtubemusic":
-      - 'https://8.8.8.8/dns-query#📹 油管视频&ipv4'
-      - 'https://8.8.4.4/dns-query#📹 油管视频&ipv4'
+      - 'https://8.8.8.8/dns-query#📹 油管视频&ipv4-prefer'
+      - 'https://8.8.4.4/dns-query#📹 油管视频&ipv4-prefer'
     "rule-set:google":
-      - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4'
-      - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4'
+      - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4-prefer'
+      - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4-prefer'
     "rule-set:netflix,disney":
-      - 'https://8.8.8.8/dns-query#🎥 流媒体解锁&ipv4'
-      - 'https://8.8.4.4/dns-query#🎥 流媒体解锁&ipv4'
+      - 'https://8.8.8.8/dns-query#🎥 流媒体解锁&ipv4-prefer'
+      - 'https://8.8.4.4/dns-query#🎥 流媒体解锁&ipv4-prefer'
   
 rule-providers:
 
