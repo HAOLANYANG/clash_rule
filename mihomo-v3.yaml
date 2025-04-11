@@ -153,6 +153,7 @@ dns:
     - "*.test"
     - "*.local"
     - "*.home.arpa"
+    - "stun.syncthing.net"
     - "stun.*"
     - "+.stun.com"
     - "+.stun.*.*"
