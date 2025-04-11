@@ -18,8 +18,11 @@ payload:
   - DOMAIN,stun.qq.com
 
 #syncthing
+  - PROCESS-NAME,com.github.catfriend1.syncthingandroid
   - DOMAIN-SUFFIX,relays.syncthing.net
   - DOMAIN-SUFFIX,syncthing.net
+
+
 
 #漏网之鱼
 #阿里系
