@@ -45,6 +45,13 @@ DOMAIN-SUFFIX,tplogin.cn
 DOMAIN-SUFFIX,wifi.cmcc
 
 
+#syncthing
+PROCESS-NAME,com.github.catfriend1.syncthingandroid
+DOMAIN-SUFFIX,relays.syncthing.net
+DOMAIN-SUFFIX,syncthing.net
+
+
+
 #国内DNS
 IP-CIDR,223.5.5.5/32
 IP-CIDR,223.6.6.6/32
