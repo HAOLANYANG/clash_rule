@@ -534,16 +534,16 @@ proxy-groups:
   - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
   - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
   - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 130, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 200, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
   - {
       name: 🌎 其它地区,
       type: select,
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 自动选择, <<: *use, tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
