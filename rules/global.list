@@ -1,7 +1,7 @@
 #官网被墙域名要代理（未代理其子域名）
 DOMAIN,gulu.uk
 DOMAIN,vgod.uk
-
+DOMAIN-SUFFIX,iuuu.uk
 
 #代理域名补充
 DOMAIN-SUFFIX,liyuans.com
