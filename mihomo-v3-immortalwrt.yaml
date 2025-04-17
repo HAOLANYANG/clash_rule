@@ -74,7 +74,7 @@ allow-lan: false
 bind-address: "*"
 #- off, 不匹配进程，推荐在路由器上使用此模式
 find-process-mode: off
-ipv6: true
+ipv6: false
 mode: rule
 # 统一延迟
 # 更换延迟计算方式,去除握手等额外延迟
@@ -137,7 +137,7 @@ dns:
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
-  ipv6: true
+  ipv6: false
   listen: 1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.0/8
