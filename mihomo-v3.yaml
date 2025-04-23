@@ -180,7 +180,6 @@ dns:
   nameserver:
     - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4-prefer'
     - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4-prefer'
-    - 'https://dns.google/dns-query#🚀 节点选择&h3=true&ipv4-prefer'
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
