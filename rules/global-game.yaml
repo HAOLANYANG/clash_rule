@@ -1,4 +1,16 @@
 payload:
+  - PROCESS-NAME,TslGame
+  
+  - PROCESS-NAME,r5apex
+  
+  - PROCESS-NAME,GTA5
+  - PROCESS-NAME,GTAVLauncher
+  - PROCESS-NAME,PlayGTAV
+  
+  - PROCESS-NAME,bf5
+  
+  - PROCESS-NAME,bf1
+
   # Apex Legends(Origin), 2
   - 3.0.0.0/4
   - 11.63.14.52/32
