@@ -495,7 +495,8 @@ proxy-groups:
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
   - { name: 📹 油管视频, <<: *pr }
-  - { name: 🎥 流媒体解锁, <<: *pr }  
+  - { name: 🎥 流媒体解锁, <<: *pr }
+  - { name: 🎮 游戏加速, <<: *pr }
   - {
       name: 💬 OpenAi,
       type: select,
