@@ -211,7 +211,11 @@ dns:
     "rule-set:netflix,disney":
       - 'https://8.8.8.8/dns-query#🎥 流媒体解锁&ipv4-prefer'
       - 'https://8.8.4.4/dns-query#🎥 流媒体解锁&ipv4-prefer'
-  
+    "rule-set:game,global-game":
+      - 'https://8.8.8.8/dns-query#🎮 游戏加速&ipv4-prefer'
+      - 'https://8.8.4.4/dns-query#🎮 游戏加速&ipv4-prefer'
+
+
 rule-providers:
 
   lan:
@@ -466,7 +470,19 @@ rule-providers:
     path: ./ruleset/Binance.yaml
     interval: 86400   
 
+  global-game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global-game.yaml"
+    path: ./ruleset/global-game.yaml
+    interval: 86400 
 
+  game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+    path: ./ruleset/Game.yaml
+    interval: 86400 
 
 
 proxy-groups:
