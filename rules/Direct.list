@@ -1,10 +1,65 @@
 # MyList
 DOMAIN-SUFFIX,gulu.uk
 DOMAIN-SUFFIX,zz.vgod.uk
+DOMAIN-SUFFIX,iepl.vgod.uk
+DOMAIN-SUFFIX,iplc.vgod.uk
+DOMAIN-SUFFIX,zz.iuuu.uk
+DOMAIN-SUFFIX,iepl.iuuu.uk
+DOMAIN-SUFFIX,iplc.iuuu.uk
 DOMAIN-SUFFIX,vgod.uk
 DOMAIN-SUFFIX,booom.uk
-DOMAIN-SUFFIX,zz.iuuu.uk
 DOMAIN-SUFFIX,ip.3322.net
+DOMAIN,dsm.booom.uk
+DOMAIN,wpad.booom.uk
+
+#专线入口
+DOMAIN,szhk-yd1.inknode.top
+
+#国内stun
+DOMAIN-REGEX,^(.*\.)?stun.*cn.*$
+DOMAIN,stun.miwifi.com
+DOMAIN,stun.qq.com
+
+#syncthing
+PROCESS-NAME,com.github.catfriend1.syncthingandroid
+DOMAIN-SUFFIX,relays.syncthing.net
+DOMAIN-SUFFIX,syncthing.net
+
+
+
+#漏网之鱼
+#阿里系
+DOMAIN,cdn.ynuf.aliapp.org
+DOMAIN-SUFFIX,aliapp.org
+DOMAIN,gecko.snssdk.com
+DOMAIN,aweme.snssdk.com
+DOMAIN-SUFFIX,snssdk.com
+DOMAIN,toblog.ctobsnssdk.com
+DOMAIN-SUFFIX,ctobsnssdk.com
+DOMAIN,pgdt.ugdtimg.com
+DOMAIN-SUFFIX,ugdtimg.com
+
+
+
+#美团
+DOMAIN-SUFFIX,meituan.net
+DOMAIN-KEYWORD,meituan.net
+DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
+DOMAIN,p14.dreport.meituan.net.booom.uk
+DOMAIN,p4.d.meituan.net.booom.uk
+#不知道
+DOMAIN,sis.jpush.io
+DOMAIN-SUFFIX,jpush.io
+DOMAIN,public.gdtimg.com
+DOMAIN-SUFFIX,gdtimg.com
+DOMAIN,obus-in.dc.heytapmobile.com
+DOMAIN-SUFFIX,heytapmobile.com
+DOMAIN-SUFFIX,easytomessage.com
+  
+#国内广告
+DOMAIN-SUFFIX,gepush.com
+DOMAIN-SUFFIX,getui.com
 
 
 # 本地/局域网地址
@@ -44,13 +99,6 @@ DOMAIN-SUFFIX,tendawifi.com
 DOMAIN-SUFFIX,zte.home
 DOMAIN-SUFFIX,tplogin.cn
 DOMAIN-SUFFIX,wifi.cmcc
-
-
-#syncthing
-PROCESS-NAME,com.github.catfriend1.syncthingandroid
-DOMAIN-SUFFIX,relays.syncthing.net
-DOMAIN-SUFFIX,syncthing.net
-
 
 
 #国内DNS
@@ -109,6 +157,7 @@ DOMAIN,ntp5.aliyun.com
 DOMAIN,ntp6.aliyun.com
 DOMAIN,ntp7.aliyun.com
 #腾讯
+DOMAIN-SUFFIX,tencent.com
 DOMAIN-SUFFIX,qq.com
 DOMAIN-SUFFIX,cloud.tencent.com
 DOMAIN,time.cloud.tencent.com 
@@ -163,12 +212,6 @@ DOMAIN-SUFFIX,realapp.xin
 
 
 
-#漏网之鱼
-#淘宝app
-DOMAIN,cdn.ynuf.aliapp.org
-DOMAIN-SUFFIX,aliapp.org
-#国内广告
-DOMAIN-SUFFIX,gepush.com
 
 
 
