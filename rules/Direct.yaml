@@ -13,6 +13,9 @@ payload:
   - DOMAIN-SUFFIX,ip.3322.net
   - DOMAIN,dsm.booom.uk
   - DOMAIN,wpad.booom.uk
+  
+#根服务器
+  - DOMAIN-SUFFIX,root-servers.net
 
 #IPv6检测
   - DOMAIN-SUFFIX,ipw.cn
