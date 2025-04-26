@@ -12,6 +12,9 @@ DOMAIN-SUFFIX,ip.3322.net
 DOMAIN,dsm.booom.uk
 DOMAIN,wpad.booom.uk
 
+#IPv6检测
+DOMAIN-SUFFIX,ipw.cn
+
 #专线入口
 DOMAIN,szhk-yd1.inknode.top
 
