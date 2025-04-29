@@ -1,64 +1,64 @@
 payload:
   # Google DNS
-  - IP-CIDR,8.8.8.8/32,PROXY
-  - IP-CIDR,8.8.4.4/32,PROXY
-  - DOMAIN-SUFFIX,dns.google,PROXY
+  - IP-CIDR,8.8.8.8/32
+  - IP-CIDR,8.8.4.4/32
+  - DOMAIN-SUFFIX,dns.google
 
   # Cloudflare DNS
-  - IP-CIDR,1.1.1.1/32,PROXY
-  - IP-CIDR,1.0.0.1/32,PROXY
-  - DOMAIN-SUFFIX,cloudflare-dns.com,PROXY
-  - DOMAIN-SUFFIX,dns.cloudflare.com,PROXY
-  - DOMAIN-SUFFIX,one.one.one.one,PROXY
+  - IP-CIDR,1.1.1.1/32
+  - IP-CIDR,1.0.0.1/32
+  - DOMAIN-SUFFIX,cloudflare-dns.com
+  - DOMAIN-SUFFIX,dns.cloudflare.com
+  - DOMAIN-SUFFIX,one.one.one.one
 
   # Cloudflare DNS 安全/家庭版
-  - IP-CIDR,1.1.1.2/32,PROXY
-  - IP-CIDR,1.0.0.2/32,PROXY
-  - DOMAIN-SUFFIX,security.cloudflare-dns.com,PROXY
-  - DOMAIN-SUFFIX,family.cloudflare-dns.com,PROXY
+  - IP-CIDR,1.1.1.2/32
+  - IP-CIDR,1.0.0.2/32
+  - DOMAIN-SUFFIX,security.cloudflare-dns.com
+  - DOMAIN-SUFFIX,family.cloudflare-dns.com
 
   # Quad9 DNS
-  - IP-CIDR,9.9.9.9/32,PROXY
-  - IP-CIDR,149.112.112.112/32,PROXY
-  - DOMAIN-SUFFIX,dns.quad9.net,PROXY
-  - DOMAIN-SUFFIX,dns9.quad9.net,PROXY
+  - IP-CIDR,9.9.9.9/32
+  - IP-CIDR,149.112.112.112/32
+  - DOMAIN-SUFFIX,dns.quad9.net
+  - DOMAIN-SUFFIX,dns9.quad9.net
 
   # DNS.SB
-  - IP-CIDR,185.222.222.222/32,PROXY
-  - IP-CIDR,45.11.45.11/32,PROXY
-  - DOMAIN-SUFFIX,dns.sb,PROXY
-  - DOMAIN-SUFFIX,doh.dns.sb,PROXY
-  - DOMAIN-SUFFIX,doh.sb,PROXY
-  - DOMAIN-SUFFIX,dot.sb,PROXY
+  - IP-CIDR,185.222.222.222/32
+  - IP-CIDR,45.11.45.11/32
+  - DOMAIN-SUFFIX,dns.sb
+  - DOMAIN-SUFFIX,doh.dns.sb
+  - DOMAIN-SUFFIX,doh.sb
+  - DOMAIN-SUFFIX,dot.sb
 
   # Cisco/OpenDNS
-  - IP-CIDR,208.67.222.222/32,PROXY
-  - IP-CIDR,208.67.220.220/32,PROXY
-  - DOMAIN-SUFFIX,dns.opendns.com,PROXY
-  - DOMAIN-SUFFIX,dns.umbrella.com,PROXY
-  - DOMAIN-SUFFIX,dns.sse.cisco.com,PROXY
-  - DOMAIN-SUFFIX,doh.opendns.com,PROXY
-  - DOMAIN-SUFFIX,doh.umbrella.com,PROXY
+  - IP-CIDR,208.67.222.222/32
+  - IP-CIDR,208.67.220.220/32
+  - DOMAIN-SUFFIX,dns.opendns.com
+  - DOMAIN-SUFFIX,dns.umbrella.com
+  - DOMAIN-SUFFIX,dns.sse.cisco.com
+  - DOMAIN-SUFFIX,doh.opendns.com
+  - DOMAIN-SUFFIX,doh.umbrella.com
 
   # Yandex DNS
-  - IP-CIDR,77.88.8.8/32,PROXY
-  - IP-CIDR,77.88.8.1/32,PROXY
-  - DOMAIN-SUFFIX,dns.yandex.net,PROXY
-  - DOMAIN-SUFFIX,common.dot.dns.yandex.net,PROXY
-  - DOMAIN-SUFFIX,safe.dot.dns.yandex.net,PROXY
-  - DOMAIN-SUFFIX,family.dot.dns.yandex.net,PROXY
+  - IP-CIDR,77.88.8.8/32
+  - IP-CIDR,77.88.8.1/32
+  - DOMAIN-SUFFIX,dns.yandex.net
+  - DOMAIN-SUFFIX,common.dot.dns.yandex.net
+  - DOMAIN-SUFFIX,safe.dot.dns.yandex.net
+  - DOMAIN-SUFFIX,family.dot.dns.yandex.net
 
   # AdGuard DNS
-  - IP-CIDR,94.140.14.14/32,PROXY
-  - IP-CIDR,94.140.15.15/32,PROXY
-  - DOMAIN-SUFFIX,adguard-dns.com,PROXY
-  - DOMAIN-SUFFIX,unfiltered.adguard-dns.com,PROXY
-  - DOMAIN-SUFFIX,family.adguard-dns.com,PROXY
+  - IP-CIDR,94.140.14.14/32
+  - IP-CIDR,94.140.15.15/32
+  - DOMAIN-SUFFIX,adguard-dns.com
+  - DOMAIN-SUFFIX,unfiltered.adguard-dns.com
+  - DOMAIN-SUFFIX,family.adguard-dns.com
 
   # Level3
-  - IP-CIDR,4.2.2.1/32,PROXY
-  - IP-CIDR,4.2.2.2/32,PROXY
+  - IP-CIDR,4.2.2.1/32
+  - IP-CIDR,4.2.2.2/32
 
   # Freenom DNS
-  - IP-CIDR,80.80.80.80/32,PROXY
-  - IP-CIDR,80.80.81.81/32,PROXY
+  - IP-CIDR,80.80.80.80/32
+  - IP-CIDR,80.80.81.81/32
