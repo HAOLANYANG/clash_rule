@@ -187,7 +187,7 @@ dns:
   proxy-server-nameserver:
       - 192.168.1.121
       - 192.168.1.124
-      - 'https://223.5.5.5/dns-query'
+      - 'tls://223.5.5.5:853'
       - 'tls://223.6.6.6:853'
       - 'tls://dot.pub:853'
 
