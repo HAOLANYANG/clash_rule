@@ -94,8 +94,7 @@ log-level: info
 hosts:
     dns.google: 8.8.8.8
     dns.alidns.com: 223.5.5.5
-    doh.pub: 1.12.12.12
-    dot.pub: 120.53.53.53
+    dns.alidns.com: 223..6.6.6
     doh.opendns.com: 208.67.222.222
 
 # 缓解移动设备耗电问题
@@ -186,37 +185,42 @@ dns:
     - 114.114.114.114
   # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   proxy-server-nameserver:
-      - 'https://1.12.12.12/dns-query'
-      - 'https://223.5.5.5/dns-query'
+      - 'https://223.6.6.6/dns-query'
+      - 'tls://dns.alidns.com:853'
+      - 'tls://dot.pub:853'
   # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   direct-nameserver:
-      - 'https://223.5.5.5/dns-query#h3=true'
-      - 'https://223.6.6.6/dns-query#h3=true'
-      - 'https://sm2.doh.pub/dns-query'
-      - 'https://1.12.12.12/dns-query'
+      - 'https://223.6.6.6/dns-query'
+      - 'tls://dns.alidns.com:853'
+      - 'tls://dot.pub:853'
   direct-nameserver-follow-policy: true # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
   nameserver-policy:
     "rule-set:lan,fcm,direct,steamcn,coolapk,apple,ntp,privatetracker,cnmax":
       - 'https://223.5.5.5/dns-query#h3=true'
       - 'https://223.6.6.6/dns-query#h3=true'
-      - 'https://sm2.doh.pub/dns-query'
-      - 'https://1.12.12.12/dns-query'
+      - 'tls://dns.alidns.com:853'
+      - 'tls://dot.pub:853'
     "rule-set:youtube,youtubemusic":
-      - 'https://8.8.8.8/dns-query#📹 油管视频&ipv4-prefer'
-      - 'https://8.8.4.4/dns-query#📹 油管视频&ipv4-prefer'
+      - 'tls://8.8.8.8:853#📹 油管视频&ipv4-prefer'
+      - 'tls://8.8.4.4:853#📹 油管视频&ipv4-prefer'
+      - 'https://dns.google/dns-query#📹 油管视频&ipv4-prefer'
     "rule-set:google":
-      - 'https://8.8.8.8/dns-query#🚀 节点选择&ipv4-prefer'
-      - 'https://8.8.4.4/dns-query#🚀 节点选择&ipv4-prefer'
+      - 'tls://8.8.8.8:853#🚀 节点选择&ipv4-prefer'
+      - 'tls://8.8.4.4:853#🚀 节点选择&ipv4-prefer'
+      - 'https://dns.google/dns-query#🚀 节点选择&ipv4-prefer'
     "rule-set:netflix,disney":
-      - 'https://8.8.8.8/dns-query#🎥 流媒体解锁&ipv4-prefer'
-      - 'https://8.8.4.4/dns-query#🎥 流媒体解锁&ipv4-prefer'
+      - 'tls://8.8.8.8:853#🎥 流媒体解锁&ipv4-prefer'
+      - 'tls://8.8.4.4:853#🎥 流媒体解锁&ipv4-prefer'
+      - 'https://dns.google/dns-query#🎥 流媒体解锁&ipv4-prefer'
     "rule-set:game,global-game":
-      - 'https://8.8.8.8/dns-query#🎮 游戏加速&ipv4-prefer'
-      - 'https://8.8.4.4/dns-query#🎮 游戏加速&ipv4-prefer'      
+      - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
+      - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
+      - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer'     
     "rule-set:bilibili,bilibiliintl":
       #direct-nameserver-follow-policy选false怀疑也是根据policy #直连不遵守policy，所以只有在使用其他节点时才会启用这个
       - 'https://223.5.5.5/dns-query#📺 哔哩哔哩&h3=true'
-      - 'https://223.6.6.6/dns-query#📺 哔哩哔哩'
+      - 'https://223.6.6.6/dns-query#📺 哔哩哔哩&h3=true'
+      - 'tls://dns.alidns.com:853#📺 哔哩哔哩'
       #直连连不上不用担心给出国外的cdn地址
       - 'https://8.8.4.4/dns-query#📺 哔哩哔哩&ipv4-prefer'
       
