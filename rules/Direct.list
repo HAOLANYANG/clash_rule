@@ -11,6 +11,10 @@ DOMAIN-SUFFIX,ip.3322.net
 DOMAIN,dsm.booom.uk
 DOMAIN,wpad.booom.uk
 
+#frp
+DOMAIN-SUFFIX,frp-dad.top
+DOMAIN-SUFFIX,frp-fun.top
+
 #根服务器
 DOMAIN-SUFFIX,root-servers.net
 
