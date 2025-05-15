@@ -172,6 +172,9 @@ dns:
     - "+.cmbimg.com"
     - "*.mcdn.bilivideo.cn"
     - "+.apple.com"
+  static:
+    "speedtest.cn": fakeip
+    "*.speedtest.cn": fakeip #speedtest强制走fakeip
   fake-ip-filter-mode: blacklist
   respect-rules: false #为false时未指定节点的dns查询都是直连
   nameserver:
