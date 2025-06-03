@@ -569,6 +569,9 @@ rules:
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
   
+  #tg优化
+  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
+  
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
