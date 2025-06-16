@@ -59,6 +59,16 @@ payload:
   - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
   - DOMAIN,p14.dreport.meituan.net.booom.uk
   - DOMAIN,p4.d.meituan.net.booom.uk
+
+
+#哇有趣
+  - DOMAIN-SUFFIX,yemazon.com
+  - DOMAIN-SUFFIX,yemaozontech.com
+  - DOMAIN-SUFFIX,wayouju.com
+
+
+
+ 
 #不知道
   - DOMAIN,sis.jpush.io
   - DOMAIN-SUFFIX,jpush.io
