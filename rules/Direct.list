@@ -34,7 +34,10 @@ PROCESS-NAME,com.github.catfriend1.syncthingandroid
 DOMAIN-SUFFIX,relays.syncthing.net
 DOMAIN-SUFFIX,syncthing.net
 
-
+#哇有趣
+DOMAIN-SUFFIX,yemazon.com
+DOMAIN-SUFFIX,yemaozontech.com
+DOMAIN-SUFFIX,wayouju.com
 
 #漏网之鱼
 #阿里系
