@@ -23,6 +23,7 @@ DOMAIN-SUFFIX,ipw.cn
 
 #专线入口
 DOMAIN,szhk-yd1.inknode.top
+DOMAIN,gnar.my
 
 #国内stun
 DOMAIN-REGEX,^(.*\.)?stun.*cn.*$
