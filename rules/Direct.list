@@ -10,6 +10,8 @@ DOMAIN-SUFFIX,booom.uk
 DOMAIN-SUFFIX,ip.3322.net
 DOMAIN,dsm.booom.uk
 DOMAIN,wpad.booom.uk
+DOMAIN-SUFFIX,gdnyt.com
+
 
 #frp
 DOMAIN-SUFFIX,frp-dad.top
