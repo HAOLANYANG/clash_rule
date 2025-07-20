@@ -13,6 +13,9 @@ payload:
   - DOMAIN,dsm.booom.uk
   - DOMAIN,wpad.booom.uk
   - DOMAIN-SUFFIX,gdnyt.com
+  - DOMAIN-SUFFIX,zhongxiang51.com
+  - DOMAIN-SUFFIX,szxhdz.com
+  - DOMAIN-SUFFIX,yzcdn.cn
 
 #frp
   - DOMAIN-SUFFIX,frp-dad.top
