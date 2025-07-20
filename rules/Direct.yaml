@@ -16,6 +16,8 @@ payload:
   - DOMAIN-SUFFIX,zhongxiang51.com
   - DOMAIN-SUFFIX,szxhdz.com
   - DOMAIN-SUFFIX,yzcdn.cn
+  - DOMAIN-SUFFIX,douyinvod.com
+  - DOMAIN-SUFFIX,douyinstatic.com
 
 #frp
   - DOMAIN-SUFFIX,frp-dad.top
