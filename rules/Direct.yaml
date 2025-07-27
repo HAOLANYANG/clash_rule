@@ -19,6 +19,8 @@ payload:
   - DOMAIN-SUFFIX,douyinvod.com
   - DOMAIN-SUFFIX,douyinstatic.com
   - DOMAIN-SUFFIX,avatars.steamstatic.com
+  - DOMAIN-SUFFIX,q1.com
+  - DOMAIN-SUFFIX,q1oa.com
 
 #frp
   - DOMAIN-SUFFIX,frp-dad.top
