@@ -18,6 +18,7 @@ DOMAIN-SUFFIX,douyinvod.com
 DOMAIN-SUFFIX,douyinstatic.com
 DOMAIN-SUFFIX,avatars.steamstatic.com
 
+
 #frp
 DOMAIN-SUFFIX,frp-dad.top
 DOMAIN-SUFFIX,frp-fun.top
@@ -217,6 +218,8 @@ DOMAIN,g.alicdn.com
 
 
 #钉钉ding
+DOMAIN-SUFFIX,q1.com
+DOMAIN-SUFFIX,q1oa.com
 DOMAIN-SUFFIX,ddurl.to
 DOMAIN-SUFFIX,dg-work.cn
 DOMAIN-SUFFIX,dingding.xin
