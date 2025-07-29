@@ -20,7 +20,9 @@ DOMAIN-SUFFIX,avatars.steamstatic.com
 
 #游戏下载-测试
 #EPIC-仅下载
-DOMAIN-SUFFIX,cloudflare.epicgamescdn.com
+#分配国内CDN
+DOMAIN,connect.epicgames.dev
+DOMAIN,launcher-public-service-prod06.ol.epicgames.com
 
 
 
