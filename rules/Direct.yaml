@@ -22,7 +22,9 @@ payload:
 
 #游戏下载-测试
 #EPIC-仅下载
-  - DOMAIN-SUFFIX,cloudflare.epicgamescdn.com
+#分配国内CDN
+  - DOMAIN-SUFFIX,connect.epicgames.dev
+  - DOMAIN-SUFFIX,launcher-public-service-prod06.ol.epicgames.com
 
 
 #frp
