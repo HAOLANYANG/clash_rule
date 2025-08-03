@@ -8,6 +8,8 @@ DOMAIN-SUFFIX,liyuans.com
 DOMAIN-SUFFIX,v2ex.com
 DOMAIN-SUFFIX,n.nnnolanark.xyz
 
+#家宽代理
+geo.iproyal.com
 
 #开启Giffgaff wificalling
 # 地区检测
