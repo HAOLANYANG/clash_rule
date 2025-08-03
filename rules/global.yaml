@@ -9,6 +9,8 @@ payload:
   - DOMAIN-SUFFIX,v2ex.com
   - DOMAIN-SUFFIX,n.nnnolanark.xyz
 
+#家宽代理
+  - DOMAIN-SUFFIX,iproyal.com
 
 #开启Giffgaff wificalling
 # 地区检测
