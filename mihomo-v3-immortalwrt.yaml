@@ -175,6 +175,7 @@ dns:
   static:
     "speedtest.cn": fakeip
     "*.speedtest.cn": fakeip
+    "ooklaserver.net": fakeip
     "*.ooklaserver.net": fakeip #speedtest强制走fakeip
   fake-ip-filter-mode: blacklist
   respect-rules: false #为false时未指定节点的dns查询都是直连
@@ -191,23 +192,28 @@ dns:
   proxy-server-nameserver:
       - 192.168.1.121
       - 192.168.1.124
+      - 192.168.1.126
       - 'tls://223.5.5.5:853'
       - 'tls://223.6.6.6:853'
       - 'tls://dot.pub:853'
-
   # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   direct-nameserver:
       #paopaodns
-      - 192.168.1.121
+      #- 192.168.1.121
       #adguardhome
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
-  direct-nameserver-follow-policy: true # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+  direct-nameserver-follow-policy: false # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
   nameserver-policy:
     "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #paopaodns
-      - 192.168.1.121
+      #- 192.168.1.121
+      #adguardhome
+      - 192.168.1.124
+      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
+      - 192.168.1.126
+    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn":
       #adguardhome
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
@@ -228,6 +234,11 @@ dns:
       - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
       - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
       - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer'
+    "geosite:category-games-!cn":
+      - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
+      - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
+      - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer'
+
 
 
 rule-providers:
@@ -252,7 +263,7 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global.yaml"
     path: ./ruleset/global.yaml
     interval: 86400  
-  
+
   cnmax:
     type: http
     behavior: classical
@@ -510,6 +521,15 @@ proxy-groups:
     }
   - { name: 📹 油管视频, <<: *pr }
   - { name: 🎥 流媒体解锁, <<: *pr }
+  - {
+      name: 📺 台湾流媒体,
+      type: select,
+      proxies:
+        [  
+          🇹🇼 台湾,
+          🚀 节点选择
+        ],
+    }
   - { name: 🎮 游戏加速, <<: *pr }
   - {
       name: 💬 OpenAi,
@@ -566,9 +586,6 @@ rules:
   - RULE-SET,direct,🎯 全球直连
   - RULE-SET,global,🚀 节点选择
 
-
-
-  #GPT
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
   
@@ -585,18 +602,14 @@ rules:
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
-  #游戏
-  - GEOSITE,category-games-cn,🎯 全球直连 # 国内游戏
-  - GEOSITE,category-game-accelerator-cn,🎯 全球直连 # 游戏加速器
-  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
+  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
 
 
-  #台湾
-  - RULE-SET,bahamut,🇹🇼 台湾
-  - RULE-SET,kktv,🇹🇼 台湾
-  - RULE-SET,linetv,🇹🇼 台湾
+  - RULE-SET,bahamut,📺 台湾流媒体
+  - RULE-SET,kktv,📺 台湾流媒体
+  - RULE-SET,linetv,📺 台湾流媒体
   
 
   
