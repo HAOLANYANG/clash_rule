@@ -565,7 +565,10 @@ rules:
   - RULE-SET,lan,🎯 全球直连
   - RULE-SET,direct,🎯 全球直连
   - RULE-SET,global,🚀 节点选择
-  
+
+
+
+  #GPT
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
   
@@ -582,9 +585,15 @@ rules:
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
+  #游戏
+  - GEOSITE,category-games-cn,🎯 全球直连 # 国内游戏
+  - GEOSITE,category-game-accelerator-cn,🎯 全球直连 # 游戏加速器
+  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
 
+
+  #台湾
   - RULE-SET,bahamut,🇹🇼 台湾
   - RULE-SET,kktv,🇹🇼 台湾
   - RULE-SET,linetv,🇹🇼 台湾
