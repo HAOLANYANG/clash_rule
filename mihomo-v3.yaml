@@ -194,9 +194,10 @@ dns:
   direct-nameserver-follow-policy: true # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
   nameserver-policy:
     "rule-set:lan,fcm,direct,steamcn,coolapk,apple,ntp,privatetracker,cnmax":
-      - 'https://223.5.5.5/dns-query#h3=true'
       - 'https://223.6.6.6/dns-query#h3=true'
-      - 'tls://223.5.5.5:853'
+      - 'tls://dot.pub:853'
+    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn"
+      - 'https://223.6.6.6/dns-query#h3=true'
       - 'tls://dot.pub:853'
     "rule-set:youtube,youtubemusic":
       - 'tls://8.8.8.8:853#📹 油管视频&ipv4-prefer'
@@ -210,6 +211,10 @@ dns:
       - 'tls://8.8.8.8:853#🎥 流媒体解锁&ipv4-prefer'
       - 'tls://8.8.4.4:853#🎥 流媒体解锁&ipv4-prefer'
       - 'https://dns.google/dns-query#🎥 流媒体解锁&ipv4-prefer'
+    "geosite:category-games-!cn"
+      - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
+      - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
+      - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer' 
     # "rule-set:game,global-game":
     #   - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
     #   - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
@@ -594,8 +599,12 @@ rules:
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
-  # - RULE-SET,global-game,🎮 游戏加速
-  # - RULE-SET,game,🎮 游戏加速
+#游戏
+  - GEOSITE,category-games-cn,🎯 全球直连 # 国内游戏
+  - GEOSITE,category-game-accelerator-cn,🎯 全球直连 # 游戏加速器
+  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
+#  - RULE-SET,global-game,🎮 游戏加速
+#  - RULE-SET,game,🎮 游戏加速
 
   - RULE-SET,bahamut,🇹🇼 台湾
   - RULE-SET,kktv,🇹🇼 台湾
@@ -619,6 +628,7 @@ rules:
   - RULE-SET,binance,💵 区块链
   - RULE-SET,ntp,🎯 全球直连
   - RULE-SET,privatetracker,🎯 全球直连
+  - GEOSITE,tld-cn,🎯 全球直连
   - RULE-SET,cnmax,🎯 全球直连
   # 绕过局域网地址
   - IP-CIDR,10.0.0.0/8,DIRECT
