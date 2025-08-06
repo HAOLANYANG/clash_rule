@@ -213,7 +213,7 @@ dns:
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
-    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn":
+    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn,category-game-platforms-download":
       #adguardhome
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
@@ -602,6 +602,7 @@ rules:
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
+  - GEOSITE,category-game-platforms-download,🎯 全球直连 #游戏平台-下载
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
   - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
