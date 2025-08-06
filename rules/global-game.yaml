@@ -1,8 +1,13 @@
 payload:
-  - PROCESS-NAME,TslGame
+#APEX
   - PROCESS-NAME,r5apex
+  - PROCESS-NAME,r5apex.exe
+  - PROCESS-NAME,r5apex_dx12.exe
+
+  - PROCESS-NAME,TslGame
   - PROCESS-NAME,GTA5
   - PROCESS-NAME,GTAVLauncher
   - PROCESS-NAME,PlayGTAV
   - PROCESS-NAME,bf5
   - PROCESS-NAME,bf1
+
