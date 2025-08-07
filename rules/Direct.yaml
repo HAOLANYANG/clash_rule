@@ -220,6 +220,8 @@ payload:
   - DOMAIN,ntp.ntsc.ac.cn
   - DOMAIN,ntp.neu.edu.cn
   - DOMAIN,ntp.sjtu.edu.cn
+#快手
+  - DOMAIN-SUFFIX,kuaishouzt.com  
 
 
 #连通性测试
