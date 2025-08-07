@@ -117,16 +117,32 @@ profile:
   # 持久化 fake-ip
   store-fake-ip: true
 tun:
-    enable: true
-    stack: gvisor
-    dns-hijack: ['any:53', 'tcp://any:53']
-    udp-timeout: 300
-    auto-route: true
-    strict-route: true
-    auto-redirect: false
-    auto-detect-interface: true
-    route-exclude-address: [192.168.0.0/16, 'fc00::/7']
-    exclude-package: [com.tencent.tmgp.sgame, com.tencent.tmgp.pubgmhd, com.tencent.jkchess]
+  enable: false
+  stack: system # gvisor/mixed
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  mtu: 1400 #防止被解包
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+
+# 嗅探域名
+sniffer:
+  enable: true
+  sniff:
+    QUIC:
+      ports: [ 443 ]
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+    - +.push.apple.com
 
 
 dns:
@@ -604,7 +620,6 @@ rules:
   #tg优化
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
   
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
   
