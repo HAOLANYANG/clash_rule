@@ -41,9 +41,16 @@ payload:
 #专线入口
   - DOMAIN,szhk-yd1.inknode.top
   - DOMAIN,gnar.my
+  
+#stun-用于检测nat类型
+#syncthing国内互联所以直连
+  - DOMAIN,stun.syncthing.net
 #国内stun
   - DOMAIN,stun.miwifi.com
   - DOMAIN,stun.qq.com
+  - DOMAIN,stun.miwifi.com
+
+
 
 #syncthing
   - PROCESS-NAME,com.github.catfriend1.syncthingandroid
