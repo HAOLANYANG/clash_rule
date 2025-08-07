@@ -152,12 +152,9 @@ dns:
     - "*.home.arpa"
     - "+.syncthing.net"
     - "stun.syncthing.net"
-    - "stun.*"
-    - "+.stun.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "+.stun.*.*.*.*.*"
+    - "stun.miwifi.com"
+    - "stun.qq.com"
+    - "stun.miwifi.com"
     - "+.qq.com"
     - "+.tencent.com"
     - "+.doh.pub"
@@ -200,7 +197,7 @@ dns:
     "rule-set:youtube,youtubemusic":
       - 'tls://8.8.8.8:853#📹 油管视频&ipv4-prefer'
       - 'https://dns.google/dns-query#📹 油管视频&ipv4-prefer'
-    "rule-set:google":
+    "rule-set:google,global-stun":
       - 'tls://8.8.8.8:853#🚀 节点选择&ipv4-prefer'
       - 'https://dns.google/dns-query#🚀 节点选择&ipv4-prefer'
     "rule-set:netflix,disney":
@@ -257,6 +254,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaIPs/ChinaIPs_IP.yaml"
     path: ./ruleset/ChinaIPs_IP.yaml
     interval: 86400
+
+  global-stun:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/STUN/STUN.yaml"
+    path: ./ruleset/STUN.yaml
+    interval: 86400  
 
   fcm:
     type: http
@@ -631,6 +635,9 @@ rules:
   - RULE-SET,privatetracker,🎯 全球直连
   - GEOSITE,tld-cn,🎯 全球直连
   - RULE-SET,cnmax,🎯 全球直连
+
+  #用于检测nat类型，国内的stun已单独放入direct中
+  - RULE-SET,global-stun,🚀 节点选择
   
   #原本不需要，但游戏加速很多IP地址都是大范围，不添加容易把国内IP也走代理
   - RULE-SET,cnip,🎯 全球直连
