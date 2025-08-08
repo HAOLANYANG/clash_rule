@@ -9,7 +9,6 @@ pr:
         🇹🇼 台湾,
         🇸🇬 新加坡,
         🇯🇵 日本,
-        🇰🇷 韩国,
         🇺🇲 美国,
         ♻️ 自动选择,
         🔯 故障转移,
@@ -69,12 +68,17 @@ proxy-providers:
       
 # --------------------------------------------------
 
-mixed-port: 10801
+mode: rule
+mixed-port: 0          # 关掉 redir，纯 TProxy，原7890
+tproxy-port: 7893
+
+
 external-controller: '127.0.0.1:9091'
 allow-lan: false
 bind-address: "*"
-find-process-mode: strict
-ipv6: false
+#- off, 不匹配进程，推荐在路由器上使用此模式
+find-process-mode: off
+ipv6: true
 mode: rule
 # 统一延迟
 # 更换延迟计算方式,去除握手等额外延迟
@@ -83,13 +87,13 @@ unified-delay: true
 # 同时对所有ip进行连接，返回延迟最低的地址
 tcp-concurrent: true
 geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
-geo-auto-update: true # 是否自动更新 geodata
-geo-update-interval: 12 # 更新间隔，单位：小时
 log-level: info
 hosts:
     dns.google: 8.8.8.8
@@ -116,17 +120,35 @@ profile:
   store-selected: false
   # 持久化 fake-ip
   store-fake-ip: true
+
+
 tun:
-    enable: true
-    stack: gvisor
-    dns-hijack: ['any:53', 'tcp://any:53']
-    udp-timeout: 300
-    auto-route: true
-    strict-route: true
-    auto-redirect: false
-    auto-detect-interface: true
-    route-exclude-address: [192.168.0.0/16, 'fc00::/7']
-    exclude-package: [com.tencent.tmgp.sgame, com.tencent.tmgp.pubgmhd, com.tencent.jkchess]
+  enable: false
+  stack: system # gvisor/mixed
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  mtu: 1400 #防止被解包
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+
+# 嗅探域名
+sniffer:
+  enable: true
+  sniff:
+    QUIC:
+      ports: [ 443 ]
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+    - +.push.apple.com
 
 
 dns:
@@ -486,19 +508,19 @@ rule-providers:
     path: ./ruleset/Binance.yaml
     interval: 86400   
 
-   global-game:
-     type: http
-     behavior: classical
-     url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global-game.yaml"
-     path: ./ruleset/global-game.yaml
-     interval: 86400 
+  global-game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global-game.yaml"
+    path: ./ruleset/global-game.yaml
+    interval: 86400 
 
-   game:
-     type: http
-     behavior: classical
-     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
-     path: ./ruleset/Game.yaml
-     interval: 86400 
+  game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+    path: ./ruleset/Game.yaml
+    interval: 86400 
 
 
 
@@ -513,7 +535,16 @@ proxy-groups:
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
   - { name: 📹 油管视频, <<: *pr }
-  - { name: 🎥 流媒体解锁, <<: *pr }  
+  - { name: 🎥 流媒体解锁, <<: *pr }
+  - {
+      name: 📺 台湾流媒体,
+      type: select,
+      proxies:
+        [  
+          🇹🇼 台湾,
+          🚀 节点选择
+        ],
+    }
   - { name: 🎮 游戏加速, <<: *pr } 
   - {
       name: 💬 OpenAi,
