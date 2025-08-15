@@ -1,18 +1,19 @@
 #分组锚点
+use: &use
+  # type: url-test
+  type: select
+  use:
+    - 订阅一
+    # - 订阅二
+    # - 本地配置
+    
 pr:
   &pr {
     type: select,
     proxies:
-      [
-        🚀 节点选择,
-        🇭🇰 香港,
-        🇹🇼 台湾,
-        🇸🇬 新加坡,
-        🇯🇵 日本,
-        🇺🇲 美国,
-        ♻️ 自动选择,
-        🔯 故障转移,
-      ],
+      [ 🚀 节点选择,♻️ 智能选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,♻️ 自动选择,🔯 故障转移],
+      <<: *use,
+      filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*",
   }
 # 延迟检测 URL 锚点
 p: &p
@@ -31,17 +32,10 @@ p: &p
 
 # --------------------------------------------------
 
-use: &use
-  # type: select
-  type: url-test
-  use:
-    - 订阅一
-    # - 订阅二
-    # - 本地配置
-
 # 订阅链接
 # 对于订阅来说，path 为选填项，但建议启用
 # 本地配置可以只填 path
+# 添加删减需要修改分组锚点&use
 proxy-providers:
   订阅一:
     <<: *p #引用订阅自动更新订阅以及默认测速链接
@@ -68,13 +62,15 @@ proxy-providers:
       
 # --------------------------------------------------
 
-mixed-port: 10801
+mode: rule
+tproxy-port: 7893
 external-controller: '127.0.0.1:9091'
-allow-lan: false
+allow-lan: true
 bind-address: "*"
 #- off, 不匹配进程，推荐在路由器上使用此模式
 find-process-mode: off
-ipv6: false
+udp: true
+ipv6: true
 mode: rule
 # 统一延迟
 # 更换延迟计算方式,去除握手等额外延迟
@@ -83,24 +79,24 @@ unified-delay: true
 # 同时对所有ip进行连接，返回延迟最低的地址
 tcp-concurrent: true
 geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
-geo-auto-update: true # 是否自动更新 geodata
-geo-update-interval: 24 # 更新间隔，单位：小时
 log-level: info
 hosts:
     dns.google: 8.8.8.8
     dns.alidns.com: 223.5.5.5
-    
+
 # 缓解移动设备耗电问题
 # https://github.com/vernesong/OpenClash/issues/2614
 keep-alive-interval: 1800
 
 # 全局客户端指纹
-global-client-fingerprint: random # 随机指纹
+global-client-fingerprint: chrome # 随机指纹：random
 
 # 自动同步时间以防止时间不准导致无法正常联网
 ntp:
@@ -116,6 +112,8 @@ profile:
   store-selected: false
   # 持久化 fake-ip
   store-fake-ip: true
+
+
 tun:
   enable: false
   stack: system # gvisor/mixed
@@ -132,7 +130,7 @@ sniffer:
   enable: true
   sniff:
     QUIC:
-      ports: [ 443 ]
+      ports: [ 443, 853, 8443]
     TLS:
       ports: [443, 8443]
     HTTP:
@@ -543,7 +541,7 @@ proxy-groups:
       name: 🚀 节点选择,
       type: select,
       proxies:
-        [♻️ 自动选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,🔯 故障转移],
+        [♻️ 智能选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
       <<: *use,
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
@@ -555,36 +553,14 @@ proxy-groups:
       proxies:
         [  
           🇹🇼 台湾,
-          🚀 节点选择
+          🚀 节点选择,
+          ♻️ 智能选择
         ],
     }
   - { name: 🎮 游戏加速, <<: *pr }
+  - { name: 💬 OpenAi, <<: *pr }     
   - {
-      name: 💬 OpenAi,
-      type: select,
-      proxies:
-        [ 
-          🚀 节点选择,
-          🇹🇼 台湾,
-          🇯🇵 日本,
-          🇸🇬 新加坡,
-          🇺🇲 美国,
-          ♻️ 自动选择
-        ],
-    }      
-  - {
-      name: 💵 区块链,
-      type: select,
-      proxies:
-        [  
-          🇹🇼 台湾,
-          🇯🇵 日本,
-          🇸🇬 新加坡,
-          🇺🇲 美国,
-          🚀 节点选择,
-          ♻️ 自动选择
-        ],
-    }
+      name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
   - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
@@ -598,8 +574,9 @@ proxy-groups:
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 智能选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: smart, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
@@ -619,6 +596,9 @@ rules:
   
   #tg优化
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
+  
+  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
   
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
@@ -656,7 +636,7 @@ rules:
   - RULE-SET,global-stun,🚀 节点选择
   
   #原本不需要，但游戏加速很多IP地址都是大范围，不添加容易把国内IP也走代理
-  - RULE-SET,cnip,DIRECT
+  #- RULE-SET,cnip,DIRECT
   
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
