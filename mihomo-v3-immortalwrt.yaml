@@ -190,25 +190,17 @@ dns:
     "ooklaserver.net": fakeip
     "*.ooklaserver.net": fakeip #speedtest强制走fakeip
   fake-ip-filter-mode: blacklist
-  respect-rules: false #为false时未指定节点的dns查询都是直连
-  nameserver:
-    - 'tls://8.8.8.8:853#🚀 节点选择&ipv4-prefer'
-    - 'tls://8.8.4.4:853#🚀 节点选择&ipv4-prefer'
-    - 'https://dns.google/dns-query#🚀 节点选择&ipv4-prefer'
+  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
+  # 只能使用纯 IP 地址，可使用加密 DNS  
   default-nameserver:
+    - 192.168.1.124
+    - 192.168.1.126
     - 223.5.5.5
-    - 119.29.29.29
-    - 192.168.1.121
-    - 192.168.1.124    
   # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   proxy-server-nameserver:
-      - 192.168.1.121
-      - 192.168.1.124
-      - 192.168.1.126
-      - 'tls://223.5.5.5:853'
-      - 'tls://223.6.6.6:853'
-      - 'tls://dot.pub:853'
-  # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+    - 192.168.1.124
+    - 192.168.1.126
+
   direct-nameserver:
       #paopaodns
       #- 192.168.1.121
@@ -216,40 +208,31 @@ dns:
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
-  direct-nameserver-follow-policy: false # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+  direct-nameserver-follow-policy: false #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+
+  nameserver:
+    #做兜底使用-除了国内以及指定了的都用这个
+    - https://8.8.8.8/dns-query#🚀 节点选择
+    - https://8.8.4.4/dns-query#🚀 节点选择
+    - tls://dns.google:853#🚀 节点选择
   nameserver-policy:
     "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
-      #paopaodns
-      #- 192.168.1.121
-      #adguardhome
-      - 192.168.1.124
-      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
-      - 192.168.1.126
-    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn,category-game-platforms-download":
-      #adguardhome
+      #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
     "rule-set:youtube,youtubemusic":
-      - 'tls://8.8.8.8:853#📹 油管视频&ipv4-prefer'
-      - 'tls://8.8.4.4:853#📹 油管视频&ipv4-prefer'
-      - 'https://dns.google/dns-query#📹 油管视频&ipv4-prefer'
+      - https://8.8.8.8/dns-query#📹 油管视频
+      - https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google,global-stun":
-      - 'tls://8.8.8.8:853#🚀 节点选择&ipv4-prefer'
-      - 'tls://8.8.4.4:853#🚀 节点选择&ipv4-prefer'
-      - 'https://dns.google/dns-query#🚀 节点选择&ipv4-prefer'
+      - https://8.8.8.8/dns-query#🚀 节点选择
+      - https://8.8.4.4/dns-query#🚀 节点选择
     "rule-set:netflix,disney":
-      - 'tls://8.8.8.8:853#🎥 流媒体解锁&ipv4-prefer'
-      - 'tls://8.8.4.4:853#🎥 流媒体解锁&ipv4-prefer'
-      - 'https://dns.google/dns-query#🎥 流媒体解锁&ipv4-prefer'
+      - https://8.8.8.8/dns-query#🎥 流媒体解锁
+      - https://8.8.4.4/dns-query#🎥 流媒体解锁
     "rule-set:game,global-game":
-      - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
-      - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
-      - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer'
-    "geosite:category-games-!cn":
-      - 'tls://8.8.8.8:853#🎮 游戏加速&ipv4-prefer'
-      - 'tls://8.8.4.4:853#🎮 游戏加速&ipv4-prefer'
-      - 'https://dns.google/dns-query#🎮 游戏加速&ipv4-prefer'
+      - https://8.8.8.8/dns-query#🎮 游戏加速
+      - https://8.8.4.4/dns-query#🎮 游戏加速
 
 
 
