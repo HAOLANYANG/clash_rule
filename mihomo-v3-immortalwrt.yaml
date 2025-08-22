@@ -195,7 +195,6 @@ dns:
   default-nameserver:
     - 192.168.1.124
     - 192.168.1.126
-    - 223.5.5.5
   # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   proxy-server-nameserver:
     - 192.168.1.124
