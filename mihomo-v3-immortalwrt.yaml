@@ -63,7 +63,11 @@ proxy-providers:
 # --------------------------------------------------
 
 mode: rule
-tproxy-port: 7893
+port: 7890 # HTTP(S) 代理服务器端口
+socks-port: 7891 # SOCKS5 代理端口
+redir-port: 7892 # 透明代理端口，用于 Linux 和 MacOS
+tproxy-port: 7895 #tproxy
+mixed-port: 10801 # HTTP(S) 和 SOCKS 代理混合端口
 external-controller: '127.0.0.1:9091'
 allow-lan: true
 bind-address: "*"
@@ -142,6 +146,18 @@ sniffer:
     - Mijia Cloud
     - +.push.apple.com
 
+hosts:
+  dns.google:
+    - 8.8.8.8
+    - 8.8.4.4
+    - 2001:4860:4860::8888
+    - 2001:4860:4860::8844
+  dns.alidns.com:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 2400:3200::1
+    - 2400:3200:baba::1
+
 
 dns:
   enable: true
@@ -190,25 +206,7 @@ dns:
     "ooklaserver.net": fakeip
     "*.ooklaserver.net": fakeip #speedtest强制走fakeip
   fake-ip-filter-mode: blacklist
-  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
-  # 只能使用纯 IP 地址，可使用加密 DNS  
-  default-nameserver:
-    - 192.168.1.124
-    - 192.168.1.126
-  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
-  proxy-server-nameserver:
-    - 192.168.1.124
-    - 192.168.1.126
-
-  direct-nameserver:
-      #paopaodns
-      #- 192.168.1.121
-      #adguardhome
-      - 192.168.1.124
-      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
-      - 192.168.1.126
-  direct-nameserver-follow-policy: false #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
-
+  respect-rules: false #为false时未指定节点的dns查询都是直连
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
     - https://8.8.8.8/dns-query#🚀 节点选择
@@ -229,9 +227,16 @@ dns:
     "rule-set:netflix,disney":
       - https://8.8.8.8/dns-query#🎥 流媒体解锁
       - https://8.8.4.4/dns-query#🎥 流媒体解锁
+    "rule-set:bilibili,bilibiliintl":
+      #使用代理好像还会使用paopaodns
+      - 192.168.1.124#📺 哔哩哔哩
+      - 192.168.1.126#📺 哔哩哔哩
+      - https://8.8.8.8/dns-query#📺 哔哩哔哩
+      - https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
       - https://8.8.8.8/dns-query#🎮 游戏加速
       - https://8.8.4.4/dns-query#🎮 游戏加速
+
 
 
 
@@ -536,7 +541,24 @@ proxy-groups:
         [  
           🇹🇼 台湾,
           🚀 节点选择,
-          ♻️ 智能选择
+          
+        ],
+    }
+  - {
+      name: 📺 哔哩哔哩, 
+      type: select,
+      proxies:
+        [  
+        🎯 全球直连,
+        🚀 节点选择,
+        🇭🇰 香港,
+        🇹🇼 台湾,
+        🇸🇬 新加坡,
+        🇯🇵 日本,
+        🇺🇲 美国,
+        ♻️ 智能选择,
+        ♻️ 自动选择,
+        🔯 故障转移
         ],
     }
   - { name: 🎮 游戏加速, <<: *pr }
@@ -591,14 +613,12 @@ rules:
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
-
-
-
   - RULE-SET,bahamut,📺 台湾流媒体
   - RULE-SET,kktv,📺 台湾流媒体
   - RULE-SET,linetv,📺 台湾流媒体
   
-
+  - RULE-SET,bilibiliintl,📺 哔哩哔哩
+  - RULE-SET,bilibili,📺 哔哩哔哩  
   
   - RULE-SET,telegram,🚀 节点选择
   - RULE-SET,line,🚀 节点选择
@@ -617,11 +637,7 @@ rules:
   #用于检测nat类型，国内的stun已单独放入direct中
   - RULE-SET,global-stun,🚀 节点选择
   
-  #原本不需要，但游戏加速很多IP地址都是大范围，不添加容易把国内IP也走代理
-  #- RULE-SET,cnip,DIRECT
-  
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
-  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
   
   - MATCH,🚀 节点选择
