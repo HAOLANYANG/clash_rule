@@ -160,7 +160,7 @@ dns:
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
-  ipv6: false
+  ipv6: true
   listen: 1053
   #real-ip
   enhanced-mode: redir-host
@@ -192,9 +192,10 @@ dns:
 
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
-    - https://8.8.8.8/dns-query#🚀 节点选择
-    - https://8.8.4.4/dns-query#🚀 节点选择
-    - tls://dns.google:853#🚀 节点选择
+    #ADG-HK-大缓存
+    - 192.168.1.211
+    #并发使用
+    #- https://dns.google/dns-query#🚀 节点选择
   nameserver-policy:
     "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
@@ -202,23 +203,31 @@ dns:
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
     "rule-set:youtube,youtubemusic":
-      - https://8.8.8.8/dns-query#📹 油管视频
-      - https://8.8.4.4/dns-query#📹 油管视频
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#📹 油管视频
+      #- https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google,global-stun":
-      - https://8.8.8.8/dns-query#🚀 节点选择
-      - https://8.8.4.4/dns-query#🚀 节点选择
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #并发使用
+      #- https://dns.google/dns-query#🚀 节点选择
     "rule-set:netflix,disney":
-      - https://8.8.8.8/dns-query#🎥 流媒体解锁
-      - https://8.8.4.4/dns-query#🎥 流媒体解锁
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#🎥 流媒体解锁
+      #- https://8.8.4.4/dns-query#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
       #使用代理好像还会使用paopaodns
-      - 192.168.1.124#📺 哔哩哔哩
-      - 192.168.1.126#📺 哔哩哔哩
-      - https://8.8.8.8/dns-query#📺 哔哩哔哩
-      - https://8.8.4.4/dns-query#📺 哔哩哔哩
+      - 192.168.1.124
+      - 192.168.1.126
+      #- https://8.8.8.8/dns-query#📺 哔哩哔哩
+      #- https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
-      - https://8.8.8.8/dns-query#🎮 游戏加速
-      - https://8.8.4.4/dns-query#🎮 游戏加速
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#🎮 游戏加速
+      #- https://8.8.4.4/dns-query#🎮 游戏加速
 
 
 
@@ -511,7 +520,7 @@ proxy-groups:
       name: 🚀 节点选择,
       type: select,
       proxies:
-        [♻️ 智能选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
+        [🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
       <<: *use,
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
@@ -539,7 +548,6 @@ proxy-groups:
         🇸🇬 新加坡,
         🇯🇵 日本,
         🇺🇲 美国,
-        ♻️ 智能选择,
         ♻️ 自动选择,
         🔯 故障转移
         ],
@@ -561,7 +569,6 @@ proxy-groups:
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 智能选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: smart, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
   - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
   - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
   - {
@@ -575,8 +582,13 @@ proxy-groups:
 
 rules:
   - RULE-SET,lan,🎯 全球直连
-  - RULE-SET,direct,🎯 全球直连
+  
   - RULE-SET,global,🚀 节点选择
+
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,steamcn,🎯 全球直连
+  - RULE-SET,coolapk,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
 
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
@@ -619,7 +631,7 @@ rules:
   
   #用于检测nat类型，国内的stun已单独放入direct中
   - RULE-SET,global-stun,🚀 节点选择
-  
+
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
   
