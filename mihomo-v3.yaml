@@ -530,7 +530,7 @@ proxy-groups:
       name: 🚀 节点选择,
       type: select,
       proxies:
-        [♻️ 自动选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,🔯 故障转移],
+        [🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
       <<: *use,
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
@@ -542,52 +542,30 @@ proxy-groups:
       proxies:
         [  
           🇹🇼 台湾,
-          🚀 节点选择
+          🚀 节点选择,
+          
         ],
     }
-  - { name: 🎮 游戏加速, <<: *pr } 
-  - {
-      name: 💬 OpenAi,
-      type: select,
-      proxies:
-        [ 
-          🚀 节点选择,
-          🇹🇼 台湾,
-          🇯🇵 日本,
-          🇸🇬 新加坡,
-          🇺🇲 美国,
-          ♻️ 自动选择
-        ],
-    }      
   - {
       name: 📺 哔哩哔哩, 
       type: select,
       proxies:
         [  
         🎯 全球直连,
+        🚀 节点选择,
         🇭🇰 香港,
         🇹🇼 台湾,
         🇸🇬 新加坡,
         🇯🇵 日本,
         🇺🇲 美国,
-        🚀 节点选择,
         ♻️ 自动选择,
         🔯 故障转移
         ],
     }
+  - { name: 🎮 游戏加速, <<: *pr }
+  - { name: 💬 OpenAi, <<: *pr }     
   - {
-      name: 💵 区块链,
-      type: select,
-      proxies:
-        [  
-          🇹🇼 台湾,
-          🇯🇵 日本,
-          🇸🇬 新加坡,
-          🇺🇲 美国,
-          🚀 节点选择,
-          ♻️ 自动选择
-        ],
-    }
+      name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
   - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
@@ -601,8 +579,8 @@ proxy-groups:
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
@@ -611,6 +589,7 @@ proxy-groups:
           DIRECT
         ],
     }
+
 
 rules:
   - RULE-SET,lan,🎯 全球直连
@@ -624,28 +603,31 @@ rules:
   - RULE-SET,steamcn,🎯 全球直连
   - RULE-SET,coolapk,🎯 全球直连
   - RULE-SET,apple,🎯 全球直连
+
+  #tg优化
+  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
   
-  - RULE-SET,openai,💬 OpenAi
-  - RULE-SET,gemeni,💬 OpenAi
+  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
   
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
   
+  - RULE-SET,openai,💬 OpenAi
+  - RULE-SET,gemeni,💬 OpenAi  
+ 
   - RULE-SET,netflix,🎥 流媒体解锁
   - RULE-SET,disney,🎥 流媒体解锁
   - RULE-SET,hbo,🎥 流媒体解锁
   - RULE-SET,primevideo,🎥 流媒体解锁
   - RULE-SET,tiktok,🎥 流媒体解锁
 
-
-
-
   - RULE-SET,bahamut,📺 台湾流媒体
   - RULE-SET,kktv,📺 台湾流媒体
   - RULE-SET,linetv,📺 台湾流媒体
   
   - RULE-SET,bilibiliintl,📺 哔哩哔哩
-  - RULE-SET,bilibili,📺 哔哩哔哩
+  - RULE-SET,bilibili,📺 哔哩哔哩  
   
   - RULE-SET,telegram,🚀 节点选择
   - RULE-SET,line,🚀 节点选择
@@ -662,19 +644,12 @@ rules:
   - RULE-SET,binance,💵 区块链
   - RULE-SET,ntp,🎯 全球直连
   - RULE-SET,privatetracker,🎯 全球直连
-  - GEOSITE,tld-cn,🎯 全球直连
   - RULE-SET,cnmax,🎯 全球直连
 
   #用于检测nat类型，国内的stun已单独放入direct中
   - RULE-SET,global-stun,🚀 节点选择
-  
-  #原本不需要，但游戏加速很多IP地址都是大范围，不添加容易把国内IP也走代理
-  - RULE-SET,cnip,🎯 全球直连
+
   #游戏
-  - GEOSITE,category-games-cn,🎯 全球直连 # 国内游戏
-  - GEOSITE,category-game-accelerator-cn,🎯 全球直连 # 游戏加速器
-  - GEOSITE,category-game-platforms-download,🎯 全球直连 #游戏下载
-  - GEOSITE,category-games-!cn,🎮 游戏加速 # 外服游戏
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
   
