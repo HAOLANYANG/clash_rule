@@ -1,0 +1,552 @@
+# 影响全局网络和系统的配置
+# 设置代理监听的端口、系统参数等
+# 控制代理如何与系统交互
+port: 7890
+socks-port: 7891 # SOCKS5 代理端口
+redir-port: 7892 # 透明代理端口，用于 Linux 和 MacOS
+mixed-port: 7893 # HTTP(S) 和 SOCKS 代理混合端口
+tproxy-port: 7894
+allow-lan: false  # 允许局域网连接
+mode: rule
+bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
+ipv6: false
+unified-delay: true  # 更换延迟计算方式，去除握手等额外延迟
+tcp-concurrent: true # 启用 TCP 并发连接。这允许 Clash 同时建立多个 TCP 连接，可以提高网络性能和连接速度
+log-level: warning   # 查东西时改成info
+find-process-mode: "strict"       # 设置进程查找模式为严格模式，Clash 会更精确地识别和匹配网络流量来源的进程
+global-client-fingerprint: chrome # 设置全局客户端指纹为 Chrome，使 Clash 在建立连接时模拟 Chrome 浏览器的 TLS 指纹，增强隐私性和绕过某些网站的指纹检测
+
+# 缓解移动设备耗电问题
+# https://github.com/vernesong/OpenClash/issues/2614
+keep-alive-interval: 1800
+keep-alive-idle: 15
+disable-keep-alive: false
+
+profile:
+  store-selected: true # 记忆选择
+  store-fake-ip: true
+
+
+geodata-mode: true
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+geo-auto-update: true # 是否自动更新 geodata
+geo-update-interval: 24 # 更新间隔，单位：小时
+
+
+
+# 自动同步时间以防止时间不准导致无法正常联网
+ntp:
+  enable: true
+  # 是否同步至系统时间，需要 root/管理员权限
+  write-to-system: false
+  server: time.apple.com
+  port: 123
+  interval: 120
+
+
+tun:
+    enable: true
+    stack: system
+    dns-hijack:
+      - 0.0.0.0:53 # 需要劫持的 DNS
+    udp-timeout: 300
+    auto-route: true
+    strict-route: true
+    auto-redirect: false
+    auto-detect-interface: true
+    route-exclude-address: [192.168.0.0/16, 'fc00::/7']
+    exclude-package: [com.tencent.tmgp.sgame, com.tencent.tmgp.pubgmhd, com.tencent.jkchess]
+
+sniffer:
+  enable: true
+  sniff:
+    QUIC:
+      ports: [443, 853, 8443]
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080]
+
+hosts:
+  dns.google:
+    - 8.8.8.8
+    - 8.8.4.4
+    - 2001:4860:4860::8888
+    - 2001:4860:4860::8844
+  dns.alidns.com:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 2400:3200::1
+    - 2400:3200:baba::1
+
+dns:
+  enable: true
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: false
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - "+.lan"
+    - "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
+    - "+.local"
+    - "*.localdomain"
+    - "+.miwifi.com"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "+.syncthing.net"
+    - "stun.syncthing.net"
+    - "stun.miwifi.com"
+    - "stun.qq.com"
+    - "stun.miwifi.com"
+    - "+.qq.com"
+    - "+.tencent.com"
+    - "+.doh.pub"
+    - "sm2.doh.pub"
+    - "qlogo.cn"
+    - "*.qlogo.cn"
+    - "connect.rom.miui.com"
+    - "WORKGROUP"
+    - "localhost.ptlogin2.qq.com"
+    - "+.market.xiaomi.com"
+    - "+.cmbchina.com"
+    - "+.cmbimg.com"
+    - "*.mcdn.bilivideo.cn"
+    - "+.apple.com"
+  fake-ip-filter-mode: blacklist
+
+  respect-rules: true
+  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
+  # 如果为false（默认值）则这三部分的dns服务器在未特别指定的情况下会直连
+  # 如果为true，将会按照rules的规则匹配链接方式（走代理或直连），如果有特别指定则任然以指定值为准
+  # 仅当proxy-server-nameserver非空时可以开启此选项, 强烈不建议和prefer-h3一起使用
+  # 此外，这三者配置中的dns服务器如果出现域名会采用default-nameserver配置项解析，也请确保正确配置default-nameserver
+
+  nameserver:
+    - https://dns.google/dns-query#🚀 节点选择
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query#h3=true&🎯 全球直连
+    - https://doh.pub/dns-query#🎯 全球直连
+  # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+  direct-nameserver:
+    - https://223.5.5.5/dns-query#h3=true&🎯 全球直连
+    - https://doh.pub/dns-query#🎯 全球直连'
+  direct-nameserver-follow-policy: true #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+  nameserver-policy:
+    "rule-set:lan,fcm,direct,steamcn,coolapk,apple,ntp,privatetracker,cnmax":
+      - https://223.5.5.5/dns-query#🎯 全球直连
+      - https://doh.pub/dns-query#🎯 全球直连
+    "rule-set:youtube,youtubemusic":
+      - https://dns.google/dns-query#📹 油管视频
+    "rule-set:google":
+      - https://dns.google/dns-query#🚀 节点选择
+    "rule-set:netflix,disney":
+      - https://dns.google/dns-query#🎥 流媒体解锁 
+    "rule-set:bilibili,bilibiliintl":
+      #direct-nameserver-follow-policy选false怀疑也是根据policy #直连不遵守policy，所以只有在使用其他节点时才会启用这个
+      - https://223.5.5.5/dns-query#📺 哔哩哔哩
+      - https://223.6.6.6/dns-query#📺 哔哩哔哩
+      #直连连不上不用担心给出国外的cdn地址
+      - https://dns.google/dns-query#📺 哔哩哔哩
+
+rule-providers:
+
+  lan:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml"
+    path: ./ruleset/Lan.yaml
+    interval: 86400  
+
+  direct:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/Direct.yaml"
+    path: ./ruleset/Direct.yaml
+    interval: 86400  
+
+  global:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global.yaml"
+    path: ./ruleset/global.yaml
+    interval: 86400  
+
+  cnmax:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml"
+    path: ./ruleset/ChinaMax_Classical.yaml
+    interval: 86400  
+
+  cnip:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaIPs/ChinaIPs_IP.yaml"
+    path: ./ruleset/ChinaIPs_IP.yaml
+    interval: 86400  
+
+  global-stun:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/STUN/STUN.yaml"
+    path: ./ruleset/STUN.yaml
+    interval: 86400  
+
+  fcm:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GoogleFCM/GoogleFCM.yaml"
+    path: ./ruleset/GoogleFCM.yaml
+    interval: 86400
+    
+  steamcn:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/SteamCN/SteamCN.yaml"
+    path: ./ruleset/SteamCN.yaml
+    interval: 86400
+    
+  coolapk:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Coolapk/Coolapk.yaml"
+    path: ./ruleset/Coolapk.list
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml"
+    path: ./ruleset/Apple_Classical.yaml
+    interval: 86400
+
+  ntp:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/NTPService/NTPService.yaml"
+    path: ./ruleset/NTPService.yaml
+    interval: 86400
+
+  privatetracker:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrivateTracker/PrivateTracker.yaml"
+    path: ./ruleset/PrivateTracker.yaml
+    interval: 86400
+
+  bilibili:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
+    path: ./ruleset/BiliBili.yaml
+    interval: 86400
+
+  bilibiliintl:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBiliIntl/BiliBiliIntl.yaml"
+    path: ./ruleset/BiliBiliIntl.yaml
+    interval: 86400
+
+  youtube:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+    path: ./ruleset/YouTube.yaml
+    interval: 86400
+
+  youtubemusic:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
+    path: ./ruleset/YouTubeMusic.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    path: ./ruleset/Google.yaml
+    interval: 86400
+
+  microsoft:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./ruleset/Microsoft.yaml
+    interval: 86400
+
+  netflix:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml"
+    path: ./ruleset/Netflix.yaml
+    interval: 86400
+
+  disney:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml"
+    path: ./ruleset/Disney.yaml
+    interval: 86400
+
+  hbo:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HBO/HBO.yaml"
+    path: ./ruleset/HBO.yaml
+    interval: 86400
+
+  primevideo:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrimeVideo/PrimeVideo.yaml"
+    path: ./ruleset/PrimeVideo.yaml
+    interval: 86400
+    
+  bahamut:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml"
+    path: ./ruleset/Bahamut.yaml
+    interval: 86400
+
+  kktv:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/KKTV/KKTV.yaml"
+    path: ./ruleset/KKTV.yaml
+    interval: 86400
+
+  linetv:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/LineTV/LineTV.yaml"
+    path: ./ruleset/LineTV.yaml
+    interval: 86400
+
+  openai:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/OpenAI.yaml
+    interval: 86400
+
+  gemeni:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+    path: ./ruleset/Gemini.yaml
+    interval: 86400
+
+  telegram:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+    path: ./ruleset/Telegram.yaml
+    interval: 86400
+
+  line:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Line/Line.yaml"
+    path: ./ruleset/Line.yaml
+    interval: 86400
+
+  whatsapp:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    path: ./ruleset/Whatsapp.yaml
+    interval: 86400
+
+  tiktok:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
+    path: ./ruleset/TikTok.yaml
+    interval: 86400
+
+  github:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+    path: ./ruleset/GitHub.yaml
+    interval: 86400
+
+  speedtest:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Speedtest/Speedtest.yaml"
+    path: ./ruleset/Speedtest.yaml
+    interval: 86400   
+
+  pay:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/pay.yaml"
+    path: ./ruleset/pay.yaml
+    interval: 86400      
+
+  visa:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/VISA/VISA.yaml"
+    path: ./ruleset/VISA.yaml
+    interval: 86400   
+ 
+  blockchain:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/blockchain.yaml"
+    path: ./ruleset/blockchain.yaml
+    interval: 86400
+
+  okx:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OKX/OKX.yaml"
+    path: ./ruleset/OKX.yaml
+    interval: 86400   
+
+  binance:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Binance/Binance.yaml"
+    path: ./ruleset/Binance.yaml
+    interval: 86400   
+
+  global-game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/global-game.yaml"
+    path: ./ruleset/global-game.yaml
+    interval: 86400 
+
+  game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+    path: ./ruleset/Game.yaml
+    interval: 86400
+
+listeners:
+  - name: mixed1
+    type: mixed
+    port: 45001
+    proxy: 🇭🇰香港HKT|家宽|Mixed:45001 x1
+
+proxies:
+
+
+proxy-groups:
+
+  # 🚀 通用分流选择
+  - { name: "🚀 节点选择",   type: select,      proxies: ["🔯 故障转移","♻️ 自动选择","🔮 负载均衡","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+
+  # 📹 视频类分组
+  - { name: "📹 油管视频",   type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "🎥 流媒体解锁", type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "📺 台湾流媒体", type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "📺 哔哩哔哩",   type: select,      proxies: ["🎯 全球直连","🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+
+  # 🎮 特殊用途
+  - { name: "🎮 游戏加速",   type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "💬 OpenAi",     type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "💵 区块链",     type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇯🇵 日本","🇹🇼 台湾","🇸🇬 新加坡","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡","🚀 节点选择","🇭🇰 香港", /x/, /X/] }
+
+  # ♻️ 智能策略
+  - { name: "♻️ 自动选择",   type: url-test,    proxies: [/.*(x|X).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🔯 故障转移",   type: fallback,    proxies: [/.*(x|X).*/], url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 300 }
+  - { name: "🔮 负载均衡",   type: load-balance,proxies: [/.*(x|X).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+
+  # 🌍 地区分组
+  - { name: "🇭🇰 香港",     type: url-test,    proxies: [/.*(港|HK|hk).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 100 }
+  - { name: "🇹🇼 台湾",     type: url-test,    proxies: [/.*(台|TW|tw).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇸🇬 新加坡",   type: url-test,    proxies: [/.*(坡|SG|sg).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇯🇵 日本",     type: url-test,    proxies: [/.*(日|JP|jp).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇺🇲 美国",     type: url-test,    proxies: [/.*(美|US|us).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  
+  - { name: "🎯 全球直连", type: select, proxies: ["DIRECT"] }
+
+  - { name: "🛑 全球拦截", type: select, proxies: ["REJECT"] }
+
+
+rules:
+  - RULE-SET,lan,🎯 全球直连
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  
+  - RULE-SET,global,🚀 节点选择
+  - RULE-SET,fcm,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,steamcn,🎯 全球直连
+  - RULE-SET,coolapk,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
+
+  #tg优化
+  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
+  
+  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
+  
+  - RULE-SET,youtube,📹 油管视频
+  - RULE-SET,youtubemusic,📹 油管视频
+  
+  - RULE-SET,openai,💬 OpenAi
+  - RULE-SET,gemeni,💬 OpenAi  
+ 
+  - RULE-SET,netflix,🎥 流媒体解锁
+  - RULE-SET,disney,🎥 流媒体解锁
+  - RULE-SET,hbo,🎥 流媒体解锁
+  - RULE-SET,primevideo,🎥 流媒体解锁
+  - RULE-SET,tiktok,🎥 流媒体解锁
+
+  - RULE-SET,bahamut,📺 台湾流媒体
+  - RULE-SET,kktv,📺 台湾流媒体
+  - RULE-SET,linetv,📺 台湾流媒体
+  
+  - RULE-SET,bilibiliintl,📺 哔哩哔哩
+  - RULE-SET,bilibili,📺 哔哩哔哩  
+  
+  - RULE-SET,telegram,🚀 节点选择
+  - RULE-SET,line,🚀 节点选择
+  - RULE-SET,whatsapp,🚀 节点选择
+  - RULE-SET,github,🚀 节点选择
+  - RULE-SET,speedtest,🚀 节点选择
+  - RULE-SET,pay,🚀 节点选择
+  - RULE-SET,visa,🚀 节点选择
+  - RULE-SET,google,🚀 节点选择
+  - RULE-SET,microsoft,🚀 节点选择
+
+  - RULE-SET,blockchain,💵 区块链
+  - RULE-SET,okx,💵 区块链
+  - RULE-SET,binance,💵 区块链
+  - RULE-SET,ntp,🎯 全球直连
+  - RULE-SET,privatetracker,🎯 全球直连
+  - RULE-SET,cnmax,🎯 全球直连
+
+  #用于检测nat类型，国内的stun已单独放入direct中
+  - RULE-SET,global-stun,🚀 节点选择
+
+  #游戏
+  - RULE-SET,global-game,🎮 游戏加速
+  - RULE-SET,game,🎮 游戏加速
+  
+  - MATCH,🚀 节点选择
