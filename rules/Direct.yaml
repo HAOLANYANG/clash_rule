@@ -5,6 +5,8 @@ payload:
   - DOMAIN-SUFFIX,zz.vgod.uk
   - DOMAIN-SUFFIX,iepl.vgod.uk
   - DOMAIN-SUFFIX,iplc.vgod.uk
+  - DOMAIN-SUFFIX,direct.vgod.uk
+  - DOMAIN-SUFFIX,co.vgod.uk
   - DOMAIN-SUFFIX,zz.iuuu.uk
   - DOMAIN-SUFFIX,iepl.iuuu.uk
   - DOMAIN-SUFFIX,iplc.iuuu.uk
