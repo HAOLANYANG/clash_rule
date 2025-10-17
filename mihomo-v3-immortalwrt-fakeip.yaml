@@ -68,6 +68,18 @@ socks-port: 7891 # SOCKS5 代理端口
 redir-port: 7892 # 透明代理端口，用于 Linux 和 MacOS
 tproxy-port: 7895 #tproxy
 mixed-port: 10801 # HTTP(S) 和 SOCKS 代理混合端口
+authentication: # http,socks 入口的验证用户名，密码
+  - "home:1369799123"
+skip-auth-prefixes: # 设置跳过验证的 IP 段
+  - 127.0.0.1/8
+  - ::1/128
+  - 192.168.0.0/20
+lan-allowed-ips: # 允许连接的 IP 地址段，仅作用于 allow-lan 为 true, 默认值为 0.0.0.0/0 和::/0
+  - 0.0.0.0/0
+  - ::/0
+  - 192.168.0.0/20
+lan-disallowed-ips: # 禁止连接的 IP 地址段，黑名单优先级高于白名单，默认值为空
+  - 192.168.0.3/32
 external-controller: '127.0.0.1:9091'
 allow-lan: true
 bind-address: "*"
@@ -100,7 +112,7 @@ hosts:
 keep-alive-interval: 1800
 
 # 全局客户端指纹
-global-client-fingerprint: chrome # 随机指纹：random
+global-client-fingerprint: safari # 随机指纹：random
 
 # 自动同步时间以防止时间不准导致无法正常联网
 ntp:
@@ -167,11 +179,10 @@ dns:
   ipv6: true
   listen: 1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "+.lan"
-    - "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
-    - "geosite:tld-cn,category-games-cn,category-game-accelerator-cn,category-game-platforms-download"
+    - "rule-set:lan,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
     - "+.local"
     - "*.localdomain"
     - "+.miwifi.com"
@@ -200,42 +211,64 @@ dns:
     - "+.cmbimg.com"
     - "*.mcdn.bilivideo.cn"
     - "+.apple.com"
-  static:
-    "speedtest.cn": fakeip
-    "*.speedtest.cn": fakeip
-    "ooklaserver.net": fakeip
-    "*.ooklaserver.net": fakeip #speedtest强制走fakeip
   fake-ip-filter-mode: blacklist
-  respect-rules: false #为false时未指定节点的dns查询都是直连
+  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
+  # 只能使用纯 IP 地址，可使用加密 DNS  
+  default-nameserver:
+    - 192.168.1.124
+    - 192.168.1.126
+  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+  proxy-server-nameserver:
+    - 192.168.1.124
+    - 192.168.1.126
+
+  direct-nameserver:
+      #paopaodns
+      #- 192.168.1.121
+      #adguardhome
+      - 192.168.1.124
+      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
+      - 192.168.1.126
+  direct-nameserver-follow-policy: true #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
-    - https://8.8.8.8/dns-query#🚀 节点选择
-    - https://8.8.4.4/dns-query#🚀 节点选择
-    - tls://dns.google:853#🚀 节点选择
+    #ADG-HK-大缓存
+    - 192.168.1.211
+    #并发使用
+    #- https://dns.google/dns-query#🚀 节点选择
   nameserver-policy:
-    "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
+    "rule-set:lan,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
     "rule-set:youtube,youtubemusic":
-      - https://8.8.8.8/dns-query#📹 油管视频
-      - https://8.8.4.4/dns-query#📹 油管视频
-    "rule-set:google,global-stun":
-      - https://8.8.8.8/dns-query#🚀 节点选择
-      - https://8.8.4.4/dns-query#🚀 节点选择
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#📹 油管视频
+      #- https://8.8.4.4/dns-query#📹 油管视频
+    "rule-set:google,global-stun,fcm":
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #并发使用
+      #- https://dns.google/dns-query#🚀 节点选择
     "rule-set:netflix,disney":
-      - https://8.8.8.8/dns-query#🎥 流媒体解锁
-      - https://8.8.4.4/dns-query#🎥 流媒体解锁
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#🎥 流媒体解锁
+      #- https://8.8.4.4/dns-query#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
       #使用代理好像还会使用paopaodns
-      - 192.168.1.124#📺 哔哩哔哩
-      - 192.168.1.126#📺 哔哩哔哩
-      - https://8.8.8.8/dns-query#📺 哔哩哔哩
-      - https://8.8.4.4/dns-query#📺 哔哩哔哩
+      - 192.168.1.124
+      - 192.168.1.126
+      #- https://8.8.8.8/dns-query#📺 哔哩哔哩
+      #- https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
-      - https://8.8.8.8/dns-query#🎮 游戏加速
-      - https://8.8.4.4/dns-query#🎮 游戏加速
+      #ADG-HK-大缓存
+      - 192.168.1.211
+      #- https://8.8.8.8/dns-query#🎮 游戏加速
+      #- https://8.8.4.4/dns-query#🎮 游戏加速
 
 
 
@@ -528,7 +561,7 @@ proxy-groups:
       name: 🚀 节点选择,
       type: select,
       proxies:
-        [♻️ 智能选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
+        [🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
       <<: *use,
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
@@ -556,7 +589,6 @@ proxy-groups:
         🇸🇬 新加坡,
         🇯🇵 日本,
         🇺🇲 美国,
-        ♻️ 智能选择,
         ♻️ 自动选择,
         🔯 故障转移
         ],
@@ -567,20 +599,19 @@ proxy-groups:
       name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
   - {
       name: 🌎 其它地区,
       type: select,
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 智能选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: smart, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
@@ -592,8 +623,13 @@ proxy-groups:
 
 rules:
   - RULE-SET,lan,🎯 全球直连
-  - RULE-SET,direct,🎯 全球直连
+  
   - RULE-SET,global,🚀 节点选择
+
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,steamcn,🎯 全球直连
+  - RULE-SET,coolapk,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
 
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
@@ -636,7 +672,7 @@ rules:
   
   #用于检测nat类型，国内的stun已单独放入direct中
   - RULE-SET,global-stun,🚀 节点选择
-  
+
   - RULE-SET,global-game,🎮 游戏加速
   - RULE-SET,game,🎮 游戏加速
   
