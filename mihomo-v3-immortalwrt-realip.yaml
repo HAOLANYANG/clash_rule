@@ -63,9 +63,17 @@ proxy-providers:
 # --------------------------------------------------
 
 mode: rule
+socks-port: 1080
+mixed-port: 7890
 tproxy-port: 7895
 external-controller: '127.0.0.1:9091'
 allow-lan: true
+#验证方式:<用户>:<密码>
+authentication: []
+#不需要验证网段
+skip-auth-prefixes:
+  - 127.0.0.1/32
+  - 192.168.0.0/20
 bind-address: "*"
 #- off, 不匹配进程，推荐在路由器上使用此模式
 find-process-mode: off
@@ -96,7 +104,7 @@ hosts:
 keep-alive-interval: 1800
 
 # 全局客户端指纹
-global-client-fingerprint: chrome # 随机指纹：random
+global-client-fingerprint: safari # 随机指纹：random
 
 # 自动同步时间以防止时间不准导致无法正常联网
 ntp:
@@ -164,8 +172,7 @@ dns:
   listen: 1053
   #real-ip
   enhanced-mode: redir-host
-  #不用fakeip
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*'
     - '+.lan'
@@ -192,42 +199,61 @@ dns:
 
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
-    #ADG-HK-大缓存
-    - 192.168.1.211
+    #paopao-global
+    #- 192.168.1.122
     #并发使用
+    - https://8.8.4.4/dns-query#🚀 节点选择
+    - https://1.0.0.1/dns-query#🚀 节点选择
     #- https://dns.google/dns-query#🚀 节点选择
+    #- tls://8.8.4.4#🚀 节点选择
+    #- tcp://8.8.8.8#🚀 节点选择
   nameserver-policy:
-    "rule-set:lan,fcm,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
+    "rule-set:lan,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
       - 192.168.1.126
     "rule-set:youtube,youtubemusic":
-      #ADG-HK-大缓存
-      - 192.168.1.211
-      #- https://8.8.8.8/dns-query#📹 油管视频
-      #- https://8.8.4.4/dns-query#📹 油管视频
+      #paopao-global
+      #- 192.168.1.122
+      - https://8.8.4.4/dns-query#📹 油管视频
+      - https://1.0.0.1/dns-query#📹 油管视频
+      #- https://dns.google/dns-query#📹 油管视频
+      #- tls://8.8.4.4#📹 油管视频
+      #- tcp://8.8.8.8#📹 油管视频
     "rule-set:google,global-stun":
-      #ADG-HK-大缓存
-      - 192.168.1.211
+      #paopao-global
+      #- 192.168.1.122
       #并发使用
+      - https://8.8.4.4/dns-query#🚀 节点选择
+      - https://1.0.0.1/dns-query#🚀 节点选择
       #- https://dns.google/dns-query#🚀 节点选择
+      #- tls://8.8.4.4#🚀 节点选择
+      #- tcp://8.8.8.8#🚀 节点选择
     "rule-set:netflix,disney":
-      #ADG-HK-大缓存
-      - 192.168.1.211
-      #- https://8.8.8.8/dns-query#🎥 流媒体解锁
-      #- https://8.8.4.4/dns-query#🎥 流媒体解锁
+      #paopao-global
+      #- 192.168.1.122
+      - https://8.8.4.4/dns-query#🎥 流媒体解锁
+      - https://1.0.0.1/dns-query#🎥 流媒体解锁
+      #- https://dns.google/dns-query#🎥 流媒体解锁
+      #- tls://8.8.4.4#🎥 流媒体解锁
+      #- tcp://8.8.8.8#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
       #使用代理好像还会使用paopaodns
       - 192.168.1.124
       - 192.168.1.126
+      #- https://dns.google/dns-query#📺 哔哩哔哩
       #- https://8.8.8.8/dns-query#📺 哔哩哔哩
       #- https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
-      #ADG-HK-大缓存
-      - 192.168.1.211
-      #- https://8.8.8.8/dns-query#🎮 游戏加速
-      #- https://8.8.4.4/dns-query#🎮 游戏加速
+      #paopao-global
+      #- 192.168.1.122
+      #并发使用
+      - https://8.8.4.4/dns-query#🎮 游戏加速
+      - https://1.0.0.1/dns-query#🎮 游戏加速
+      #- https://dns.google/dns-query#🎮 游戏加速
+      #- tls://8.8.4.4#🎮 游戏加速
+      #- tcp://8.8.8.8#🎮 游戏加速
 
 
 
@@ -558,19 +584,19 @@ proxy-groups:
       name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
   - {
       name: 🌎 其它地区,
       type: select,
       <<: *use,
       filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
     }
-  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "http://www.google.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "http://www.google.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
@@ -581,6 +607,12 @@ proxy-groups:
     }
 
 rules:
+  #tg优化
+  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
+  
+  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
+  
   - RULE-SET,lan,🎯 全球直连
   
   - RULE-SET,global,🚀 节点选择
@@ -593,11 +625,7 @@ rules:
   - RULE-SET,openai,💬 OpenAi
   - RULE-SET,gemeni,💬 OpenAi
   
-  #tg优化
-  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
-  
-  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
+
   
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
