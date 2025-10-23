@@ -10,7 +10,8 @@ payload:
   - DOMAIN-SUFFIX,n.nnnolanark.xyz
 
 #steam远程畅玩联机-p2p
-  - DOMAIN-SUFFIX,p2p-hkg1.discovery.steamserver.net
+  - DOMAIN,p2p-hkg1.discovery.steamserver.net
+  - DOMAIN,cmp2-hkg1.steamserver.net
 
 #家宽代理
   - DOMAIN-SUFFIX,iproyal.com
