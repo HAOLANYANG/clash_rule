@@ -9,12 +9,12 @@ tproxy-port: 7894
 allow-lan: false  # 允许局域网连接
 mode: rule
 bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
-ipv6: false
+ipv6: true
 unified-delay: true  # 更换延迟计算方式，去除握手等额外延迟
 tcp-concurrent: true # 启用 TCP 并发连接。这允许 Clash 同时建立多个 TCP 连接，可以提高网络性能和连接速度
 log-level: warning   # 查东西时改成info
 find-process-mode: "strict"       # 设置进程查找模式为严格模式，Clash 会更精确地识别和匹配网络流量来源的进程
-global-client-fingerprint: chrome # 设置全局客户端指纹为 Chrome，使 Clash 在建立连接时模拟 Chrome 浏览器的 TLS 指纹，增强隐私性和绕过某些网站的指纹检测
+global-client-fingerprint: safari # 设置全局客户端指纹为 Chrome，使 Clash 在建立连接时模拟 Chrome 浏览器的 TLS 指纹，增强隐私性和绕过某些网站的指纹检测
 
 # 缓解移动设备耗电问题
 # https://github.com/vernesong/OpenClash/issues/2614
@@ -88,13 +88,13 @@ dns:
   prefer-h3: true
   use-hosts: true
   use-system-hosts: false
-  ipv6: false
+  ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "+.lan"
-    - "rule-set:lan,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
+    - "rule-set:lan,direct,steamcn,fcm,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax"
     - "+.local"
     - "*.localdomain"
     - "+.miwifi.com"
@@ -457,7 +457,7 @@ proxies:
 proxy-groups:
 
   # 🚀 通用分流选择
-  - { name: "🚀 节点选择",   type: select,      proxies: ["🔯 故障转移","♻️ 自动选择","🔮 负载均衡","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "🚀 节点选择",   type: select,      proxies: ["♻️ 自动选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/, "🔯 故障转移","🔮 负载均衡"] }
 
   # 📹 视频类分组
   - { name: "📹 油管视频",   type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
