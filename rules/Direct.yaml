@@ -71,10 +71,6 @@ payload:
 #美团
   - DOMAIN-SUFFIX,meituan.net
   - DOMAIN-KEYWORD,meituan.net
-  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
-  - DOMAIN,maplocatesdksnapshot.d.meituan.net.booom.uk
-  - DOMAIN,p14.dreport.meituan.net.booom.uk
-  - DOMAIN,p4.d.meituan.net.booom.uk
 
 
 #哇有趣
