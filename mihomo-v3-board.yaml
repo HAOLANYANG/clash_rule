@@ -13,8 +13,7 @@ unified-delay: true
 tcp-concurrent: true
 
 # 进程匹配模式
-find-process-mode: always
-
+find-process-mode: strict
 global-client-fingerprint: safari
 
 # 移动端保活优化
