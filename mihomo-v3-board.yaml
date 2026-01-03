@@ -13,9 +13,7 @@ unified-delay: true
 tcp-concurrent: true
 
 # 进程匹配模式
-# 手机端强烈建议 "off"，"strict" 会消耗大量电量且在 Android 上受限
-# 电脑端如果需要按应用分流可改为 "strict" 或 "always"
-find-process-mode: strict
+find-process-mode: off 
 
 global-client-fingerprint: safari
 
@@ -46,12 +44,12 @@ ntp:
 
 tun:
   enable: true
-  stack: system # Android/iOS 推荐 system, Windows 推荐 gvisor/mixed
+  stack: system 
   dns-hijack:
     - any:53
   auto-route: true
   strict-route: true
-  mtu: 9000 # 调大 MTU 减少分包，提升吞吐量
+  mtu: 9000
   auto-detect-interface: true
   # 排除常见内网网段
   route-exclude-address: [192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, fc00::/7]
@@ -59,7 +57,7 @@ tun:
 # 嗅探设置
 sniffer:
   enable: true
-  parse-pure-ip: true # 强制还原 IP 为域名
+  parse-pure-ip: true
   sniff:
     QUIC:
       ports: [443, 853, 8443]
@@ -67,7 +65,7 @@ sniffer:
       ports: [443, 8443]
     HTTP:
       ports: [80, 8080]
-      override-destination: true # 关键：流量重定向修正
+      override-destination: true
 
 hosts:
   dns.google:
@@ -85,7 +83,7 @@ dns:
   enable: true
   prefer-h3: true
   use-hosts: true
-  use-system-hosts: false # 避免系统 hosts 干扰
+  use-system-hosts: false
   ipv6: true
   listen: 0.0.0.0:1053
   
@@ -124,41 +122,42 @@ dns:
     - "+.cmbimg.com"
     - "*.mcdn.bilivideo.cn"
     - "+.apple.com"
-  fake-ip-filter-mode: blacklist
 
   nameserver:
-    - https://dns.google/dns-query#🚀 节点选择
+    - https://8.8.4.4/dns-query#🚀 节点选择
+    
+  # 用于解析 DoH 域名的 Bootstrap DNS
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+    
+  # 专门用于解析节点域名的 DNS
   proxy-server-nameserver:
     - https://223.5.5.5/dns-query#h3=true&🎯 全球直连
     - https://doh.pub/dns-query#🎯 全球直连
-  # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+    
+  # 专门用于 Direct 出口的 DNS
   direct-nameserver:
     - https://223.5.5.5/dns-query#h3=true&🎯 全球直连
-    - https://doh.pub/dns-query#🎯 全球直连'
-  direct-nameserver-follow-policy: true #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
+    - https://doh.pub/dns-query#🎯 全球直连
+    
+  direct-nameserver-follow-policy: true
+  
   nameserver-policy:
     "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax":
-      - https://223.5.5.5/dns-query#🎯 全球直连
+      - https://223.6.6.6/dns-query#🎯 全球直连
       - https://doh.pub/dns-query#🎯 全球直连
     "rule-set:youtube,youtubemusic":
-      - https://dns.google/dns-query#📹 油管视频
+      - https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google":
-      - https://dns.google/dns-query#🚀 节点选择
+      - https://8.8.4.4/dns-query#🚀 节点选择
     "rule-set:netflix,disney":
-      - https://dns.google/dns-query#🎥 流媒体解锁 
+      - https://8.8.4.4/dns-query#🎥 流媒体解锁 
     "rule-set:bilibili,bilibiliintl":
-      #direct-nameserver-follow-policy选false怀疑也是根据policy #直连不遵守policy，所以只有在使用其他节点时才会启用这个
-      - https://223.5.5.5/dns-query#📺 哔哩哔哩
       - https://223.6.6.6/dns-query#📺 哔哩哔哩
-      #直连连不上不用担心给出国外的cdn地址
-      - https://dns.google/dns-query#📺 哔哩哔哩
+      - https://8.8.4.4/dns-query#📺 哔哩哔哩
 
 rule-providers:
-
   lan:
     type: http
     behavior: classical
@@ -395,7 +394,7 @@ rule-providers:
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/pay.yaml"
     path: ./ruleset/pay.yaml
-    interval: 86400      
+    interval: 86400       
 
   visa:
     type: http
@@ -465,18 +464,18 @@ proxies:
 proxy-groups:
 
   # 🚀 通用分流选择
-  - { name: "🚀 节点选择",   type: select,      proxies: ["♻️ 自动选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/, "🔯 故障转移","🔮 负载均衡"] }
+  - { name: "🚀 节点选择",   type: select,       proxies: ["♻️ 自动选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/, "🔯 故障转移","🔮 负载均衡"] }
 
   # 📹 视频类分组
-  - { name: "📹 油管视频",   type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
-  - { name: "🎥 流媒体解锁", type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
-  - { name: "📺 台湾流媒体", type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
-  - { name: "📺 哔哩哔哩",   type: select,      proxies: ["🎯 全球直连","🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "📹 油管视频",   type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "🎥 流媒体解锁", type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
+  - { name: "📺 台湾流媒体", type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "📺 哔哩哔哩",   type: select,       proxies: ["🎯 全球直连","🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /x/, /X/] }
 
   # 🎮 特殊用途
-  - { name: "🎮 游戏加速",   type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
-  - { name: "💬 OpenAi",     type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
-  - { name: "💵 区块链",     type: select,      proxies: ["🚀 节点选择","🇭🇰 香港","🇯🇵 日本","🇹🇼 台湾","🇸🇬 新加坡","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡","🚀 节点选择","🇭🇰 香港", /x/, /X/] }
+  - { name: "🎮 游戏加速",   type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "💬 OpenAi",     type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /x/, /X/] }
+  - { name: "💵 区块链",     type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇯🇵 日本","🇹🇼 台湾","🇸🇬 新加坡","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡","🚀 节点选择","🇭🇰 香港", /x/, /X/] }
 
   # ♻️ 智能策略
   - { name: "♻️ 自动选择",   type: url-test,    proxies: [/.*(x|X).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
