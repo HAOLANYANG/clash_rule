@@ -7,11 +7,6 @@ payload:
 #代理域名补充
   - DOMAIN-SUFFIX,liyuans.com
   - DOMAIN-SUFFIX,v2ex.com
-  - DOMAIN-SUFFIX,n.nnnolanark.xyz
-
-#steam远程畅玩联机-p2p
-  - DOMAIN,p2p-hkg1.discovery.steamserver.net
-  - DOMAIN,cmp2-hkg1.steamserver.net
 
 #家宽代理
   - DOMAIN-SUFFIX,iproyal.com
@@ -30,16 +25,3 @@ payload:
   - IP-CIDR,46.68.0.0/17
 # Giffgaff
   - IP-CIDR,87.194.0.0/16
-
-#www.nyadm.org
-  - DOMAIN,lain.bgm.tv
-  - DOMAIN,play.nyadm.org
-  - DOMAIN,wakigfl.cnmdm.top
-  - DOMAIN-SUFFIX,nyadm.org
-  - DOMAIN-SUFFIX,nyadm.net
-  - DOMAIN-SUFFIX,nyavod.top
-  - DOMAIN-SUFFIX,cnmdm.top
-  - DOMAIN-SUFFIX,bgm.tv
-#疑似属于www.nyadm.org，但都是国外IP
-  - DOMAIN,union.maccms.la
-  - DOMAIN,union.dplayerstatic.com
