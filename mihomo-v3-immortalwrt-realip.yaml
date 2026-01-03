@@ -66,26 +66,22 @@ mode: rule
 socks-port: 1080
 mixed-port: 7890
 tproxy-port: 7895
-external-controller: '127.0.0.1:9091'
+external-controller: '0.0.0.0:9091'
 allow-lan: true
-#验证方式:<用户>:<密码>
 authentication: []
-#不需要验证网段
-skip-auth-prefixes:
-  - 127.0.0.1/32
-  - 192.168.0.0/20
 bind-address: "*"
-#- off, 不匹配进程，推荐在路由器上使用此模式
+
+# 基础设置
 find-process-mode: off
 udp: true
 ipv6: true
-mode: rule
-# 统一延迟
-# 更换延迟计算方式,去除握手等额外延迟
+log-level: warning
+
+# 延迟与并发优化
 unified-delay: true
-# TCP 并发
-# 同时对所有ip进行连接，返回延迟最低的地址
 tcp-concurrent: true
+
+# Geo 数据
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
@@ -94,75 +90,61 @@ geox-url:
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
-log-level: warning
-hosts:
-    dns.google: 8.8.8.8
-    dns.alidns.com: 223.5.5.5
 
-# 缓解移动设备耗电问题
-# https://github.com/vernesong/OpenClash/issues/2614
 keep-alive-interval: 1800
+global-client-fingerprint: safari
 
-# 全局客户端指纹
-global-client-fingerprint: safari # 随机指纹：random
-
-# 自动同步时间以防止时间不准导致无法正常联网
 ntp:
   enable: true
-  # 是否同步至系统时间，需要 root/管理员权限
   write-to-system: false
   server: time.apple.com
   port: 123
   interval: 30
 
 profile: 
-  # 存储 select 选择记录
   store-selected: true
-  # 持久化 fake-ip
-  store-fake-ip: true
+  store-fake-ip: false # 不使用fake-ip，无需持久化
 
-
+# 关闭 TUN，使用 TProxy
 tun:
-  enable: false
-  stack: system # gvisor/mixed
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  mtu: 1400 #防止被解包
-  auto-route: true
-  strict-route: true
+  enable: false 
+  stack: system
+  auto-route: false
   auto-detect-interface: true
 
-# 嗅探域名
+# ==========================================
+# 核心重点：嗅探器配置 (Real-IP 模式下的救命稻草)
+# ==========================================
 sniffer:
   enable: true
+  # 强制对流量进行域名还原，这对于 UDP 和被污染的 DNS 至关重要
+  parse-pure-ip: true 
   sniff:
     QUIC:
-      ports: [ 443, 853, 8443]
+      ports: [443, 853, 8443]
     TLS:
       ports: [443, 853, 8080-8880]
     HTTP:
       ports: [80, 8080-8880]
-      override-destination: true
-  force-domain:
-    - +.v2ex.com
+      # 允许覆盖目标地址。如果客户端解析到了污染IP，sniffer嗅探出域名后，
+      # Clash会忽略客户端发来的IP，重新用远程DNS解析，从而救回连接。
+      override-destination: true 
   skip-domain:
     - Mijia Cloud
     - +.push.apple.com
 
+# 合并后的 Hosts
 hosts:
   dns.google:
     - 8.8.8.8
     - 8.8.4.4
-    - 2001:4860:4860::8888
-    - 2001:4860:4860::8844
   dns.alidns.com:
     - 223.5.5.5
     - 223.6.6.6
-    - 2400:3200::1
-    - 2400:3200:baba::1
 
-
+# ==========================================
+# 核心重点：DNS 配置 (Real-IP 模式)
+# ==========================================
 dns:
   enable: true
   prefer-h3: true
@@ -170,31 +152,23 @@ dns:
   use-system-hosts: true
   ipv6: true
   listen: 1053
-  #real-ip
+  
+  # 使用 redir-host 模式（如果不兼容你的内核版本，请看下方的“兼容性注视”）
   enhanced-mode: redir-host
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*'
-    - '+.lan'
-    - '+.local'
-  fake-ip-filter-mode: blacklist
-  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
-  # 只能使用纯 IP 地址，可使用加密 DNS  
+  
+  # 如果你的内核提示 redir-host 已废弃，请改用下面这两行替代，效果完全一样：
+  # enhanced-mode: fake-ip
+  # fake-ip-filter: ['*']  <-- 过滤所有域名，即所有域名都返回真实IP
+
   default-nameserver:
     - 192.168.1.124
-    - 192.168.1.126
-  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
   proxy-server-nameserver:
     - 192.168.1.124
-    - 192.168.1.126
-
   direct-nameserver:
       #paopaodns
       #- 192.168.1.121
       #adguardhome
       - 192.168.1.124
-      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
-      - 192.168.1.126
   direct-nameserver-follow-policy: true #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
 
   nameserver:
@@ -208,7 +182,7 @@ dns:
     #- tls://8.8.4.4#🚀 节点选择
     #- tcp://8.8.8.8#🚀 节点选择
   nameserver-policy:
-    "rule-set:lan,direct,steamcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
+    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
       #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
@@ -540,13 +514,22 @@ rule-providers:
     path: ./ruleset/Game.yaml
     interval: 86400 
 
+  gamedownloadcn:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml"
+    path: ./ruleset/GameDownloadCN.yaml
+    interval: 86400 
+
+
+
 
 proxy-groups:
   - {
       name: 🚀 节点选择,
       type: select,
       proxies:
-        [🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区,♻️ 自动选择,🔯 故障转移],
+        [♻️ 自动选择,🔯 故障转移,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区],
       <<: *use,
       filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
     }
@@ -619,6 +602,7 @@ rules:
 
   - RULE-SET,direct,🎯 全球直连
   - RULE-SET,steamcn,🎯 全球直连
+  - RULE-SET,gamedownloadcn,🎯 全球直连
   - RULE-SET,coolapk,🎯 全球直连
   - RULE-SET,apple,🎯 全球直连
 
