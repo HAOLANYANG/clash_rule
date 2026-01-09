@@ -2,7 +2,7 @@ listeners:
   - name: mixed1
     type: mixed
     port: 45001
-    proxy: 🇭🇰香港HKT|家宽|Socks5:45001 x3
+    proxy: 🇭🇰香港HKT|家宽|Socks|127.0.0.1:45001 x3
 
 port: 7890
 socks-port: 7891
