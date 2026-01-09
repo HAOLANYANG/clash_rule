@@ -1,3 +1,9 @@
+listeners:
+  - name: mixed1
+    type: mixed
+    port: 45001
+    proxy: 🇭🇰香港HKT|家宽|Mixed:45001 x3
+
 port: 7890
 socks-port: 7891
 mixed-port: 7893
@@ -451,11 +457,7 @@ rule-providers:
     path: ./ruleset/GameDownloadCN.yaml
     interval: 86400 
 
-listeners:
-  - name: mixed1
-    type: mixed
-    port: 45001
-    proxy: 🇭🇰香港HKT|家宽|Mixed:45001 x1
+
 
 proxies:
 
