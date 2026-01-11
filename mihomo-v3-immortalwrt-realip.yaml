@@ -6,15 +6,17 @@ use: &use
     - 订阅一
     # - 订阅二
     # - 本地配置
-    
+
+common-exclude: &exclude-regex "(?i)直连|网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix"
+  
 pr:
   &pr {
     type: select,
-    proxies:
-      [ 🚀 节点选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,♻️ 自动选择,🔯 故障转移],
-      <<: *use,
-      filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*",
+    proxies: [ 🚀 节点选择,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,♻️ 自动选择,🔯 故障转移],
+    <<: *use,
+    exclude-filter: *exclude-regex
   }
+
 # 延迟检测 URL 锚点
 p: &p
   type: http
@@ -537,10 +539,9 @@ proxy-groups:
   - {
       name: 🚀 节点选择,
       type: select,
-      proxies:
-        [♻️ 自动选择,🔯 故障转移,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国,🌎 其它地区],
+      proxies: [♻️ 自动选择,🔯 故障转移,🇭🇰 香港,🇹🇼 台湾,🇸🇬 新加坡,🇯🇵 日本,🇺🇲 美国],
       <<: *use,
-      filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余)).*",
+      exclude-filter: *exclude-regex
     }
   - { name: 📹 油管视频, <<: *pr }
   - { name: 🎥 流媒体解锁, <<: *pr }
@@ -550,8 +551,7 @@ proxy-groups:
       proxies:
         [  
           🇹🇼 台湾,
-          🚀 节点选择,
-          
+          🚀 节点选择
         ],
     }
   - {
@@ -576,19 +576,13 @@ proxy-groups:
       name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|hk|Hong Kong|HongKong|hongkong", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|twTaiwan", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)(新|sg|singapore)", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - {
-      name: 🌎 其它地区,
-      type: select,
-      <<: *use,
-      filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|流量|套餐|到期)).*",
-    }
-  - { name: ♻️ 自动选择, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🔯 故障转移, <<: *use, filter: "(?i)^(?!.*(?:官网|流量|套餐|到期|重置|剩余|直连)).*", tolerance: 100, type: fallback, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|Hong Kong", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|tw|Taiwan", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)新|sg|singapore", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", exclude-filter: *exclude-regex, tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", exclude-filter: *exclude-regex, tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🔯 故障转移, <<: *use, exclude-filter: *exclude-regex, tolerance: 100, type: fallback, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
       type: select,
