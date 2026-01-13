@@ -213,12 +213,6 @@ dns:
     #paopao-global
     #- 192.168.1.122
     - 192.168.1.126
-    
-    #- https://8.8.4.4/dns-query#🚀 节点选择
-    #- https://1.0.0.1/dns-query#🚀 节点选择
-    #- https://dns.google/dns-query#🚀 节点选择
-    #- tls://8.8.4.4#🚀 节点选择
-    #- tcp://8.8.8.8#🚀 节点选择
   nameserver-policy:
     "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
@@ -226,47 +220,22 @@ dns:
     "rule-set:youtube,youtubemusic":
       #paopao-global
       #- 192.168.1.122
-      - https://8.8.4.4/dns-query#📹 油管视频
-      - https://1.0.0.1/dns-query#📹 油管视频
-      #- https://dns.google/dns-query#📹 油管视频
-      #- tls://8.8.4.4#📹 油管视频
-      #- tcp://8.8.8.8#📹 油管视频
+      - 192.168.1.126
     "rule-set:google,global-stun":
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
-      #并发使用
-      #- https://8.8.4.4/dns-query#🚀 节点选择
-      #- https://1.0.0.1/dns-query#🚀 节点选择
-      #- https://dns.google/dns-query#🚀 节点选择
-      #- tls://8.8.4.4#🚀 节点选择
-      #- tcp://8.8.8.8#🚀 节点选择
     "rule-set:netflix,disney":
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
-      #- https://8.8.4.4/dns-query#🎥 流媒体解锁
-      #- https://1.0.0.1/dns-query#🎥 流媒体解锁
-      #- https://dns.google/dns-query#🎥 流媒体解锁
-      #- tls://8.8.4.4#🎥 流媒体解锁
-      #- tcp://8.8.8.8#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
-      #使用代理好像还会使用paopaodns
+      #路由器直连即可
       - 192.168.1.124
-      #- 192.168.1.126
-      #- https://dns.google/dns-query#📺 哔哩哔哩
-      #- https://8.8.8.8/dns-query#📺 哔哩哔哩
-      #- https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
-      #并发使用
-      #- https://8.8.4.4/dns-query#🎮 游戏加速
-      #- https://1.0.0.1/dns-query#🎮 游戏加速
-      #- https://dns.google/dns-query#🎮 游戏加速
-      #- tls://8.8.4.4#🎮 游戏加速
-      #- tcp://8.8.8.8#🎮 游戏加速
 
 
 
