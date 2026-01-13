@@ -118,7 +118,6 @@ tun:
 # 嗅探器配置
 sniffer:
   enable: true
-  # 强制对流量进行域名还原，这对于 UDP 和被污染的 DNS 至关重要
   parse-pure-ip: true 
   sniff:
     QUIC:
@@ -127,8 +126,6 @@ sniffer:
       ports: [443, 853, 8080-8880]
     HTTP:
       ports: [80, 8080-8880]
-      # 允许覆盖目标地址。如果客户端解析到了污染IP，sniffer嗅探出域名后，
-      # Clash会忽略客户端发来的IP，重新用远程DNS解析，从而救回连接。
       override-destination: true 
   skip-domain:
     - Mijia Cloud
@@ -146,9 +143,6 @@ hosts:
     - 2400:3200::1
     - 2400:3200:baba::1
 
-# ==========================================
-# 核心重点：DNS 配置 (Real-IP 模式)
-# ==========================================
 dns:
   enable: true
   prefer-h3: true
@@ -179,9 +173,10 @@ dns:
     #做兜底使用-除了国内以及指定了的都用这个
     #paopao-global
     #- 192.168.1.122
-    #并发使用
-    - https://8.8.4.4/dns-query#🚀 节点选择
-    - https://1.0.0.1/dns-query#🚀 节点选择
+    - 192.168.1.126
+    
+    #- https://8.8.4.4/dns-query#🚀 节点选择
+    #- https://1.0.0.1/dns-query#🚀 节点选择
     #- https://dns.google/dns-query#🚀 节点选择
     #- tls://8.8.4.4#🚀 节点选择
     #- tcp://8.8.8.8#🚀 节点选择
@@ -189,8 +184,6 @@ dns:
     "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
-      #dnsproxy-上游是paopao-cn-121，超时10ms调用adg-cn-127
-      - 192.168.1.126
     "rule-set:youtube,youtubemusic":
       #paopao-global
       #- 192.168.1.122
@@ -202,33 +195,36 @@ dns:
     "rule-set:google,global-stun":
       #paopao-global
       #- 192.168.1.122
+      - 192.168.1.126
       #并发使用
-      - https://8.8.4.4/dns-query#🚀 节点选择
-      - https://1.0.0.1/dns-query#🚀 节点选择
+      #- https://8.8.4.4/dns-query#🚀 节点选择
+      #- https://1.0.0.1/dns-query#🚀 节点选择
       #- https://dns.google/dns-query#🚀 节点选择
       #- tls://8.8.4.4#🚀 节点选择
       #- tcp://8.8.8.8#🚀 节点选择
     "rule-set:netflix,disney":
       #paopao-global
       #- 192.168.1.122
-      - https://8.8.4.4/dns-query#🎥 流媒体解锁
-      - https://1.0.0.1/dns-query#🎥 流媒体解锁
+      - 192.168.1.126
+      #- https://8.8.4.4/dns-query#🎥 流媒体解锁
+      #- https://1.0.0.1/dns-query#🎥 流媒体解锁
       #- https://dns.google/dns-query#🎥 流媒体解锁
       #- tls://8.8.4.4#🎥 流媒体解锁
       #- tcp://8.8.8.8#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
       #使用代理好像还会使用paopaodns
       - 192.168.1.124
-      - 192.168.1.126
+      #- 192.168.1.126
       #- https://dns.google/dns-query#📺 哔哩哔哩
       #- https://8.8.8.8/dns-query#📺 哔哩哔哩
       #- https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:game,global-game":
       #paopao-global
       #- 192.168.1.122
+      - 192.168.1.126
       #并发使用
-      - https://8.8.4.4/dns-query#🎮 游戏加速
-      - https://1.0.0.1/dns-query#🎮 游戏加速
+      #- https://8.8.4.4/dns-query#🎮 游戏加速
+      #- https://1.0.0.1/dns-query#🎮 游戏加速
       #- https://dns.google/dns-query#🎮 游戏加速
       #- tls://8.8.4.4#🎮 游戏加速
       #- tcp://8.8.8.8#🎮 游戏加速
