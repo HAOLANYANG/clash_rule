@@ -26,7 +26,7 @@ p: &p
     enable: true
     url: http://www.google.com/generate_204
     # 节点连通性检测时间，单位为秒
-    interval: 300
+    interval: 120
     # 节点超时延迟，单位为毫秒
     timeout: 1000
     # 节点自动切换差值，单位为毫秒
@@ -532,12 +532,12 @@ proxy-groups:
       name: 💵 区块链, <<: *pr } 
 
   # 分隔,下面是地区分组
-  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|Hong Kong", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|tw|Taiwan", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)新|sg|singapore", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", exclude-filter: *exclude-regex, tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", exclude-filter: *exclude-regex, tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
-  - { name: ♻️ 自动选择, <<: *use, exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: true }
+  - { name: 🇭🇰 香港, <<: *use, filter: "(?i)港|HK|Hong Kong", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: 🇹🇼 台湾, <<: *use, filter: "(?i)台|新北|彰化|TW|tw|Taiwan", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: 🇸🇬 新加坡, <<: *use, filter: "(?i)新|sg|singapore", exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: 🇯🇵 日本, <<: *use, filter: "(?i)日|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|Japan", exclude-filter: *exclude-regex, tolerance: 150, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: 🇺🇲 美国, <<: *use, filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|盐城|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|unitedstates|united states", exclude-filter: *exclude-regex, tolerance: 250, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
+  - { name: ♻️ 自动选择, <<: *use, exclude-filter: *exclude-regex, tolerance: 100, type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
   - { name: 🔯 故障转移, <<: *use, exclude-filter: *exclude-regex, tolerance: 100, type: fallback, url: "https://www.gstatic.com/generate_204", interval: 120, lazy: true }
   - {
       name: 🎯 全球直连,
