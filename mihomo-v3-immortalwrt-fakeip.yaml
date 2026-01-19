@@ -213,6 +213,7 @@ dns:
     #paopao-global
     #- 192.168.1.122
     - 192.168.1.126
+    - https://8.8.4.4/dns-query#🚀 节点选择
   nameserver-policy:
     "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
@@ -221,14 +222,17 @@ dns:
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
+      - https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google,global-stun":
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
+      - https://8.8.4.4/dns-query#🚀 节点选择
     "rule-set:netflix,disney":
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
+      - https://8.8.4.4/dns-query#🎥 流媒体解锁
     "rule-set:bilibili,bilibiliintl":
       #路由器直连即可
       - 192.168.1.124
@@ -236,7 +240,7 @@ dns:
       #paopao-global
       #- 192.168.1.122
       - 192.168.1.126
-
+      - https://8.8.4.4/dns-query#🚀 节点选择
 
 
 rule-providers:
