@@ -213,12 +213,6 @@ dns:
       - 'tls://dot.pub:853'
   direct-nameserver-follow-policy: true # 似乎失效 #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
   nameserver-policy:
-    "rule-set:lan,fcm,direct,steamcn,coolapk,apple,ntp,privatetracker,cnmax":
-      - 'https://223.5.5.5/dns-query#h3=true'
-      - 'tls://dot.pub:853'
-    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn,category-game-platforms-download":
-      - 'https://223.5.5.5/dns-query#h3=true'
-      - 'tls://dot.pub:853'
     "rule-set:youtube,youtubemusic":
       - 'tls://8.8.8.8:853#📹 油管视频&ipv4-prefer'
       - 'https://dns.google/dns-query#📹 油管视频&ipv4-prefer'
@@ -242,7 +236,13 @@ dns:
       - 'https://223.5.5.5/dns-query#📺 哔哩哔哩&h3=true'
       - 'tls://223.5.5.5:853#📺 哔哩哔哩'
       #直连连不上不用担心给出国外的cdn地址
-      
+    "rule-set:lan,fcm,direct,steamcn,coolapk,apple,ntp,privatetracker,cnmax":
+      - 'https://223.5.5.5/dns-query#h3=true'
+      - 'tls://dot.pub:853'
+    "geosite:tld-cn,category-games-cn,category-game-accelerator-cn,category-game-platforms-download":
+      - 'https://223.5.5.5/dns-query#h3=true'
+      - 'tls://dot.pub:853'
+
 rule-providers:
 
   lan:
