@@ -153,9 +153,6 @@ dns:
   direct-nameserver-follow-policy: true
   
   nameserver-policy:
-    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax":
-      - https://223.6.6.6/dns-query#🎯 全球直连
-      - https://doh.pub/dns-query#🎯 全球直连
     "rule-set:youtube,youtubemusic":
       - https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google":
@@ -165,6 +162,9 @@ dns:
     "rule-set:bilibili,bilibiliintl":
       - https://223.6.6.6/dns-query#📺 哔哩哔哩
       - https://8.8.4.4/dns-query#📺 哔哩哔哩
+    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax":
+      - https://223.6.6.6/dns-query#🎯 全球直连
+      - https://doh.pub/dns-query#🎯 全球直连
 
 rule-providers:
   lan:
