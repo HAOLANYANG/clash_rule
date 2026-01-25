@@ -215,9 +215,6 @@ dns:
     - 192.168.1.126
     - https://8.8.4.4/dns-query#🚀 节点选择
   nameserver-policy:
-    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
-      #adguardhome-上游是paopao-cn-121
-      - 192.168.1.124
     "rule-set:youtube,youtubemusic":
       #paopao-global
       #- 192.168.1.122
@@ -241,6 +238,9 @@ dns:
       #- 192.168.1.122
       - 192.168.1.126
       - https://8.8.4.4/dns-query#🚀 节点选择
+    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
+      #adguardhome-上游是paopao-cn-121
+      - 192.168.1.124
 
 
 rule-providers:
