@@ -90,7 +90,7 @@ hosts:
 
 dns:
   enable: true
-  prefer-h3: true
+  prefer-h3: false
   use-hosts: true
   use-system-hosts: false
   ipv6: true
