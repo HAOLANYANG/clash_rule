@@ -530,8 +530,8 @@ rules:
   #tg优化
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
   
-  # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(RULE-SET,youtube),REJECT
+  # 防止网站使用 QUIC 导致速度不佳或者断流的情况, 禁用 443 端口 UDP 流量（不包括国内）
+  - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,youtubemusic,📹 油管视频
