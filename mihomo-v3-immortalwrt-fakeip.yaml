@@ -247,7 +247,6 @@ dns:
 
 
 rule-providers:
-
   lan:
     type: http
     behavior: classical
@@ -437,6 +436,50 @@ rule-providers:
     path: ./ruleset/Gemini.yaml
     interval: 86400
 
+  onedrive:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OneDrive/OneDrive.yaml"
+    path: ./ruleset/OneDrive.yaml
+    interval: 86400
+
+  googledrive:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GoogleDrive/GoogleDrive.yaml"
+    path: ./ruleset/GoogleDrive.yaml
+    interval: 86400
+
+  dropbox:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Dropbox/Dropbox.yaml"
+    path: ./ruleset/Dropbox.yaml
+    interval: 86400
+
+  mega:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/MEGA/MEGA.yaml"
+    path: ./ruleset/MEGA.yaml
+    interval: 86400
+
+  pikpak:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml"
+    path: ./ruleset/PikPak.yaml
+    interval: 86400
+
+
+  terabox:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TeraBox/TeraBox.yaml"
+    path: ./ruleset/TeraBox.yaml
+    interval: 86400
+
+
   telegram:
     type: http
     behavior: classical
@@ -484,7 +527,7 @@ rule-providers:
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/HAOLANYANG/clash_rule@main/rules/pay.yaml"
     path: ./ruleset/pay.yaml
-    interval: 86400      
+    interval: 86400       
 
   visa:
     type: http
@@ -514,13 +557,6 @@ rule-providers:
     path: ./ruleset/Binance.yaml
     interval: 86400   
 
-  crypto:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Crypto/Crypto.yaml"
-    path: ./ruleset/Crypto.yaml
-    interval: 86400  
-
   global-game:
     type: http
     behavior: classical
@@ -533,7 +569,14 @@ rule-providers:
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
     path: ./ruleset/Game.yaml
-    interval: 86400 
+    interval: 86400
+
+  crypto:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Crypto/Crypto.yaml"
+    path: ./ruleset/Crypto.yaml
+    interval: 86400
 
   gamedownloadcn:
     type: http
@@ -541,6 +584,20 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml"
     path: ./ruleset/GameDownloadCN.yaml
     interval: 86400 
+
+  ad-lite:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical.yaml"
+    path: ./ruleset/AdvertisingLite_Classical.yaml
+    interval: 86400
+
+  ad:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising_Classical.yaml"
+    path: ./ruleset/Advertising_Classical.yaml
+    interval: 86400
 
 
 
@@ -580,6 +637,8 @@ proxy-groups:
         🔯 故障转移
         ],
     }
+  # Ⓜ️ 国外网盘 需要消耗较大的流量
+  - { name: "Ⓜ️ 国外云盘",     type: select,    proxies: [/.*(0.4|0.5|0.6|CO|co).*/,"🚀 节点选择","🎯 全球直连", /^(?!.*(0.4|0.5|0.6|CO|co|网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
   - { name: 🎮 游戏加速, <<: *pr }
   - { name: 💬 OpenAi, <<: *pr }     
   - {
@@ -639,6 +698,13 @@ rules:
   
   - RULE-SET,bilibiliintl,📺 哔哩哔哩
   - RULE-SET,bilibili,📺 哔哩哔哩  
+
+  - RULE-SET,onedrive,Ⓜ️ 国外云盘
+  - RULE-SET,googledrive,Ⓜ️ 国外云盘
+  - RULE-SET,dropbox,Ⓜ️ 国外云盘
+  - RULE-SET,mega,Ⓜ️ 国外云盘
+  - RULE-SET,pikpak,Ⓜ️ 国外云盘
+  - RULE-SET,terabox,Ⓜ️ 国外云盘
   
   - RULE-SET,telegram,🚀 节点选择
   - RULE-SET,line,🚀 节点选择
