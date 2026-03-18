@@ -153,6 +153,9 @@ dns:
   direct-nameserver-follow-policy: true
   
   nameserver-policy:
+    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax":
+      - https://223.6.6.6/dns-query#🎯 全球直连
+      - https://doh.pub/dns-query#🎯 全球直连
     "rule-set:youtube,youtubemusic":
       - https://8.8.4.4/dns-query#📹 油管视频
     "rule-set:google":
@@ -164,10 +167,6 @@ dns:
       - https://8.8.4.4/dns-query#📺 哔哩哔哩
     "rule-set:onedrive,googledrive,dropbox,mega,pikpak,terabox":
       - https://8.8.4.4/dns-query#Ⓜ️ 国外云盘
-      - https://1.0.0.1/dns-query#Ⓜ️ 国外云盘
-    "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax":
-      - https://223.6.6.6/dns-query#🎯 全球直连
-      - https://doh.pub/dns-query#🎯 全球直连
 
 rule-providers:
   lan:
