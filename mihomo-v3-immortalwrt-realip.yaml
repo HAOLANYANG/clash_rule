@@ -162,8 +162,9 @@ dns:
 
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
-    - https://8.8.4.4/dns-queryy#🚀 节点选择
-    - https://1.0.0.1/dns-queryy#🚀 节点选择
+    - 192.168.1.126
+    - https://8.8.4.4/dns-query#🚀 节点选择
+    - https://1.0.0.1/dns-query#🚀 节点选择
   nameserver-policy:
     "rule-set:youtube,youtubemusic":
       #paopao-global
