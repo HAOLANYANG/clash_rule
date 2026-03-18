@@ -534,6 +534,9 @@ proxy-groups:
   - { name: "📺 台湾流媒体", type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /^(?!.*(网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
   - { name: "📺 哔哩哔哩",   type: select,       proxies: ["🎯 全球直连","🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国", /^(?!.*(网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
 
+  # Ⓜ️ 国外网盘 需要消耗较大的流量
+  - { name: "Ⓜ️ 国外云盘",     type: select,    proxies: [/.*(0.|CO|co).*/,"🚀 节点选择","🎯 全球直连"] }
+
   # 🎮 特殊用途
   - { name: "🎮 游戏加速",   type: select,       proxies: ["🚀 节点选择","🎯 全球直连","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /^(?!.*(网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
   - { name: "💬 OpenAi",     type: select,       proxies: ["🚀 节点选择","🇭🇰 香港","🇹🇼 台湾","🇸🇬 新加坡","🇯🇵 日本","🇺🇲 美国","🔯 故障转移","♻️ 自动选择","🔮 负载均衡", /^(?!.*(网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
@@ -595,7 +598,14 @@ rules:
   
   - RULE-SET,bilibiliintl,📺 哔哩哔哩
   - RULE-SET,bilibili,📺 哔哩哔哩  
-  
+
+  - RULE-SET,onedrive,Ⓜ️ 国外云盘
+  - RULE-SET,googledrive,Ⓜ️ 国外云盘
+  - RULE-SET,dropbox,Ⓜ️ 国外云盘
+  - RULE-SET,mega,Ⓜ️ 国外云盘
+  - RULE-SET,pikpak,Ⓜ️ 国外云盘
+  - RULE-SET,terabox,Ⓜ️ 国外云盘
+
   - RULE-SET,telegram,🚀 节点选择
   - RULE-SET,line,🚀 节点选择
   - RULE-SET,whatsapp,🚀 节点选择
