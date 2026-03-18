@@ -162,9 +162,8 @@ dns:
 
   nameserver:
     #做兜底使用-除了国内以及指定了的都用这个
-    #paopao-global
-    #- 192.168.1.122
-    - 192.168.1.126
+    - https://8.8.4.4/dns-queryy#🚀 节点选择
+    - https://1.0.0.1/dns-queryy#🚀 节点选择
   nameserver-policy:
     "rule-set:youtube,youtubemusic":
       #paopao-global
@@ -187,6 +186,9 @@ dns:
     "rule-set:bilibili,bilibiliintl":
       #路由器直连即可
       - 192.168.1.124
+    "rule-set:onedrive,googledrive,dropbox,mega,pikpak,terabox":
+      - https://8.8.4.4/dns-query#Ⓜ️ 国外云盘
+      - https://1.0.0.1/dns-query#Ⓜ️ 国外云盘
     "rule-set:game,global-game":
       #paopao-global
       #- 192.168.1.122
