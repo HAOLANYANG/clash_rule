@@ -4,6 +4,9 @@ payload:
   - DOMAIN,vgod.uk
   - DOMAIN-SUFFIX,iuuu.uk
 
+#需要加速的自己网站
+  - DOMAIN,nezha.booom.uk
+
 #代理域名补充
   - DOMAIN-SUFFIX,liyuans.com
   - DOMAIN-SUFFIX,v2ex.com
