@@ -136,6 +136,7 @@ dns:
   nameserver:
     - https://223.5.5.5/dns-query#🎯 全球直连
     - https://doh.pub/dns-query#🎯 全球直连
+
     
   # 用于解析 DoH 域名的 Bootstrap DNS
   default-nameserver:
@@ -589,9 +590,9 @@ proxy-groups:
   - { name: "🇯🇵 日本",     type: url-test,    proxies: [/.*(日|JP|jp).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
   - { name: "🇺🇲 美国",     type: url-test,    proxies: [/.*(美|US|us).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
   
-  - { name: "🎯 全球直连", type: select, proxies: ["DIRECT"] }
+  - { name: "🎯 全球直连", type: select, proxies: ["DIRECT", /^(?!.*(X|网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
 
-  - { name: "🛑 广告/追踪拦截", type: select, proxies: ["REJECT"] }
+  - { name: "🛑 广告/追踪拦截", type: select, proxies: ["REJECT", /^(?!.*(X|网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
 
 
 rules:
