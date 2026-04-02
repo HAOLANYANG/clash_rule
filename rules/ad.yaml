@@ -1,0 +1,3 @@
+payload:
+  - DOMAIN,dnspod.meituan.httpdns.qcloud.com
+  - DOMAIN-SUFFIX,httpdns.qcloud.com
