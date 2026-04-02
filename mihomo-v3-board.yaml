@@ -67,14 +67,14 @@ tun:
 sniffer:
   enable: true
   parse-pure-ip: true
+  override-destination: true
   sniff:
     QUIC:
       ports: [443, 853, 8443]
     TLS:
-      ports: [443, 8443]
+      ports: [443, 853, 8443]
     HTTP:
-      ports: [80, 8080]
-      override-destination: true
+      ports: [80, 8000-8888]
 
 hosts:
   dns.google:
@@ -102,7 +102,7 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.lan"
-    - "rule-set:lan,direct,coolapk,privatetracker,cnmax"
+    - "rule-set:lan,direct,coolapk,privatetracker"
     - "+.local"
     - "*.localdomain"
     - "+.miwifi.com"
@@ -543,14 +543,14 @@ rule-providers:
 
   anti-ad-clash:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml"
     path: ./ruleset/anti-ad-clash.yaml
     interval: 86400
 
   anti-ad-white-for-clash:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://cdn.jsdelivr.net/gh/privacy-protection-tools/dead-horse@master/anti-ad-white-for-clash.yaml"
     path: ./ruleset/anti-ad-white-for-clash.yaml
     interval: 86400
