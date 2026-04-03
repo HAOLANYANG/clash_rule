@@ -140,7 +140,7 @@ hosts:
 
 dns:
   enable: true
-  prefer-h3: false
+  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   ipv6: true
@@ -149,8 +149,11 @@ dns:
   # 使用 redir-host 模式（如果不兼容你的内核版本，请看下方的“兼容性注视”）
   enhanced-mode: redir-host
 
+  # 用于解析 DoH 域名的 Bootstrap DNS
   default-nameserver:
     - 192.168.1.124
+    - 223.5.5.5
+  # 专门用于解析节点域名的 DNS
   proxy-server-nameserver:
     - 192.168.1.124
   direct-nameserver:
@@ -161,41 +164,14 @@ dns:
   direct-nameserver-follow-policy: true #直连域名是否遵循nameserver-policy，默认false为不遵守，仅当direct-nameserver不为空时生效
 
   nameserver:
-    #做兜底使用-除了国内以及指定了的都用这个
+    #nameserver做兜底使用，要使用国外纯净dns把IP快速解析出来（IP过期也没所谓，只要速度快，让bgp识别是国外的IP即可）给bgp进行分流处理，再交给节点远端解析
     - 192.168.1.126
     - https://8.8.4.4/dns-query#🚀 节点选择
-    - https://1.0.0.1/dns-query#🚀 节点选择
+    - https://8.8.8.8/dns-query#♻️ 自动选择
+    #使用国内dns加速解析
+    #- 192.168.1.124
   nameserver-policy:
-    "rule-set:youtube,youtubemusic":
-      #paopao-global
-      #- 192.168.1.122
-      #- 192.168.1.126
-      - https://8.8.4.4/dns-query#📹 油管视频
-      - https://1.0.0.1/dns-query#📹 油管视频
-    "rule-set:google,global-stun":
-      #paopao-global
-      #- 192.168.1.122
-      #- 192.168.1.126
-      - https://8.8.4.4/dns-query#🚀 节点选择
-      - https://1.0.0.1/dns-query#🚀 节点选择
-    "rule-set:netflix,disney":
-      #paopao-global
-      #- 192.168.1.122
-      #- 192.168.1.126
-      - https://8.8.4.4/dns-query#🎥 流媒体解锁
-      - https://1.0.0.1/dns-query#🎥 流媒体解锁
-    "rule-set:bilibili,bilibiliintl":
-      #路由器直连即可
-      - 192.168.1.124
-    "rule-set:onedrive,googledrive,dropbox,mega,pikpak,terabox":
-      - https://8.8.4.4/dns-query#Ⓜ️ 国外云盘
-      - https://1.0.0.1/dns-query#Ⓜ️ 国外云盘
-    "rule-set:game,global-game":
-      #paopao-global
-      #- 192.168.1.122
-      #- 192.168.1.126
-      - https://8.8.4.4/dns-query#🎮 游戏加速
-      - https://1.0.0.1/dns-query#🎮 游戏加速
+    #国内域名使用这里解析
     "rule-set:lan,direct,steamcn,gamedownloadcn,coolapk,apple,bilibiliintl,bilibili,ntp,privatetracker,cnmax":
       #adguardhome-上游是paopao-cn-121
       - 192.168.1.124
@@ -605,7 +581,6 @@ rule-providers:
 
 
 
-
 proxy-groups:
   - {
       name: 🚀 节点选择,
@@ -672,63 +647,63 @@ rules:
   # 防止网站使用 QUIC 导致速度不佳或者断流的情况, 禁用 443 端口 UDP 流量（不包括国内）
   - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   
-  - RULE-SET,lan,🎯 全球直连
+  - RULE-SET,lan,🎯 全球直连,no-resolve
   
-  - RULE-SET,global,🚀 节点选择
+  - RULE-SET,global,🚀 节点选择,no-resolve
 
-  - RULE-SET,direct,🎯 全球直连
-  - RULE-SET,steamcn,🎯 全球直连
-  - RULE-SET,gamedownloadcn,🎯 全球直连
-  - RULE-SET,coolapk,🎯 全球直连
-  - RULE-SET,apple,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连,no-resolve
+  - RULE-SET,steamcn,🎯 全球直连,no-resolve
+  - RULE-SET,gamedownloadcn,🎯 全球直连,no-resolve
+  - RULE-SET,coolapk,🎯 全球直连,no-resolve
+  - RULE-SET,apple,🎯 全球直连,no-resolve
 
-  - RULE-SET,openai,💬 OpenAi
-  - RULE-SET,gemeni,💬 OpenAi
+  - RULE-SET,openai,💬 OpenAi,no-resolve
+  - RULE-SET,gemeni,💬 OpenAi,no-resolve
   
 
   
-  - RULE-SET,youtube,📹 油管视频
-  - RULE-SET,youtubemusic,📹 油管视频
+  - RULE-SET,youtube,📹 油管视频,no-resolve
+  - RULE-SET,youtubemusic,📹 油管视频,no-resolve
   
-  - RULE-SET,netflix,🎥 流媒体解锁
-  - RULE-SET,disney,🎥 流媒体解锁
-  - RULE-SET,hbo,🎥 流媒体解锁
-  - RULE-SET,primevideo,🎥 流媒体解锁
-  - RULE-SET,tiktok,🎥 流媒体解锁
+  - RULE-SET,netflix,🎥 流媒体解锁,no-resolve
+  - RULE-SET,disney,🎥 流媒体解锁,no-resolve
+  - RULE-SET,hbo,🎥 流媒体解锁,no-resolve
+  - RULE-SET,primevideo,🎥 流媒体解锁,no-resolve
+  - RULE-SET,tiktok,🎥 流媒体解锁,no-resolve
 
-  - RULE-SET,bahamut,📺 台湾流媒体
-  - RULE-SET,kktv,📺 台湾流媒体
-  - RULE-SET,linetv,📺 台湾流媒体
+  - RULE-SET,bahamut,📺 台湾流媒体,no-resolve
+  - RULE-SET,kktv,📺 台湾流媒体,no-resolve
+  - RULE-SET,linetv,📺 台湾流媒体,no-resolve
   
-  - RULE-SET,bilibiliintl,📺 哔哩哔哩
-  - RULE-SET,bilibili,📺 哔哩哔哩  
+  - RULE-SET,bilibiliintl,📺 哔哩哔哩,no-resolve
+  - RULE-SET,bilibili,📺 哔哩哔哩,no-resolve
 
-  - RULE-SET,onedrive,Ⓜ️ 国外云盘
-  - RULE-SET,googledrive,Ⓜ️ 国外云盘
-  - RULE-SET,dropbox,Ⓜ️ 国外云盘
-  - RULE-SET,mega,Ⓜ️ 国外云盘
-  - RULE-SET,pikpak,Ⓜ️ 国外云盘
-  - RULE-SET,terabox,Ⓜ️ 国外云盘
+  - RULE-SET,onedrive,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,googledrive,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,dropbox,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,mega,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,pikpak,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,terabox,Ⓜ️ 国外云盘,no-resolve
   
-  - RULE-SET,telegram,🚀 节点选择
-  - RULE-SET,line,🚀 节点选择
-  - RULE-SET,whatsapp,🚀 节点选择
-  - RULE-SET,github,🚀 节点选择
-  - RULE-SET,speedtest,🚀 节点选择
-  - RULE-SET,pay,🚀 节点选择
-  - RULE-SET,visa,🚀 节点选择
-  - RULE-SET,google,🚀 节点选择
-  - RULE-SET,microsoft,🚀 节点选择
+  - RULE-SET,telegram,🚀 节点选择,no-resolve
+  - RULE-SET,line,🚀 节点选择,no-resolve
+  - RULE-SET,whatsapp,🚀 节点选择,no-resolve
+  - RULE-SET,github,🚀 节点选择,no-resolve
+  - RULE-SET,speedtest,🚀 节点选择,no-resolve
+  - RULE-SET,pay,🚀 节点选择,no-resolve
+  - RULE-SET,visa,🚀 节点选择,no-resolve
+  - RULE-SET,google,🚀 节点选择,no-resolve
+  - RULE-SET,microsoft,🚀 节点选择,no-resolve
 
-  - RULE-SET,blockchain,💵 区块链
-  - RULE-SET,okx,💵 区块链
-  - RULE-SET,binance,💵 区块链
-  - RULE-SET,crypto,💵 区块链
+  - RULE-SET,blockchain,💵 区块链,no-resolve
+  - RULE-SET,okx,💵 区块链,no-resolve
+  - RULE-SET,binance,💵 区块链,no-resolve
+  - RULE-SET,crypto,💵 区块链,no-resolve
   
   #用于检测nat类型，国内的stun已单独放入direct中
-  - RULE-SET,global-stun,🚀 节点选择
+  - RULE-SET,global-stun,🚀 节点选择,no-resolve
 
-  - RULE-SET,global-game,🎮 游戏加速
-  - RULE-SET,game,🎮 游戏加速
+  - RULE-SET,global-game,🎮 游戏加速,no-resolve
+  - RULE-SET,game,🎮 游戏加速,no-resolve
   
   - MATCH,🚀 节点选择
