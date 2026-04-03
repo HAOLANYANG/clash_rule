@@ -75,6 +75,9 @@ sniffer:
       ports: [443, 853, 8443]
     HTTP:
       ports: [80, 8000-8888]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
 
 hosts:
   dns.google:
@@ -102,7 +105,7 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.lan"
-    - "rule-set:lan,direct,coolapk,privatetracker"
+    - "rule-set:direct,steamcn,gamedownloadcn,coolapk,apple,ntp,privatetracker,cnmax"
     - "+.local"
     - "*.localdomain"
     - "+.miwifi.com"
@@ -537,8 +540,15 @@ rule-providers:
   privacy:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Classical.yaml"
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Privacy/Privacy_Classical.yaml"
     path: ./ruleset/Privacy_Classical.yaml
+    interval: 86400
+
+  hijacking:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Hijacking/Hijacking.yaml"
+    path: ./ruleset/Hijacking.yaml
     interval: 86400
 
   anti-ad-clash:
@@ -584,11 +594,11 @@ proxy-groups:
   - { name: "🔮 负载均衡",   type: load-balance,proxies: [/.*(x|X).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
 
   # 🌍 地区分组
-  - { name: "🇭🇰 香港",     type: url-test,    proxies: [/.*(港|HK|hk).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 100 }
-  - { name: "🇹🇼 台湾",     type: url-test,    proxies: [/.*(台|TW|tw).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
-  - { name: "🇸🇬 新加坡",   type: url-test,    proxies: [/.*(坡|SG|sg).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
-  - { name: "🇯🇵 日本",     type: url-test,    proxies: [/.*(日|JP|jp).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
-  - { name: "🇺🇲 美国",     type: url-test,    proxies: [/.*(美|US|us).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇭🇰 香港",     type: url-test,    proxies: [/.*(港|HK|hk|🇭🇰).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 100 }
+  - { name: "🇹🇼 台湾",     type: url-test,    proxies: [/.*(台|TW|tw|🇹🇼).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇸🇬 新加坡",   type: url-test,    proxies: [/.*(坡|SG|sg|🇸🇬).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇯🇵 日本",     type: url-test,    proxies: [/.*(日|JP|jp|🇯🇵).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
+  - { name: "🇺🇲 美国",     type: url-test,    proxies: [/.*(美|US|us|🇺🇸).*/], url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 250 }
   
   - { name: "🎯 全球直连", type: select, proxies: ["DIRECT", /^(?!.*(X|网站|套餐|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date|Expiration|Remaining|SOCK|Sock|sock|HTTP|Http|HTTP|MIX|Mix|mix)).*$/] }
 
@@ -596,83 +606,84 @@ proxy-groups:
 
 
 rules:
-  - RULE-SET,lan,🎯 全球直连
+  - RULE-SET,lan,🎯 全球直连,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - RULE-SET,global,🚀 节点选择
+  - RULE-SET,global,🚀 节点选择,no-resolve
 
-  - RULE-SET,ad-cn-whitelist,🎯 全球直连
-  - RULE-SET,anti-ad-white-for-clash,🎯 全球直连
-  - RULE-SET,ad,🛑 广告/追踪拦截
-  - RULE-SET,privacy,🛑 广告/追踪拦截
-  - RULE-SET,block-httpdns,🛑 广告/追踪拦截
-  - RULE-SET,anti-ad-clash,🛑 广告/追踪拦截
+  - RULE-SET,ad-cn-whitelist,🎯 全球直连,no-resolve
+  - RULE-SET,anti-ad-white-for-clash,🎯 全球直连,no-resolve
+  - RULE-SET,ad,🛑 广告/追踪拦截,no-resolve
+  - RULE-SET,privacy,🛑 广告/追踪拦截,no-resolve
+  - RULE-SET,hijacking,🛑 广告/追踪拦截,no-resolve
+  - RULE-SET,block-httpdns,🛑 广告/追踪拦截,no-resolve
+  - RULE-SET,anti-ad-clash,🛑 广告/追踪拦截,no-resolve
 
-  - RULE-SET,fcm,🚀 节点选择
-  - RULE-SET,direct,🎯 全球直连
-  - RULE-SET,steamcn,🎯 全球直连
-  - RULE-SET,gamedownloadcn,🎯 全球直连
-  - RULE-SET,coolapk,🎯 全球直连
-  - RULE-SET,apple,🎯 全球直连
+  - RULE-SET,fcm,🚀 节点选择,no-resolve
+  - RULE-SET,direct,🎯 全球直连,no-resolve
+  - RULE-SET,steamcn,🎯 全球直连,no-resolve
+  - RULE-SET,gamedownloadcn,🎯 全球直连,no-resolve
+  - RULE-SET,coolapk,🎯 全球直连,no-resolve
+  - RULE-SET,apple,🎯 全球直连,no-resolve
 
   #tg优化
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
   
   # 防止网站使用 QUIC 导致速度不佳或者断流的情况, 禁用 443 端口 UDP 流量（不包括国内）
-  - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
+  # - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   
-  - RULE-SET,youtube,📹 油管视频
-  - RULE-SET,youtubemusic,📹 油管视频
+  - RULE-SET,youtube,📹 油管视频,no-resolve
+  - RULE-SET,youtubemusic,📹 油管视频,no-resolve
   
-  - RULE-SET,openai,💬 OpenAi
-  - RULE-SET,gemeni,💬 OpenAi  
+  - RULE-SET,openai,💬 OpenAi,no-resolve
+  - RULE-SET,gemeni,💬 OpenAi,no-resolve
  
-  - RULE-SET,netflix,🎥 流媒体解锁
-  - RULE-SET,disney,🎥 流媒体解锁
-  - RULE-SET,hbo,🎥 流媒体解锁
-  - RULE-SET,primevideo,🎥 流媒体解锁
-  - RULE-SET,tiktok,🎥 流媒体解锁
+  - RULE-SET,netflix,🎥 流媒体解锁,no-resolve
+  - RULE-SET,disney,🎥 流媒体解锁,no-resolve
+  - RULE-SET,hbo,🎥 流媒体解锁,no-resolve
+  - RULE-SET,primevideo,🎥 流媒体解锁,no-resolve
+  - RULE-SET,tiktok,🎥 流媒体解锁,no-resolve
 
-  - RULE-SET,bahamut,📺 台湾流媒体
-  - RULE-SET,kktv,📺 台湾流媒体
-  - RULE-SET,linetv,📺 台湾流媒体
+  - RULE-SET,bahamut,📺 台湾流媒体,no-resolve
+  - RULE-SET,kktv,📺 台湾流媒体,no-resolve
+  - RULE-SET,linetv,📺 台湾流媒体,no-resolve
   
-  - RULE-SET,bilibiliintl,📺 哔哩哔哩
-  - RULE-SET,bilibili,📺 哔哩哔哩  
+  - RULE-SET,bilibiliintl,📺 哔哩哔哩,no-resolve
+  - RULE-SET,bilibili,📺 哔哩哔哩  ,no-resolve
   
-  - RULE-SET,onedrive,Ⓜ️ 国外云盘
-  - RULE-SET,googledrive,Ⓜ️ 国外云盘
-  - RULE-SET,dropbox,Ⓜ️ 国外云盘
-  - RULE-SET,mega,Ⓜ️ 国外云盘
-  - RULE-SET,pikpak,Ⓜ️ 国外云盘
-  - RULE-SET,terabox,Ⓜ️ 国外云盘
+  - RULE-SET,onedrive,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,googledrive,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,dropbox,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,mega,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,pikpak,Ⓜ️ 国外云盘,no-resolve
+  - RULE-SET,terabox,Ⓜ️ 国外云盘,no-resolve
 
-  - RULE-SET,telegram,🚀 节点选择
-  - RULE-SET,line,🚀 节点选择
-  - RULE-SET,whatsapp,🚀 节点选择
-  - RULE-SET,github,🚀 节点选择
-  - RULE-SET,speedtest,🚀 节点选择
-  - RULE-SET,pay,🚀 节点选择
-  - RULE-SET,visa,🚀 节点选择
-  - RULE-SET,google,🚀 节点选择
-  - RULE-SET,microsoft,🚀 节点选择
+  - RULE-SET,telegram,🚀 节点选择,no-resolve
+  - RULE-SET,line,🚀 节点选择,no-resolve
+  - RULE-SET,whatsapp,🚀 节点选择,no-resolve
+  - RULE-SET,github,🚀 节点选择,no-resolve
+  - RULE-SET,speedtest,🚀 节点选择,no-resolve
+  - RULE-SET,pay,🚀 节点选择,no-resolve
+  - RULE-SET,visa,🚀 节点选择,no-resolve
+  - RULE-SET,google,🚀 节点选择,no-resolve
+  - RULE-SET,microsoft,🚀 节点选择,no-resolve
 
-  - RULE-SET,blockchain,💵 区块链
-  - RULE-SET,okx,💵 区块链
-  - RULE-SET,binance,💵 区块链
-  - RULE-SET,crypto,💵 区块链
+  - RULE-SET,blockchain,💵 区块链,no-resolve
+  - RULE-SET,okx,💵 区块链,no-resolve
+  - RULE-SET,binance,💵 区块链,no-resolve
+  - RULE-SET,crypto,💵 区块链,no-resolve
 
-  - RULE-SET,ntp,🎯 全球直连
-  - RULE-SET,privatetracker,🎯 全球直连
+  - RULE-SET,ntp,🎯 全球直连,no-resolve
+  - RULE-SET,privatetracker,🎯 全球直连,no-resolve
   
+  #用于检测nat类型，国内的stun已单独放入direct中
+  - RULE-SET,global-stun,🚀 节点选择,no-resolve
+
   - RULE-SET,cnmax,🎯 全球直连
 
-  #用于检测nat类型，国内的stun已单独放入direct中
-  - RULE-SET,global-stun,🚀 节点选择
-
   #游戏
-  - RULE-SET,global-game,🎮 游戏加速
+  - RULE-SET,global-game,🎮 游戏加速,no-resolve
   - RULE-SET,game,🎮 游戏加速
   
   - MATCH,🚀 节点选择
