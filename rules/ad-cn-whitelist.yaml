@@ -1,2 +1,5 @@
+# behavior 为 domain
+# behavior: domain
+# 注意域名格式
 payload:
   - 'zaimanhua.com'
