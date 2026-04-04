@@ -502,11 +502,11 @@ rule-providers:
     path: ./ruleset/GameDownloadCN.yaml
     interval: 86400 
 
-  ad-cn-whitelist:
+  ad-whitelist:
     type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/holandyoung/clash_rule@main/rules/ad-cn-whitelist.yaml"
-    path: ./ruleset/ad-cn-whitelist.yaml
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/holandyoung/clash_rule@main/rules/ad-whitelist.yaml"
+    path: ./ruleset/ad-whitelist.yaml
     interval: 86400
 
   ad:
@@ -612,8 +612,11 @@ rules:
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - RULE-SET,global,🚀 节点选择,no-resolve
 
-  - RULE-SET,ad-cn-whitelist,🎯 全球直连,no-resolve
-  - RULE-SET,anti-ad-white-for-clash,🎯 全球直连,no-resolve
+  # 1. 如果 [命中 ad-cn 或者 anti-ad 白名单] 且 [是国内域名] -> 直连
+  - AND,((OR,((RULE-SET,ad-whitelist),(RULE-SET,anti-ad-white-for-clash))),(GEOSITE,CN)),🎯 全球直连
+  # 2. 经过上面过滤后，剩下的 [命中 ad-cn 或者 anti-ad 白名单] 的流量 -> 代理
+  - OR,((RULE-SET,ad-whitelist),(RULE-SET,anti-ad-white-for-clash)),🚀 节点选择
+  
   - RULE-SET,ad,🛑 广告/追踪拦截,no-resolve
   - RULE-SET,privacy,🛑 广告/追踪拦截,no-resolve
   - RULE-SET,hijacking,🛑 广告/追踪拦截,no-resolve
